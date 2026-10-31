@@ -4,6 +4,9 @@ Shared memory across chats. Claude: read this first in every new chat. Edit only
 Source: `Not Repository/Ideas.md` (vision + full to-do list). Updated: 2026-10-31.
 
 ## REMINDERS (Claude: raise these in the planning chat, do not let Gokul forget)
+- [ ] PRIVACY (found 2026-10-31): `platform` is a PUBLIC repo and its committed docs/WORKLOG.md (commit history too) contains a few employer work to-do lines (see PRIVATE-TODO.md for what they were; not repeated here). Removed from the planning/master copy now and moved to Project/PRIVATE-TODO.md, but already pushed history needs Gokul's decision (rewrite history + force-push, or accept). ALSO check visibility of `Progress` (remote github.com/gokulsaraswatvc-eng/GSpace): it tracks 94 files in `src/files/` incl. work material (OMS JSONs, PDN scripts, postbooking-* repo notes). If public or later shared with collaborators, decide what to untrack/remove. Nothing deleted by Claude.
+- [ ] Platform owner tasks: GitHub settings (description, topics, branch protection), `graphify hook install`, commit `.claude/` + `.gitattributes`.
+- [ ] Token name: packages are private-registry `@gokulsaraswat/*`; consumers' CI and Vercel use env `NODE_AUTH_TOKEN` (read:packages) per platform/docs/CONTRACTS.md (docs now aligned; earlier text said NPM_TOKEN).
 - [ ] TO BE UPDATED: Markdown-studio section (scope open; clutter in root: PATCH_9_*, implementation_plan.md, etc.). Revisit after the first 5 repos.
 - [ ] TO BE UPDATED: checkers-gym-management section (shared vs separate Supabase, who logs in, confirm `.env` is gitignored/never committed). Revisit after admin works.
 - [ ] TO BE UPDATED: gokul-omni-converter (standalone; hub link-only?).
@@ -18,16 +21,33 @@ Source: `Not Repository/Ideas.md` (vision + full to-do list). Updated: 2026-10-3
 Resume this planning chat in a new window with `Not Repository/prompts/PLANNING-CHAT-PROMPT.md`.
 Status legend: [ ] todo, [~] in progress, [x] done. Update after every report.
 - [ ] 0. Decide: commit the kit stubs per repo now, or let each repo chat commit its own (open).
-- [~] 1. Chat `platform` (folder Project/platform, Opus 5.5, high): paste SHARED BLOCK + section 1. Output: docs, @gokulsaraswat/ui v0.1, packages. Then return here: sync.
+- [x] 1. Chat `platform` DONE 2026-10-31 (verified read-only: main in sync with origin, CI green per its log, 6 commits). Delivered: repo kit, npm workspace + Changesets, `@gokulsaraswat/ui` 0.1.0 (tokens, Tailwind v4 mapping, Footer + LegalPage placeholders, 10 tests), CI + Release + install-smoke workflows, docs/ARCHITECTURE + CONTRACTS. Left for Gokul: (a) step 6 GitHub description/topics/branch protection (web UI; `gh` not installed), (b) run `graphify hook install` in platform, (c) commit untracked `.claude/`, `.gitattributes` (use /gitmd). Next platform steps: @gokulsaraswat/mdx, auth, config once contracts defined (do when admin needs them).
 - [ ] 2. Chat `admin` (Opus 5.5, high; max for auth/RLS): shell, Supabase Auth, roles, switcher. Return: sync.
 - [ ] 3. Chat `gokulmobilize` (Opus 5.5, high): hub PWA + Capacitor. Return: sync.
 - [ ] 4. Chat `bestportofolio` (Sonnet 5.5, medium): seed fake data, verify, adopt shared footer; admin removal LAST. Return: sync.
 - [ ] 5. Chat `Progress` (Sonnet 5.5, medium): MDX + /gspace base path. Return: sync.
 - [ ] 6. Fill the TO BE UPDATED sections: Markdown-studio, checkers-gym-management, gokul-omni-converter. (REMINDER)
 - [ ] 7. Cross-repo integration check: config.json flow, roles, shared components, base paths, CI green everywhere.
+- [ ] C. ON REQUEST (any time): collaborator prompt for a repo (first: GSpace/Progress). Procedure in PLANNING-CHAT-PROMPT.md. Gokul tests it in a Progress chat, I refine, then it goes to the collaborator.
+- [ ] A. FUTURE (after basics + Claude Code paid plan): automate the runbook. Driver = an orchestrator Claude session (or headless `claude -p` runs, /loop, subagents, git worktrees per repo) that runs each repo's autonomous kickoff in runbook order, reads/updates WORKLOG.md as memory, opens PRs, stops at human gates. Human gates: account/keys/payments (Vercel, Supabase, NODE_AUTH_TOKEN, Apple), legal text, design taste, merge to main. Needs: sandboxed/permissioned unattended mode, plan usage limits checked, `.claude-session.json` steps in every repo, CI green as the stop condition. Prepare now: keep every step small, verifiable, and logged.
+  Gokul's chosen mode (2026-10-31): Claude Desktop (Code tab). Orchestrator session in Project/ spawns one session per repo (own worktree/branch), each ends with a PULL REQUEST; Gokul merges to main. Sessions ASK Gokul when blocked (he answers: judgement, payments, legal, secrets, accounts). Prerequisites NOT yet done: GitHub access for PRs (`gh` CLI is NOT installed here; GitHub connector needs authorizing via /mcp), connectors Gokul wants to grant, plan usage check.
 - [ ] 8. Then feature work from the to-do list (portfolio content, courses, resume, etc.).
 
 - [ ] Graphify: 6 repos already had it (graphify-out, hooks, sync-architecture.sh). 2026-10-31: installed in `admin` (script, git hooks, merge driver, `graphify claude install` created a minimal CLAUDE.md + .claude/ hook; admin chat must extend CLAUDE.md with the full rules). `platform` chat was already running and wrote its own CLAUDE.md: verify its hooks (`graphify hook status`) later. Run `graphify update .` in admin/platform once real code exists (empty repo = empty graph).
+
+
+## Commit + push everything: `/gitmd` (Claude slash command)
+Run Claude in `Project/` and type `/gitmd` (file: `Project/.claude/commands/gitmd.md`). It checks all 8 repos (git only, no file reading), shows a table, flags secrets, ASKS which repos + message, never force-pushes, stops if behind remote, confirms clean at the end.
+Old shell version `gitmd.sh` / `git md` alias: deleted by Gokul 2026-10-31 (verified).
+
+## Cleanup scan: `/cleanscan` (Claude slash command)
+Run Claude in `Project/` and type `/cleanscan` (file: `Project/.claude/commands/cleanscan.md`). Token-light: shell pipelines only, per-repo cache (HEAD + status hash) in `Project/.cleanscan/`, unchanged repos skipped. Finds junk, copy names, patch clutter, tracked-but-ignored, >1 MB, exact duplicates. ASKS per group; deletes only what Gokul approves; then tells him to run `/gitmd`.
+Old shell version `cleanscan.sh` / `git cs` alias: deleted by Gokul 2026-10-31 (verified). Two test reports (Progress, Markdown-studio) remain in `.cleanscan/` and will be refreshed by the first `/cleanscan` run.
+First findings (2026-10-31): Progress has many `src/files/* copy/` duplicates; Markdown-studio has PATCH_* clutter in root and docs/patches. Nothing deleted.
+RULE (Gokul): tools/commands are Claude-run .md prompts that ask questions, not .sh scripts.
+
+## Why everything is logged (Gokul, 2026-10-31)
+Tokens/context may end at any time. State must live in files so any new chat resumes with: what is done, what is pending, in what order. Update the docs in the same turn as every decision.
 
 ## Working agreement
 - Chat = advisor. Gokul does the work and reports what they're doing; Claude suggests next step, flags risks, asks questions.
@@ -59,9 +79,6 @@ Status: GSpace "commit and push pending" → nothing pending (verified by git st
 - 2026-10-27: Shared packages `@gokulsaraswat/ui`, `@gokulsaraswat/mdx` (with `WebWindow`), `@gokulsaraswat/auth`; separate repos, no monorepo for now.
 - 2026-10-27: Payments later: Razorpay hosted checkout + `PaymentProvider` interface; no own gateway.
 - 2026-10-31: GSpace gets base path `/gspace` now.
-- 2026-10-31 (platform chat): npm workspaces; tokens as CSS variables + React components; Changesets; GitHub Packages, CI-only publish on main.
-- 2026-10-31 (platform chat): package scope is `@gokulsaraswat/*` (GitHub Packages requires scope = owner); all docs renamed from `@gokul/*`. Consumers need `.npmrc` + `read:packages` token.
-- 2026-10-31 (platform chat): platform repo public, all rights reserved. Legal pages v0.1 = placeholder text. GSpace gets tokens only in v0.1.
 - 2026-10-31: WORKLOG lives at `Project/WORKLOG.md`.
 - 2026-10-31: Admin architecture: ONE `admin` repo (Next.js + Supabase) edits DATA in Supabase (MDX content, toggles, JSON config, theme tokens as CSS vars), not code in other repos. Sites read those rows at load/build. Tables: `content(app,slug,body)`, `app_config(app,key,value jsonb)`, `user_roles(user_id,app,role)`.
 - 2026-10-31: Two new repos, both LATER: `admin` and `platform` (`@gokulsaraswat/ui`, `@gokulsaraswat/mdx` incl. browser MDX preview via `evaluate()`, `@gokulsaraswat/auth`). Stack unchanged.
@@ -72,11 +89,7 @@ Status: GSpace "commit and push pending" → nothing pending (verified by git st
 
 ## To-do
 ### Now (2-3 days)
-**Work**
-- [ ] Strategy pattern for post-booking service
-- [ ] FK refund flow: complete as much as possible
-- [ ] Meeting: OMS values that were returned
-- [ ] Create foglamp for pending repositories
+**Work** (employer items moved to private Project/PRIVATE-TODO.md; never commit them to a repo)
 - [ ] Collect all docs (Sheets, Docs, PDFs) and upload missing ones to the documents section
 
 **Portfolio (main target: everything works perfectly)**
@@ -179,6 +192,16 @@ Goku chat; Udemy Clone etc. old projects; Claude Code SSO subscription item (Int
 - 2026-10-31: Copied PROMPTS.md, REPO-KIT.md and a WORKLOG.md snapshot into `platform/docs/` (uncommitted). From the platform chat on, `platform/docs/WORKLOG.md` is the master; this Project/WORKLOG.md is the planning-chat copy and must be synced.
 - Cloned (empty): `admin`, `platform`. Mobile = existing `gokulmobilize` (Capacitor, one repo). Mobile repo not yet reset.
 
+- 2026-10-31 DECISION: bestportofolio tech stack stays (already current: Next ^16.1.1, React ^19, TS ^5, Tailwind ^4, Prisma ^6.11, zod ^4, Supabase JS ^2.108). No rewrite/framework change. Targeted items for the bestportofolio chat: verify `next-auth` ^4 is unused then remove; Dockerfile uses bun + `bun.lock*` but repo has package-lock.json (verify Docker build); Node 20 in Dockerfile vs Node 24 locally; adopt @gokulsaraswat/mdx; auth moves to Supabase Auth later. Not verified: build status, Prisma 7 availability.
+
+- 2026-10-31 REQUIREMENT (Gokul): all apps will be deployed (Vercel or elsewhere, not decided per repo); production builds MUST succeed on the host. Added to SHARED BLOCK + REPO-KIT "Deploy-ready rules". Known risks: private @gokulsaraswat/* packages need NODE_AUTH_TOKEN on host/CI; bestportofolio Dockerfile/bun/Node mismatch; base paths per app; Supabase env vars per host. bestportofolio also has Dockerfile + Caddyfile (self-host option).
+
+- 2026-10-31 DECIDED: host = **Vercel for ALL repos**. Consequences to handle in repo chats: (1) hub routes /gspace, /studio, /gym etc. to separate Vercel projects via rewrites (vercel.json or Next rewrites), each app with its base path; (2) `NODE_AUTH_TOKEN` env var on every Vercel project that installs @gokulsaraswat/* (GitHub Packages); (3) Supabase env vars per project; (4) bestportofolio Dockerfile/Caddyfile probably obsolete: ask Gokul before removing; (5) CHECK Vercel plan terms: Hobby is for personal non-commercial use, so the gym app with real clients may need Pro; Gokul to verify on vercel.com; (6) static apps (Markdown-studio on GitHub Pages today) can move to Vercel or stay: ask in its chat.
+
+- 2026-10-31 (Gokul): simple standard = `npm run build` must succeed. Added one-command proof (clean install + build on pinned Node) + file-name CASE check to SHARED BLOCK and REPO-KIT.
+
+- 2026-10-31 (platform chat decisions, now master): scope is `@gokulsaraswat/*` (GitHub Packages requires scope = owner; replaces `@gokul/*` everywhere); npm workspaces; tokens as CSS variables + React components; Changesets, version locally then push, CI-only publish on main; Footer = plain CSS (gk- classes), `<a>` default + `linkComponent` prop, `basePath`, fixed 9 legal links (slugs privacy, terms, cookies, data-deletion, accessibility, sitemap, faq, about, contact); tokens from bestportofolio colors/radius, Tailwind v4 type/shadows; TypeScript pinned ~6.0; platform repo public, all rights reserved; legal pages are PLACEHOLDER text (real text needs Gokul's review); GSpace gets tokens only in v0.1. Contract details: platform/docs/CONTRACTS.md. Apps must serve a route per footer slug under their base path.
+
 ## Findings: bestportofolio (read-only, 2026-10-31)
 - Data = Supabase Postgres via **Prisma** (models: AdminUser, Profile, BlogPost, BlogIdea, Project, Course, CourseChapter, ContactMessage, Todo, TodoHistory, Comment, CodeSnippet, OperationLog). Supabase REST used only for RAG chatbot (pgvector, Gemini).
 - Admin auth is **custom**, not Supabase Auth: `AdminUser` table, scrypt hashes, TOTP, roles admin/editor + `permissions` string, signed HttpOnly session cookie (`AUTH_SECRET`), `requireAdmin()` on API routes.
@@ -201,10 +224,6 @@ Goku chat; Udemy Clone etc. old projects; Claude Code SSO subscription item (Int
 - MDX in the editor: preview inside GSpace needs a compile step; browser-side or build-time?
 
 ## Session log
-- 2026-10-31: platform step 5: published `@gokulsaraswat/ui` 0.1.0 verified installable from the registry (CI smoke test). Kickoff "Done when" met; left: GitHub repo settings (owner), graphify hook install (owner).
-- 2026-10-31: platform step 4: release workflow; `@gokulsaraswat/ui` 0.1.0 published to GitHub Packages (consumers: `.npmrc` + `read:packages` token, see platform/docs/CONTRACTS.md).
-- 2026-10-31: platform step 3 done: `@gokulsaraswat/ui` React `Footer` + `LegalPage` (placeholders) + `styles.css`. Cross-repo: each app must serve routes /privacy, /terms, /cookies, /data-deletion, /accessibility, /sitemap, /faq, /about, /contact under its base path. Next: publish 0.1.0.
-- 2026-10-31: platform step 2 done: `@gokulsaraswat/ui` tokens (CSS vars + Tailwind v4 mapping), CI, graphify. API in platform/docs/CONTRACTS.md. Next: React footer.
-- 2026-10-31: platform chat step 1 done: repo kit, npm workspace root, Changesets, scope rename. Next: `@gokulsaraswat/ui` scaffold (see platform/.claude-session.json).
+- 2026-10-31: platform step 7: `@gokulsaraswat/config` (app ids hub/admin/portfolio/gspace/studio/gym; roles super_admin (global, app '*') > admin > member (per app); hub config.json v1 zod schema) + `@gokulsaraswat/auth` (hasRole, isSuperAdmin, getUserRoles(client)). Built + tested, NOT yet published. REQUEST admin repo: create Supabase `user_roles` + RLS per platform/docs/CONTRACTS.md. REQUEST gokulmobilize: validate config.json with `parseHubConfig`; decide Storage bucket/path. mdx deferred (no Calculator/WebWindow spec).
 - 2026-10-31: Standing rule added (Gokul): Claude auto-updates all planning docs/snapshots without being reminded. Planning prompt now in every repo's docs/master/. Gokul starting RUNBOOK step 1 (platform chat).
 - 2026-10-31: Created this file. Verified all repos pushed. Started GSpace MDX plan.

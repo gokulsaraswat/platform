@@ -31,5 +31,13 @@ Repos: platform, admin, gokulmobilize, bestportofolio, Progress (GSpace), Markdo
 - SEO basics per site: title/meta/OG, JSON-LD, `robots.txt`, `sitemap.xml`.
 - NOT shared (per app): loader, accent theme, content.
 
+## Deploy-ready rules (every repo)
+- One-command proof: `rm -rf node_modules .next dist && npm ci && npm run build` (repo equivalent) passes on the pinned Node. Imports must match file-name CASE exactly (macOS ignores case, Vercel/Linux does not).
+- Production build passes locally AND in CI using the host's commands (clean install from lockfile, then build). Node pinned (`engines`, `.nvmrc`). One package manager, one lockfile.
+- `.env.example` lists every variable; host env vars documented in README.
+- Private `@gokulsaraswat/*` packages: `.npmrc` with `${NODE_AUTH_TOKEN}`, token set in CI + host (Vercel env), never committed.
+- Base paths/rewrites for the one-domain layout (/gspace, /studio, ...) set and tested in a production build.
+- Hosting: Vercel for all repos (decided 2026-10-31). README states Vercel project name, build/install commands, required env vars, deploy steps. Build failure on the host = not done.
+
 ## Definition of done (any step)
-Builds, runs, lint clean, tests pass where they exist, evidence shown, docs + WORKLOG + session JSON + graphify updated, committed, pushed.
+Production build passes, lint clean, tests pass where they exist, evidence shown, docs + WORKLOG + session JSON + graphify updated, committed, pushed.

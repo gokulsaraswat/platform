@@ -40,7 +40,11 @@ RULES
 - Never edit another repo. Needs from other repos go into platform/docs/WORKLOG.md as a request.
 - Shared constants come from @gokulsaraswat/ui (design philosophy, tokens, footer with Privacy, Terms, Cookie Policy,
   Data Deletion Request, Accessibility Statement, Sitemap, FAQ, About, Contact; SEO basics). Per-app: loader, accent, content.
-- Done = builds, runs, lint clean, tests pass, docs updated, pushed, GitHub repo tidy.
+- Simple proof of deploy-ready: run `rm -rf node_modules .next dist && npm ci && npm run build` (or the repo's equivalent) on the pinned Node. If it passes, Vercel will build. Also check file-name CASE in imports (macOS ignores case, Vercel/Linux does not).
+- Deploy-ready is part of done: the PRODUCTION build must succeed with the same commands the host runs (clean install from the lockfile, then build), on a pinned Node version
+  (`engines` + `.nvmrc`), with every env var listed in .env.example, no reliance on local files, and CI green. A failing host build = not done. Private @gokulsaraswat/* packages
+  need an auth token in CI and on the host (.npmrc using ${NODE_AUTH_TOKEN}); never commit the token. Hosting is DECIDED: Vercel for all repos (Gokul, 2026-10-31). Verify with the Vercel build (clean install + production build); Vercel env vars + project settings documented in README. Any exception: ask me.
+- Done = builds (production), runs, lint clean, tests pass, docs updated, pushed, GitHub repo tidy.
 - Repo kit checklist: platform/docs/REPO-KIT.md. First task in any repo: bring it up to that kit (propose the list, wait for OK).
 ```
 
@@ -88,8 +92,14 @@ Questions to ask me first: framework confirmation, hub domain, tile design, whic
 ### 4. bestportofolio
 Scope: keep working; become public-only.
 - First: make it run end-to-end; seed ONE fake project, blog, course (fix stale `seed.ts` that seeds plaintext admin/admin123 vs scrypt schema); verify every public page.
+- Hosting is Vercel: once the build is proven, ask me whether the Dockerfile + Caddyfile (self-host) are still needed or can go (do not delete without my OK).
 - Then: adopt @gokulsaraswat/ui footer + legal/SEO pages, read tile/config data if needed, switch MDX to @gokulsaraswat/mdx registry.
 - Last (after admin repo verified): remove admin code + Prisma auth parts, point auth to Supabase Auth.
+- Stack decision (2026-10-31): KEEP the stack (Next ^16, React ^19, TS ^5, Tailwind ^4, Prisma ^6, zod ^4, Supabase JS). No rewrite. Verify-then-fix list, one step each, ask me first:
+  1. `next-auth` ^4 is in package.json but login is custom: confirm it is unused, then remove.
+  2. Dockerfile uses bun + `bun.lock*` but the repo has package-lock.json, and Node 20 vs Node 24 locally: verify the Docker build; fix or ask me.
+  3. Run build + lint + start and report real status (not yet verified by anyone).
+  4. Check whether a newer Prisma/Next major is worth it; report only, do not upgrade without my OK.
 Questions to ask me first: hosting (Dockerfile/Caddyfile in repo), env setup, what "perfect" means for the verification list.
 
 ### 5. Progress (GSpace)
@@ -119,3 +129,15 @@ Questions to ask me first: Supabase project sharing, who logs in early (staff / 
 ### 8. gokul-omni-converter  (TO BE UPDATED: standalone, not part of the web platform)
 Python desktop app (GO Omni Pro 2.4.0, offline, Windows/macOS/Linux). Apply the repo kit only (WORKLOG.md, AGENTS.md, COLLABORATORS.md); no admin/platform wiring planned.
 Questions to ask me first: keep it standalone, release/CI status, whether it should appear as a tile in the hub (likely link-only).
+
+---
+
+## CLEANUP REVIEW PROMPT (token-light, optional)
+
+Preferred: run `/cleanscan` in Project (asks and deletes only what you approve; cached reports in `Project/.cleanscan/`). The text below is a cheap extra judgement pass over saved reports:
+
+```text
+Read ONLY Project/.cleanscan/*.md. Do not rescan, do not read other files unless a finding is unclear.
+For each finding: say keep or remove-candidate and why, in one line. Group by repo. Never delete or edit anything.
+I decide. After I answer, delete exactly what I list, then run `git cs -f <repo>` once to confirm, and update WORKLOG.md.
+```
