@@ -25,7 +25,7 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - Repo public, all rights reserved. Legal pages ship with placeholder text in v0.1. GSpace gets tokens only in v0.1.
 
 ## In progress / next
-- Step 5: verify install of 0.1.0 from a scratch consumer. Full list: `.claude-session.json` sprint.todo_next.
+- Step 6: GitHub repo settings (description, topics, branch protection). Full list: `.claude-session.json` sprint.todo_next.
 
 ## Blockers / requests to other repos
 - none logged

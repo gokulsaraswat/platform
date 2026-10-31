@@ -1,0 +1,55 @@
+name: Install smoke test
+
+on:
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  consume:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          scope: '@gokulsaraswat'
+      - name: Install published package into a scratch consumer
+        run: |
+          VERSION=$(node -p "require('./packages/ui/package.json').version")
+          mkdir -p "$RUNNER_TEMP/consumer" && cd "$RUNNER_TEMP/consumer"
+          npm init -y >/dev/null
+          npm pkg set type=module
+          npm install "@gokulsaraswat/ui@$VERSION" react react-dom @types/react typescript@~6.0.3
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Render Footer and resolve CSS exports
+        working-directory: ${{ runner.temp }}/consumer
+        run: |
+          cat > smoke.mjs <<'EOF'
+          import { createElement as h } from 'react';
+          import { renderToStaticMarkup } from 'react-dom/server';
+          import { Footer, footerPages } from '@gokulsaraswat/ui';
+          const html = renderToStaticMarkup(h(Footer, { siteName: 'Smoke', basePath: '/gspace' }));
+          for (const p of footerPages) if (!html.includes(`href="/gspace/${p.slug}"`)) throw new Error(`missing ${p.slug}`);
+          for (const css of ['tokens.css', 'tailwind.css', 'styles.css']) console.log(import.meta.resolve(`@gokulsaraswat/ui/${css}`));
+          console.log('render ok');
+          EOF
+          node smoke.mjs
+      - name: Type-check against published declarations
+        working-directory: ${{ runner.temp }}/consumer
+        run: |
+          cat > smoke.tsx <<'EOF'
+          import { Footer, type FooterProps } from '@gokulsaraswat/ui';
+          const props: FooterProps = { siteName: 'Smoke', columns: [{ title: 'Explore', links: [{ label: 'Blog', href: '/blog' }] }] };
+          export const el = <Footer {...props} />;
+          EOF
+          npx tsc --noEmit --strict --jsx react-jsx --module nodenext --moduleResolution nodenext --skipLibCheck smoke.tsx

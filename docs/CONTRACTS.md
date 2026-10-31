@@ -16,7 +16,8 @@ Installing requires a token with `read:packages`, even for public packages. Cons
 @gokulsaraswat:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
 ```
-Releases: `npx changeset` -> `npx changeset version` (bump + CHANGELOG) -> push to main -> `.github/workflows/release.yml` publishes versions not yet on the registry and pushes `<name>@<version>` tags.
+Releases: `npx changeset` -> `npx changeset version` (bump + CHANGELOG) -> push to main -> `.github/workflows/release.yml` publishes versions not yet on the registry and pushes `<name>@<version>` tags. `install-smoke.yml` then installs the published version and renders it.
+Other repos' CI: grant the repo read access under the package's "Manage Actions access" (then `GITHUB_TOKEN` works) or store a `read:packages` token as `NODE_AUTH_TOKEN`.
 
 ## `@gokulsaraswat/ui` tokens
 Import `@gokulsaraswat/ui/tokens.css` (any framework). Tailwind v4 apps then import `@gokulsaraswat/ui/tailwind.css` after `@import "tailwindcss";`.

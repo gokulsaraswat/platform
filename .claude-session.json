@@ -26,11 +26,6 @@
     ],
     "todo_next": [
       {
-        "step": 5,
-        "phase": "publish",
-        "item": "Verify install from a scratch consumer with .npmrc (@gokulsaraswat:registry=https://npm.pkg.github.com) + read:packages token."
-      },
-      {
         "step": 6,
         "phase": "repo",
         "item": "GitHub settings: description, topics, branch protection on main (gh CLI not installed; owner runs commands at the end if needed)."

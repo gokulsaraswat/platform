@@ -19,6 +19,7 @@ platform/                 npm workspace root (private, not published)
 ├── .changeset/           Changesets config + pending changesets
 ├── .github/workflows/    ci.yml: npm ci, build, lint, test on push to main + PRs
 │                         release.yml: on main, lint + test, `changeset publish` to GitHub Packages, push tags
+│                         install-smoke.yml: after Release, installs the published ui into a scratch consumer, renders Footer, type-checks
 └── graphify-out/         code map (graphify update .)
 ```
 
