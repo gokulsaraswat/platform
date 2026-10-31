@@ -10,6 +10,7 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - `npm audit`: 1 moderate (minimatch ReDoS, GHSA-g3hv-75wg-m249) in the eslint dev chain only; no upstream fix; not shipped. `graphify-out/` generated; git hooks not installed.
 
 ## Done
+- 2026-10-31 Step 5: install smoke test workflow; 0.1.0 installs, renders and type-checks from the registry (run 41202858931).
 - 2026-10-31 Step 4: release workflow + `@gokulsaraswat/ui` 0.1.0 (CHANGELOG).
 - 2026-10-31 Step 3: React `Footer`, `LegalPage`, `footerPages`, `styles.css`; tsc + ESLint; SSR tests.
 - 2026-10-31 Step 2: `@gokulsaraswat/ui` tokens (`tokens.css`, `tailwind.css`), tests, CI, graphify-out, changeset.
