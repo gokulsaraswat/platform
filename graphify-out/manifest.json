@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "docs/WORKLOG.md": {
-    "mtime": 1793454054.7229302,
-    "seen": 1793454272.6828601,
-    "ast_hash": "c16c970a8afe7e0f975cad7919234054",
+    "mtime": 1793454310.7189696,
+    "seen": 1793454312.7100039,
+    "ast_hash": "08bbbdb55024a4a75ff4939cbbf9f9a2",
     "semantic_hash": ""
   },
   ".claude/launch.json": {
@@ -192,9 +192,9 @@
     "semantic_hash": ""
   },
   "packages/auth/package.json": {
-    "mtime": 1793454109.085651,
-    "seen": 1793454272.68283,
-    "ast_hash": "55c5749e40c57df571e603e79fb3d2d8",
+    "mtime": 1793454424.0246034,
+    "seen": 1793454424.892363,
+    "ast_hash": "ac1adf21482df3a6af2ffb181c2026b0",
     "semantic_hash": ""
   },
   "packages/auth/src/client.ts": {
@@ -228,9 +228,9 @@
     "semantic_hash": ""
   },
   "packages/config/package.json": {
-    "mtime": 1793454120.398853,
-    "seen": 1793454272.682834,
-    "ast_hash": "5ee337ff9c14c88c43a547680c0e6c8b",
+    "mtime": 1793454424.0223374,
+    "seen": 1793454424.8923678,
+    "ast_hash": "fbf71d2d366dda5d06b49db95f5e02a6",
     "semantic_hash": ""
   },
   "packages/config/src/apps.ts": {
@@ -275,16 +275,22 @@
     "ast_hash": "c3d18a0ffe70df36daea7ca3f34f68b9",
     "semantic_hash": ""
   },
-  ".changeset/config-auth-initial.md": {
-    "mtime": 1793454270.1317384,
-    "seen": 1793454272.682848,
-    "ast_hash": "32ade5e121babf05fc6b2707b99e8e9b",
-    "semantic_hash": ""
-  },
   ".github/workflows/install-smoke.yml": {
     "mtime": 1793454236.8315284,
     "seen": 1793454272.6828501,
     "ast_hash": "269ebbc2cf54238c659a4dc1f3f739b3",
+    "semantic_hash": ""
+  },
+  "packages/auth/CHANGELOG.md": {
+    "mtime": 1793454424.0250149,
+    "seen": 1793454424.892395,
+    "ast_hash": "1af49f79cd9a5c0561a409ed236bf32f",
+    "semantic_hash": ""
+  },
+  "packages/config/CHANGELOG.md": {
+    "mtime": 1793454424.0228486,
+    "seen": 1793454424.892396,
+    "ast_hash": "a566ae427a0ed48e5a41e3d1d15b41c4",
     "semantic_hash": ""
   }
 }

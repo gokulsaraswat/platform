@@ -1,6 +1,6 @@
 {
   "name": "@gokulsaraswat/auth",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Role helpers over Supabase user_roles for the gokulsaraswat platform",
   "license": "UNLICENSED",
   "type": "module",
@@ -29,7 +29,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
-    "@gokulsaraswat/config": "^0.0.0"
+    "@gokulsaraswat/config": "^0.1.0"
   },
   "peerDependencies": {
     "@supabase/supabase-js": "^2.0.0"

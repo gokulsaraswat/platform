@@ -1,6 +1,6 @@
 {
   "name": "@gokulsaraswat/config",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shared app IDs, roles and config.json schema for the gokulsaraswat platform",
   "license": "UNLICENSED",
   "type": "module",

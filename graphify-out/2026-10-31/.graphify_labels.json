@@ -7,14 +7,19 @@
   "5": "tokens.test.mjs",
   "6": "config.json",
   "7": "🤖 System Architecture & Co-Worker Protocol",
-  "8": "Footer",
+  "8": "components.test.mjs",
   "9": "Kickoff prompt: platform",
   "10": "pull_request_template.md",
   "11": ".changeset/README.md",
   "12": "PLANNING-CHAT-PROMPT.md",
   "13": "SECURITY.md",
   "14": "Footer.tsx",
-  "15": "compilerOptions",
-  "16": "devDependencies",
-  "17": "CONTRACTS (master)"
+  "15": "ui/tsconfig.json",
+  "16": "auth/package.json",
+  "17": "auth/src/roles.ts",
+  "18": "config/package.json",
+  "19": "config/src/index.ts",
+  "20": "compilerOptions",
+  "21": "auth/tsconfig.json",
+  "22": "config/tsconfig.json"
 }

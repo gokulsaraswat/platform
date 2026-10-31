@@ -24,18 +24,14 @@
       "Step 3: React Footer (siteName, tagline, basePath, columns, socials, linkComponent, year; fixed 9-link legal row) + LegalPage (marked placeholder) + footerPages/pagePath; styles.css (gk- classes, tokens only); TypeScript 6.0 build to dist, ESLint 10 + typescript-eslint; 10 node:test tests incl. SSR render. Verified: build ok, lint clean, 10/10 tests, browser check light/dark desktop/mobile (fixed invalid grid -> flex). TS pinned ~6.0 because typescript-eslint supports <6.1.",
       "Step 4: .github/workflows/release.yml (main: lint, test, changeset publish to GitHub Packages with GITHUB_TOKEN, push tags); changeset version -> @gokulsaraswat/ui 0.1.0 + CHANGELOG. Versioned locally so no 'Actions can create PRs' setting is needed.",
       "Step 5: .github/workflows/install-smoke.yml (after Release + manual): installs published @gokulsaraswat/ui into a scratch consumer with GITHUB_TOKEN, renders Footer, resolves CSS exports, tsc type-check. Verified: run 41202858931, all steps success.",
-      "Step 7 (config + auth; mdx deferred): @gokulsaraswat/config (appIds hub/admin/portfolio/gspace/studio/gym, roles super_admin>admin>member, ALL_APPS '*', UserRole, hub config.json zod schema + parseHubConfig) and @gokulsaraswat/auth (hasRole, isSuperAdmin, getUserRoles; peer supabase-js). Root tsconfig.base.json; explicit workspace order config->auth->ui; smoke test extended. Verified: build, lint clean, 17/17 tests, consumer type-check (nodenext + bundler, typed + untyped client). Not yet versioned/published."
+      "Step 7 (config + auth; mdx deferred): @gokulsaraswat/config (appIds hub/admin/portfolio/gspace/studio/gym, roles super_admin>admin>member, ALL_APPS '*', UserRole, hub config.json zod schema + parseHubConfig) and @gokulsaraswat/auth (hasRole, isSuperAdmin, getUserRoles; peer supabase-js). Root tsconfig.base.json; explicit workspace order config->auth->ui; smoke test extended. Verified: build, lint clean, 17/17 tests, consumer type-check (nodenext + bundler, typed + untyped client). Not yet versioned/published.",
+      "Step 8: changeset version -> @gokulsaraswat/config 0.1.0, @gokulsaraswat/auth 0.1.0 (auth depends on config ^0.1.0); pushed for Release."
     ],
     "todo_next": [
       {
         "step": 6,
         "phase": "repo",
         "item": "GitHub settings: description, topics, branch protection on main (gh CLI not installed; owner runs commands at the end if needed)."
-      },
-      {
-        "step": 8,
-        "phase": "publish",
-        "item": "Version + publish @gokulsaraswat/config and /auth 0.1.0 (changeset pending); confirm install smoke test covers them."
       },
       {
         "step": 9,

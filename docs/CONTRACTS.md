@@ -7,8 +7,8 @@ What platform exposes and what other repos expect. Update when an interface chan
 |---|---|---|---|
 | `@gokulsaraswat/ui` | 0.1.0 | published by Release workflow | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css` (see below) |
 | `@gokulsaraswat/mdx` | - | planned | MDX component registry |
-| `@gokulsaraswat/auth` | 0.0.0 (0.1.0 pending) | built | `hasRole`, `isSuperAdmin`, `getUserRoles` |
-| `@gokulsaraswat/config` | 0.0.0 (0.1.0 pending) | built | app ids, roles, `UserRole`, hub `config.json` schema |
+| `@gokulsaraswat/auth` | 0.1.0 | published | `hasRole`, `isSuperAdmin`, `getUserRoles` |
+| `@gokulsaraswat/config` | 0.1.0 | published | app ids, roles, `UserRole`, hub `config.json` schema |
 
 Registry: GitHub Packages (`https://npm.pkg.github.com`). Scope must match the GitHub owner, hence `@gokulsaraswat`.
 Installing requires a token with `read:packages`, even for public packages. Consumer `.npmrc`:

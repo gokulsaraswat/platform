@@ -224,6 +224,6 @@ Goku chat; Udemy Clone etc. old projects; Claude Code SSO subscription item (Int
 - MDX in the editor: preview inside GSpace needs a compile step; browser-side or build-time?
 
 ## Session log
-- 2026-10-31: platform step 7: `@gokulsaraswat/config` (app ids hub/admin/portfolio/gspace/studio/gym; roles super_admin (global, app '*') > admin > member (per app); hub config.json v1 zod schema) + `@gokulsaraswat/auth` (hasRole, isSuperAdmin, getUserRoles(client)). Built + tested, NOT yet published. REQUEST admin repo: create Supabase `user_roles` + RLS per platform/docs/CONTRACTS.md. REQUEST gokulmobilize: validate config.json with `parseHubConfig`; decide Storage bucket/path. mdx deferred (no Calculator/WebWindow spec).
+- 2026-10-31: platform step 7: `@gokulsaraswat/config` (app ids hub/admin/portfolio/gspace/studio/gym; roles super_admin (global, app '*') > admin > member (per app); hub config.json v1 zod schema) + `@gokulsaraswat/auth` (hasRole, isSuperAdmin, getUserRoles(client)). Published 0.1.0. REQUEST admin repo: create Supabase `user_roles` + RLS per platform/docs/CONTRACTS.md. REQUEST gokulmobilize: validate config.json with `parseHubConfig`; decide Storage bucket/path. mdx deferred (no Calculator/WebWindow spec).
 - 2026-10-31: Standing rule added (Gokul): Claude auto-updates all planning docs/snapshots without being reminded. Planning prompt now in every repo's docs/master/. Gokul starting RUNBOOK step 1 (platform chat).
 - 2026-10-31: Created this file. Verified all repos pushed. Started GSpace MDX plan.

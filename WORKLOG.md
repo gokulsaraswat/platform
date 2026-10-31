@@ -7,7 +7,7 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - `packages/ui` (`@gokulsaraswat/ui` 0.0.0, unpublished): `tokens.css`, `tailwind.css`, `styles.css`, React `Footer` + `LegalPage`; version 0.1.0 (published by Release workflow).
 - Verified: build (tsc) ok, lint clean, `npm test` 10/10; Tailwind 4.3.3 compiles the tokens; footer checked in browser (light/dark, desktop/mobile).
 - CI: `.github/workflows/ci.yml`, green on main. Release: `.github/workflows/release.yml` publishes unpublished versions on main.
-- `packages/config` + `packages/auth` (0.0.0, built + tested, not yet published; changeset pending).
+- `packages/config` + `packages/auth` 0.1.0 (published by Release workflow; CHANGELOGs).
 - `npm audit`: 1 moderate (minimatch ReDoS, GHSA-g3hv-75wg-m249) in the eslint dev chain only; no upstream fix; not shipped. `graphify-out/` generated; git hooks not installed.
 
 ## Done
@@ -31,7 +31,7 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - Repo public, all rights reserved. Legal pages ship with placeholder text in v0.1. GSpace gets tokens only in v0.1.
 
 ## In progress / next
-- Step 8: publish config + auth 0.1.0 (awaiting owner OK). Owner: GitHub settings + graphify hook (step 6). Full list: `.claude-session.json` sprint.todo_next.
+- Next: mdx when Calculator/WebWindow specs exist; owner: GitHub settings (step 6). graphify hook now installed. Full list: `.claude-session.json` sprint.todo_next.
 
 ## Blockers / requests to other repos
 - none logged
