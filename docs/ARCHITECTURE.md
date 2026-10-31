@@ -5,7 +5,9 @@ Only what exists. Updated: 2026-10-31.
 ```
 platform/                 npm workspace root (private, not published)
 ├── docs/                 MASTER docs for all repos (WORKLOG, CONTRACTS, REPO-KIT, PROMPTS)
-├── packages/
+├── packages/             build order: config -> auth -> ui (root workspaces list)
+│   ├── config/           @gokulsaraswat/config: appIds, roles, UserRole, hub config.json zod schema
+│   ├── auth/             @gokulsaraswat/auth: hasRole/isSuperAdmin, getUserRoles(client) over user_roles (peer supabase-js)
 │   └── ui/               @gokulsaraswat/ui
 │       ├── src/tokens.css     CSS variables (:root light, .dark), framework-neutral
 │       ├── src/tailwind.css   Tailwind v4 @theme inline mapping of tokens.css
@@ -26,4 +28,4 @@ platform/                 npm workspace root (private, not published)
 Consumer flow: app imports `tokens.css` (+ `tailwind.css` if Tailwind) + `styles.css` -> overrides color vars for its accent
 -> renders `<Footer siteName basePath linkComponent …/>` in its layout and a route per `footerPages` slug.
 Tooling: TypeScript 6.0 (tsc -> dist, NodeNext ESM), ESLint 10 + typescript-eslint (root eslint.config.mjs).
-Planned (not built): `packages/mdx`, `auth`, `config`.
+Shared TS settings: root `tsconfig.base.json`. Planned (not built): `packages/mdx` (waits for Calculator/WebWindow specs).

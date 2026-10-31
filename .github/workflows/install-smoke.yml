@@ -22,13 +22,14 @@ jobs:
           node-version: 24
           registry-url: https://npm.pkg.github.com
           scope: '@gokulsaraswat'
-      - name: Install published package into a scratch consumer
+      - name: Install published packages into a scratch consumer
         run: |
-          VERSION=$(node -p "require('./packages/ui/package.json').version")
+          v() { node -p "require('./packages/$1/package.json').version"; }
+          PKGS="@gokulsaraswat/ui@$(v ui) @gokulsaraswat/config@$(v config) @gokulsaraswat/auth@$(v auth)"
           mkdir -p "$RUNNER_TEMP/consumer" && cd "$RUNNER_TEMP/consumer"
           npm init -y >/dev/null
           npm pkg set type=module
-          npm install "@gokulsaraswat/ui@$VERSION" react react-dom @types/react typescript@~6.0.3
+          npm install $PKGS react react-dom @types/react @supabase/supabase-js typescript@~6.0.3
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Render Footer and resolve CSS exports
@@ -44,6 +45,17 @@ jobs:
           console.log('render ok');
           EOF
           node smoke.mjs
+      - name: Parse hub config and check roles
+        working-directory: ${{ runner.temp }}/consumer
+        run: |
+          cat > roles.mjs <<'EOF'
+          import { parseHubConfig } from '@gokulsaraswat/config';
+          import { hasRole } from '@gokulsaraswat/auth';
+          parseHubConfig({ version: 1, apps: [{ id: 'gspace', name: 'GSpace', href: '/gspace', mode: 'bundled', enabled: true }] });
+          if (!hasRole([{ user_id: 'u', app: '*', role: 'super_admin' }], 'gym', 'admin')) throw new Error('super_admin check failed');
+          console.log('config + auth ok');
+          EOF
+          node roles.mjs
       - name: Type-check against published declarations
         working-directory: ${{ runner.temp }}/consumer
         run: |
@@ -52,4 +64,11 @@ jobs:
           const props: FooterProps = { siteName: 'Smoke', columns: [{ title: 'Explore', links: [{ label: 'Blog', href: '/blog' }] }] };
           export const el = <Footer {...props} />;
           EOF
-          npx tsc --noEmit --strict --jsx react-jsx --module nodenext --moduleResolution nodenext --skipLibCheck smoke.tsx
+          cat > roles.ts <<'EOF'
+          import { createClient } from '@supabase/supabase-js';
+          import { getUserRoles, hasRole } from '@gokulsaraswat/auth';
+          import type { HubConfig } from '@gokulsaraswat/config';
+          export const check = (url: string, key: string) => getUserRoles(createClient(url, key), 'u').then((r) => hasRole(r, 'gspace', 'admin'));
+          export const config: HubConfig = { version: 1, apps: [] };
+          EOF
+          npx tsc --noEmit --strict --jsx react-jsx --module nodenext --moduleResolution nodenext --skipLibCheck smoke.tsx roles.ts

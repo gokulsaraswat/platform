@@ -3,7 +3,9 @@
   "private": true,
   "license": "UNLICENSED",
   "workspaces": [
-    "packages/*"
+    "packages/config",
+    "packages/auth",
+    "packages/ui"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",

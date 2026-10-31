@@ -1,0 +1,37 @@
+{
+  "name": "@gokulsaraswat/config",
+  "version": "0.0.0",
+  "description": "Shared app IDs, roles and config.json schema for the gokulsaraswat platform",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint src",
+    "pretest": "npm run build",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gokulsaraswat/platform.git",
+    "directory": "packages/config"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
+}

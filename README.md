@@ -8,7 +8,9 @@ Shared packages and MASTER docs for the gokulsaraswat multi-repo platform
 Live status: [WORKLOG.md](WORKLOG.md). All repos: [docs/WORKLOG.md](docs/WORKLOG.md).
 
 ## Layout
-- `packages/ui`: `@gokulsaraswat/ui` (`tokens.css`, `tailwind.css`, `styles.css`, `Footer`, `LegalPage`). Planned: `mdx`, `auth`, `config`. API: [docs/CONTRACTS.md](docs/CONTRACTS.md).
+- `packages/config`: `@gokulsaraswat/config` (app ids, roles, hub `config.json` schema).
+- `packages/auth`: `@gokulsaraswat/auth` (role helpers over Supabase `user_roles`).
+- `packages/ui`: `@gokulsaraswat/ui` (`tokens.css`, `tailwind.css`, `styles.css`, `Footer`, `LegalPage`). Planned: `mdx`. API: [docs/CONTRACTS.md](docs/CONTRACTS.md).
 - `docs/`: master docs: [WORKLOG](docs/WORKLOG.md), [CONTRACTS](docs/CONTRACTS.md), [ARCHITECTURE](docs/ARCHITECTURE.md), [REPO-KIT](docs/REPO-KIT.md), [PROMPTS](docs/PROMPTS.md).
 - `.changeset/`: versioning (Changesets).
 

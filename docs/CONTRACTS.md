@@ -7,8 +7,8 @@ What platform exposes and what other repos expect. Update when an interface chan
 |---|---|---|---|
 | `@gokulsaraswat/ui` | 0.1.0 | published by Release workflow | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css` (see below) |
 | `@gokulsaraswat/mdx` | - | planned | MDX component registry |
-| `@gokulsaraswat/auth` | - | planned | Supabase client + role helpers |
-| `@gokulsaraswat/config` | - | planned | types/schema for `config.json` and roles |
+| `@gokulsaraswat/auth` | 0.0.0 (0.1.0 pending) | built | `hasRole`, `isSuperAdmin`, `getUserRoles` |
+| `@gokulsaraswat/config` | 0.0.0 (0.1.0 pending) | built | app ids, roles, `UserRole`, hub `config.json` schema |
 
 Registry: GitHub Packages (`https://npm.pkg.github.com`). Scope must match the GitHub owner, hence `@gokulsaraswat`.
 Installing requires a token with `read:packages`, even for public packages. Consumer `.npmrc`:
@@ -44,6 +44,36 @@ Peer: `react@^19`. Import `@gokulsaraswat/ui/styles.css` after `tokens.css`. Cla
 
 Apps must serve a route for each `footerPages` slug under their base path (own page or `LegalPage`).
 
+All packages are ESM-only (`import`; no `require`). Verified for TS `moduleResolution` `nodenext` and `bundler` (Next/Vite).
+
+## `@gokulsaraswat/config`
+| Export | Value / shape |
+|---|---|
+| `appIds`, `AppId` | `hub`, `admin`, `portfolio`, `gspace`, `studio`, `gym` |
+| `roles`, `Role` | `super_admin` > `admin` > `member` |
+| `ALL_APPS` | `'*'` (global grant; only with `super_admin`) |
+| `UserRole` | `{ user_id: string; app: '*'; role: 'super_admin' } \| { user_id: string; app: AppId; role: 'admin' \| 'member' }` |
+| `hubConfigSchema`, `parseHubConfig(input)`, `HubConfig`, `HubTile`, `tileModes` | `{ version: 1; apps: { id: AppId; name: string; href: string; mode: 'bundled' \| 'remote' \| 'external'; enabled: boolean }[] }`. `external` href = `https://` URL; others = path starting `/`; ids unique. `parseHubConfig` throws `ZodError`. |
+
+## `@gokulsaraswat/auth`
+Peer: `@supabase/supabase-js@^2`. Apps create their own client (`createClient` or `@supabase/ssr`) and pass it in.
+| Export | Signature | Notes |
+|---|---|---|
+| `getUserRoles` | `(client: SupabaseClient, userId: string) => Promise<UserRole[]>` | `select user_id, app, role from user_roles where user_id = $1`; throws the Supabase error |
+| `hasRole` | `(rows: readonly UserRole[], app: AppId, min: Role) => boolean` | true if global super_admin, or a row for `app` with role >= `min` |
+| `isSuperAdmin` | `(rows: readonly UserRole[]) => boolean` | row `app = '*'`, `role = 'super_admin'` |
+Client-side checks only shape the UI; RLS on every table is the real enforcement.
+
 ## Cross-repo contracts
-TO BE UPDATED: Supabase tables (`content`, `app_config`, `user_roles`, `role_permissions`), `config.json` schema,
-MDX registry, roles/permissions, base paths. Decided names live in docs/WORKLOG.md "Decisions"; shapes are not defined yet.
+### Supabase `user_roles` (owner: admin repo creates the migration + RLS)
+| Column | Type | Rule |
+|---|---|---|
+| `user_id` | `uuid` | references `auth.users(id)` on delete cascade |
+| `app` | `text` | one of `appIds` or `'*'` |
+| `role` | `text` | one of `roles`; `super_admin` iff `app = '*'` |
+Primary key `(user_id, app)`. Finer permissions (`role_permissions`) only when needed (Ideas.md).
+
+### Hub `config.json`
+Admin publishes it to a Supabase Storage public bucket; the hub validates with `parseHubConfig`. Bucket/path: TO BE UPDATED (admin + gokulmobilize chats).
+
+TO BE UPDATED: `content(app, slug, body)` and `app_config(app, key, value jsonb)` shapes, MDX registry (`@gokulsaraswat/mdx`, waits for Calculator/WebWindow specs), base paths per app.
