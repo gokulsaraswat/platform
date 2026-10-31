@@ -6,6 +6,9 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm test --workspaces --if-present",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish"

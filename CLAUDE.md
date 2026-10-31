@@ -40,7 +40,7 @@ You are acting as a Principal Software Engineer and Enterprise Architect. You mu
 
 2. **Animation & Motion Performance Engine:**
    - **Hardware Acceleration Guarantee:** Animate `transform` and `opacity` (compositor-only, guaranteed). `filter` is permitted but paints; `backdrop-filter` requires justification. Strictly forbid animating layout-triggering properties (`width`, `height`, `margin`, `padding`, `top`, `left`) to guarantee 60fps/120fps execution without Cumulative Layout Shift (CLS = 0).
-   - **Motion System Specifications:** Use natural easing curves ease in (`cubic-bezier(0.16, 1, 0.3, 1)`) for exit and ease out (cubic-bezier(0.4,0,1,1) for exit. Duration thresholds:
+   - **Motion System Specifications:** Use natural easing curves: ease-out `cubic-bezier(0.16, 1, 0.3, 1)` for enter (`--motion-ease-enter`) and ease-in `cubic-bezier(0.4, 0, 1, 1)` for exit (`--motion-ease-exit`). Duration thresholds:
      - Micro-interactions (hovers, toggles, icon flips): **100ms – 200ms**
      - Spatial transitions (modals, drawers, page slides): **250ms – 350ms**
      - Complex layout morphs (staggered lists, view transitions): **300ms – 500ms**

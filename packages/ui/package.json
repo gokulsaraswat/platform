@@ -1,0 +1,28 @@
+{
+  "name": "@gokulsaraswat/ui",
+  "version": "0.0.0",
+  "description": "Shared design tokens (CSS variables) and UI for the gokulsaraswat platform",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    "./tokens.css": "./src/tokens.css",
+    "./tailwind.css": "./src/tailwind.css"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gokulsaraswat/platform.git",
+    "directory": "packages/ui"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

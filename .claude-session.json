@@ -4,22 +4,48 @@
   "sys": {
     "mode": "Personal Project",
     "scale": "Midscale (npm workspace of shared packages)",
-    "stack": ["Node 24", "npm workspaces", "Changesets", "React (components)", "CSS variables (tokens)"],
+    "stack": [
+      "Node 24",
+      "npm workspaces",
+      "Changesets",
+      "React (components)",
+      "CSS variables (tokens)"
+    ],
     "architectural_pattern": "Workspace of independently versioned packages published to GitHub Packages"
   },
   "sprint": {
     "goal": "Repo kit + docs + published @gokulsaraswat/ui v0.1 (tokens + footer), installable from another repo.",
     "bugs": [],
     "done": [
-      "Step 1: repo kit (CLAUDE.md, README, ARCHITECTURE, CONTRACTS, LICENSE all-rights-reserved, SECURITY, .gitignore, .env.example, PR template), npm workspace root, Changesets init; scope renamed @gokul -> @gokulsaraswat (GitHub Packages scope must equal owner)."
+      "Step 1: repo kit (CLAUDE.md, README, ARCHITECTURE, CONTRACTS, LICENSE all-rights-reserved, SECURITY, .gitignore, .env.example, PR template), npm workspace root, Changesets init; scope renamed @gokul -> @gokulsaraswat (GitHub Packages scope must equal owner).",
+      "Step 2: packages/ui with tokens.css (bestportofolio colors/radius, Tailwind 4.3.3 type/shadows, Progress motion; durations = range midpoints) + tailwind.css mapping; 4 node:test checks; root build/lint/test scripts; .github/workflows/ci.yml; graphify-out generated; changeset (ui minor). Verified: npm test 4/4, Tailwind 4.3.3 compile in scratch dir. graphify hook install NOT run (blocked; owner runs it)."
     ],
     "todo_next": [
-      {"step": 2, "phase": "ui v0.1", "item": "packages/ui scaffold: design tokens as CSS variables (+ JSON) from Progress/CLAUDE.md standard and bestportofolio; build + lint + test scripts; .github/workflows/ci.yml; generate graphify-out/."},
-      {"step": 3, "phase": "ui v0.1", "item": "React Footer (Privacy, Terms, Cookie Policy, Data Deletion Request, Accessibility Statement, Sitemap, FAQ, About, Contact) + legal/SEO page components with marked placeholder text."},
-      {"step": 4, "phase": "publish", "item": "Release workflow: Changesets -> GitHub Packages on main (CI only); confirm package visibility; publish @gokulsaraswat/ui 0.1.0."},
-      {"step": 5, "phase": "publish", "item": "Verify install from a scratch consumer with .npmrc (@gokulsaraswat:registry=https://npm.pkg.github.com) + read:packages token."},
-      {"step": 6, "phase": "repo", "item": "GitHub settings: description, topics, branch protection on main (gh CLI not installed; owner runs commands at the end if needed)."},
-      {"step": 7, "phase": "later", "item": "Scaffold @gokulsaraswat/mdx, /auth, /config once their contracts are defined in docs/CONTRACTS.md."}
+      {
+        "step": 3,
+        "phase": "ui v0.1",
+        "item": "React Footer (Privacy, Terms, Cookie Policy, Data Deletion Request, Accessibility Statement, Sitemap, FAQ, About, Contact) + legal/SEO page components with marked placeholder text. Add eslint + tsc (lint/build) with the first React code."
+      },
+      {
+        "step": 4,
+        "phase": "publish",
+        "item": "Release workflow: Changesets -> GitHub Packages on main (CI only); confirm package visibility; publish @gokulsaraswat/ui 0.1.0."
+      },
+      {
+        "step": 5,
+        "phase": "publish",
+        "item": "Verify install from a scratch consumer with .npmrc (@gokulsaraswat:registry=https://npm.pkg.github.com) + read:packages token."
+      },
+      {
+        "step": 6,
+        "phase": "repo",
+        "item": "GitHub settings: description, topics, branch protection on main (gh CLI not installed; owner runs commands at the end if needed)."
+      },
+      {
+        "step": 7,
+        "phase": "later",
+        "item": "Scaffold @gokulsaraswat/mdx, /auth, /config once their contracts are defined in docs/CONTRACTS.md."
+      }
     ]
   }
 }
