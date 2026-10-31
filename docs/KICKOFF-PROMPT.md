@@ -1,0 +1,58 @@
+# Kickoff prompt: platform
+
+Master copy: platform/docs/PROMPTS.md (github.com/gokulsaraswat/platform). If they differ, the master wins.
+Use: new chat with this repo as working directory. Paste SHARED BLOCK + REPO SECTION. Collaborators also paste the ADD-ON.
+
+## SHARED BLOCK
+```text
+You are working in ONE repo of a 6-repo platform (github.com/gokulsaraswat/*):
+- platform: shared packages (@gokulsaraswat/ui, @gokulsaraswat/mdx, @gokulsaraswat/auth, @gokulsaraswat/config) + MASTER docs in docs/
+- admin: super admin (Next.js + Supabase Auth), app switcher, per-app admin sections, roles/permissions
+- gokulmobilize: hub (Vite + React PWA, proposed) + Capacitor Android/iOS wrapper
+- bestportofolio: public portfolio (Next.js 16, Prisma on Supabase Postgres); its admin is moving to `admin`
+- Progress: GSpace (Astro 5, vanilla JS, local-first, MD -> MDX, base path /gspace)
+- later: Markdown-studio, checkers-gym-management
+
+STARTUP (before any change)
+1. Read, in this repo: CLAUDE.md, AGENTS.md, WORKLOG.md, .claude-session.json, docs/CONTRACTS.md, README.md.
+   Also read the master: platform/docs/WORKLOG.md and platform/docs/CONTRACTS.md (GitHub: gokulsaraswat/platform).
+   If graphify-out/ exists, query it first.
+2. Report to me: current state, what this repo must deliver, which other repos it depends on / affects,
+   and EVERY doubt. Wait for my answers.
+
+RULES
+- Ask as many questions as needed until you are 100% certain. Never assume. Never invent a file, table,
+  function, prop, env var or API. If it is not in the code or docs, stop with: [REQ_CONTEXT]: I need <thing>.
+- Use skills/plugins by default: ponytail (smallest working solution), caveman (terse output),
+  graphify (code map), plus any other fitting skill. Order: reuse -> stdlib/platform -> existing dep -> new code.
+- Small steps. Before each step: say what you will change and wait for my OK.
+  After each step: build + lint + run, show evidence, then update WORKLOG.md, .claude-session.json,
+  docs/CONTRACTS.md (if an interface changed), refresh graphify, commit, push.
+- Git: owner pushes to main. Collaborators: branch `<user>-<repo>` + PR only. Never force-push.
+- Docs upkeep is automatic: never wait to be told. Keep every file in REPO-KIT current in the same step, and if the process or an
+  interface changes, update the affected docs (WORKLOG, CONTRACTS, KICKOFF-PROMPT, master requests) and say what you updated.
+- Never edit another repo. Needs from other repos go into platform/docs/WORKLOG.md as a request.
+- Shared constants come from @gokulsaraswat/ui (design philosophy, tokens, footer with Privacy, Terms, Cookie Policy,
+  Data Deletion Request, Accessibility Statement, Sitemap, FAQ, About, Contact; SEO basics). Per-app: loader, accent, content.
+- Done = builds, runs, lint clean, tests pass, docs updated, pushed, GitHub repo tidy.
+- Repo kit checklist: platform/docs/REPO-KIT.md. First task in any repo: bring it up to that kit (propose the list, wait for OK).
+```
+
+## COLLABORATOR ADD-ON
+```text
+Collaborator mode: work on branch `<github-username>-<repo>` off main. One commit per completed step, push after each,
+open a PR (never push or merge to main). After each commit: git fetch origin main and merge it in; skip steps already done on main.
+Take steps in order from .claude-session.json sprint.todo_next. Ask the owner only for [REQ_CONTEXT] blockers; for design
+choices decide, and record the decision in that step's done[] entry. Never mark a step done unless built, run and verified.
+Update WORKLOG.md after every step so the next person can continue.
+```
+
+## REPO SECTION
+### 1. platform (first)
+Scope: master docs + shared packages.
+- `docs/`: WORKLOG.md (all repos status + cross-repo requests), CONTRACTS.md, REPO-KIT.md, PROMPTS.md (copy from here).
+- Packages (one repo, workspace): `@gokulsaraswat/ui` (tokens, footer + legal/SEO pages, WebWindow shell), `@gokulsaraswat/mdx` (component registry: Calculator, WebWindow, ...; same registry used by admin preview),
+  `@gokulsaraswat/auth` (Supabase client + role helpers), `@gokulsaraswat/config` (types/schema for config.json and roles).
+- Publish privately to GitHub Packages with a CI workflow; versioning policy (e.g. changesets).
+Questions to ask me first: package manager/workspace tool, React-only or also framework-neutral, versioning, who can publish.
+Done when: empty repo has the kit + docs + a published `@gokulsaraswat/ui` v0.1 with tokens + footer, installable from another repo.

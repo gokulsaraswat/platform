@@ -1,0 +1,121 @@
+# Kickoff Prompts
+
+How to use: open a NEW chat in the repo's folder, paste **SHARED BLOCK** + that repo's **REPO SECTION**.
+Collaborators: paste **COLLABORATOR ADD-ON** after them (it overrides the "wait for OK" rule).
+Planning/coordination chat (the one with the master WORKLOG) stays separate; come back to it to confirm and plan the next repo.
+
+Order: 1 platform → 2 admin → 3 gokulmobilize → 4 bestportofolio → 5 Progress (GSpace) → later Markdown-studio, checkers-gym.
+
+---
+
+## SHARED BLOCK
+
+```
+You are working in ONE repo of a 6-repo platform (github.com/gokulsaraswat/*):
+- platform: shared packages (@gokulsaraswat/ui, @gokulsaraswat/mdx, @gokulsaraswat/auth, @gokulsaraswat/config) + MASTER docs in docs/
+- admin: super admin (Next.js + Supabase Auth), app switcher, per-app admin sections, roles/permissions
+- gokulmobilize: hub (Vite + React PWA, proposed) + Capacitor Android/iOS wrapper
+- bestportofolio: public portfolio (Next.js 16, Prisma on Supabase Postgres); its admin is moving to `admin`
+- Progress: GSpace (Astro 5, vanilla JS, local-first, MD -> MDX, base path /gspace)
+- later: Markdown-studio, checkers-gym-management
+
+STARTUP (before any change)
+1. Read, in this repo: CLAUDE.md, AGENTS.md, WORKLOG.md, .claude-session.json, docs/CONTRACTS.md, README.md.
+   Also read the master: platform/docs/WORKLOG.md and platform/docs/CONTRACTS.md (GitHub: gokulsaraswat/platform).
+   If graphify-out/ exists, query it first.
+2. Report to me: current state, what this repo must deliver, which other repos it depends on / affects,
+   and EVERY doubt. Wait for my answers.
+
+RULES
+- Ask as many questions as needed until you are 100% certain. Never assume. Never invent a file, table,
+  function, prop, env var or API. If it is not in the code or docs, stop with: [REQ_CONTEXT]: I need <thing>.
+- Use skills/plugins by default: ponytail (smallest working solution), caveman (terse output),
+  graphify (code map), plus any other fitting skill. Order: reuse -> stdlib/platform -> existing dep -> new code.
+- Small steps. Before each step: say what you will change and wait for my OK.
+  After each step: build + lint + run, show evidence, then update WORKLOG.md, .claude-session.json,
+  docs/CONTRACTS.md (if an interface changed), refresh graphify, commit, push.
+- Git: owner pushes to main. Collaborators: branch `<user>-<repo>` + PR only. Never force-push.
+- Docs upkeep is automatic: never wait to be told. Keep every file in REPO-KIT current in the same step, and if the process or an
+  interface changes, update the affected docs (WORKLOG, CONTRACTS, KICKOFF-PROMPT, master requests) and say what you updated.
+- Never edit another repo. Needs from other repos go into platform/docs/WORKLOG.md as a request.
+- Shared constants come from @gokulsaraswat/ui (design philosophy, tokens, footer with Privacy, Terms, Cookie Policy,
+  Data Deletion Request, Accessibility Statement, Sitemap, FAQ, About, Contact; SEO basics). Per-app: loader, accent, content.
+- Done = builds, runs, lint clean, tests pass, docs updated, pushed, GitHub repo tidy.
+- Repo kit checklist: platform/docs/REPO-KIT.md. First task in any repo: bring it up to that kit (propose the list, wait for OK).
+```
+
+---
+
+## COLLABORATOR ADD-ON
+
+```
+Collaborator mode: work on branch `<github-username>-<repo>` off main. One commit per completed step, push after each,
+open a PR (never push or merge to main). After each commit: git fetch origin main and merge it in; skip steps already done on main.
+Take steps in order from .claude-session.json sprint.todo_next. Ask the owner only for [REQ_CONTEXT] blockers; for design
+choices decide, and record the decision in that step's done[] entry. Never mark a step done unless built, run and verified.
+Update WORKLOG.md after every step so the next person can continue.
+```
+
+---
+
+## REPO SECTIONS
+
+### 1. platform (first)
+Scope: master docs + shared packages.
+- `docs/`: WORKLOG.md (all repos status + cross-repo requests), CONTRACTS.md, REPO-KIT.md, PROMPTS.md (copy from here).
+- Packages (one repo, workspace): `@gokulsaraswat/ui` (tokens, footer + legal/SEO pages, WebWindow shell), `@gokulsaraswat/mdx` (component registry: Calculator, WebWindow, ...; same registry used by admin preview),
+  `@gokulsaraswat/auth` (Supabase client + role helpers), `@gokulsaraswat/config` (types/schema for config.json and roles).
+- Publish privately to GitHub Packages with a CI workflow; versioning policy (e.g. changesets).
+Questions to ask me first: package manager/workspace tool, React-only or also framework-neutral, versioning, who can publish.
+Done when: empty repo has the kit + docs + a published `@gokulsaraswat/ui` v0.1 with tokens + footer, installable from another repo.
+
+### 2. admin
+Scope: super admin. Next.js + Supabase Auth + Tailwind. Needs: platform packages (can start with local link), Supabase project.
+- Steps: shell + Supabase login -> `user_roles(user_id, app, role)` + `role_permissions` + RLS -> app switcher (route group per app, lazy) ->
+  one section end-to-end (Portfolio blogs, moved from bestportofolio `src/components/admin`) -> remaining sections -> config.json publisher
+  (to Supabase Storage public bucket) -> MDX editor with preview using @gokulsaraswat/mdx -> AdminUser -> Supabase Auth migration plan.
+- Rule: portfolio admin code is MOVED, not rewritten; keep bestportofolio admin running until the move is verified.
+Questions to ask me first: migration of existing AdminUser rows + TOTP, roles list, Supabase project/keys setup, hosting.
+
+### 3. gokulmobilize
+Scope: hub. One repo: web PWA + Capacitor (android/ + ios/). Existing repo has README only (Android idea): ask before replacing.
+- Vite + React (proposed, may change; keep data/cache layer plain TS), vite-plugin-pwa, View Transitions API, skeleton screens.
+- Fetch `config.json` (Supabase Storage CDN): paint cached copy first, refresh in background (stale-while-revalidate, IndexedDB), offline shell, "save for later" for blogs/courses.
+- Sub-sites: separate deploys on one domain (path per app); bundle static apps (GSpace, Markdown Studio) in the native app; others remote; third-party in in-app browser.
+- Android: direct APK. iOS: PWA install; native only via personal Xcode sideload (no Apple Developer account).
+Questions to ask me first: framework confirmation, hub domain, tile design, which apps are bundled vs remote, config.json fields (agree with admin via CONTRACTS.md).
+
+### 4. bestportofolio
+Scope: keep working; become public-only.
+- First: make it run end-to-end; seed ONE fake project, blog, course (fix stale `seed.ts` that seeds plaintext admin/admin123 vs scrypt schema); verify every public page.
+- Then: adopt @gokulsaraswat/ui footer + legal/SEO pages, read tile/config data if needed, switch MDX to @gokulsaraswat/mdx registry.
+- Last (after admin repo verified): remove admin code + Prisma auth parts, point auth to Supabase Auth.
+Questions to ask me first: hosting (Dockerfile/Caddyfile in repo), env setup, what "perfect" means for the verification list.
+
+### 5. Progress (GSpace)
+Scope: keep running as-is; small changes only now.
+- MDX support (`@astrojs/mdx`), build-time; then editor open/preview of .mdx.
+- `base: '/gspace'`; check hardcoded paths first (read-only dry run, then ask).
+- Later: offline-first sync with Supabase (themes, components, content; decide conflict rules with me), use @gokulsaraswat/mdx, shared footer.
+- Keep existing `.claude-session.json` sprint; do NOT touch steps 29 and 35 unless I say so.
+Questions to ask me first: what to sync, conflict rules, which pages need the shared footer.
+
+### 6. Markdown-studio  (TO BE UPDATED: scope still open, revisit after the first 5 repos)
+Scope today: static, client-only, local-first markdown workspace (editor + preview, exports, snapshots), deployed on GitHub Pages, PWA (manifest + service-worker.js).
+Observed: many patch/agent files in root (PATCH_9_*, FINAL_QA_CHECKLIST.md, implementation_plan.md, .prompts.md, .project-architecture.md): ask before moving or deleting any.
+- First: repo kit (WORKLOG.md, AGENTS.md, COLLABORATORS.md, docs/CONTRACTS.md), tidy root with my approval, keep GitHub Pages deploy working.
+- Then (not before platform + admin work): base path for the one-domain layout (`/studio`), shared footer + legal/SEO pages from @gokulsaraswat/ui, @gokulsaraswat/mdx registry if MDX is added.
+- Later idea: optional Supabase login/sync like GSpace. Nothing decided: ask me.
+Questions to ask me first: keep GitHub Pages or move under the main domain, what to clean up, MDX wanted or not, login/sync wanted or not.
+
+### 7. checkers-gym-management  (TO BE UPDATED: scope still open, revisit after admin works)
+Scope today: React 18 + React Router 6 + Material UI + Supabase auth; member dashboard, workout logs, admin panel (plans, members, lifecycle, waivers); `supabase/` has schema.sql, migrations, functions; CI in .github.
+Observed: a `.env` file exists in the repo folder: first confirm it is gitignored and never committed (read-only check, report to me).
+- First: repo kit; make sure it builds and runs; note which tables/roles exist in `docs/CONTRACTS.md`.
+- Then: its admin moves into the super admin (`admin`) as the Gym section (members, plans, waivers); gym keeps staff/client login (visitors need no login) on the shared Supabase project and `user_roles`. Shared footer + legal/SEO pages.
+- Decision needed from me: same Supabase project as the other apps or separate (affects RLS and roles).
+Questions to ask me first: Supabase project sharing, who logs in early (staff / clients / only me), what is real vs starter/demo, RapidAPI key handling.
+
+### 8. gokul-omni-converter  (TO BE UPDATED: standalone, not part of the web platform)
+Python desktop app (GO Omni Pro 2.4.0, offline, Windows/macOS/Linux). Apply the repo kit only (WORKLOG.md, AGENTS.md, COLLABORATORS.md); no admin/platform wiring planned.
+Questions to ask me first: keep it standalone, release/CI status, whether it should appear as a tile in the hub (likely link-only).
