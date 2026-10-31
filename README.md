@@ -4,11 +4,11 @@ Shared packages and MASTER docs for the gokulsaraswat multi-repo platform
 (admin, gokulmobilize, bestportofolio, Progress/GSpace, later Markdown-studio and checkers-gym-management).
 
 ## Status
-`@gokulsaraswat/ui`: design tokens done (unpublished). Footer, then publishing v0.1, are next.
+`@gokulsaraswat/ui`: tokens + React Footer/LegalPage done (unpublished). Publishing v0.1 is next.
 Live status: [WORKLOG.md](WORKLOG.md). All repos: [docs/WORKLOG.md](docs/WORKLOG.md).
 
 ## Layout
-- `packages/ui`: `@gokulsaraswat/ui` (`tokens.css`, `tailwind.css`). Planned: `mdx`, `auth`, `config`. API: [docs/CONTRACTS.md](docs/CONTRACTS.md).
+- `packages/ui`: `@gokulsaraswat/ui` (`tokens.css`, `tailwind.css`, `styles.css`, `Footer`, `LegalPage`). Planned: `mdx`, `auth`, `config`. API: [docs/CONTRACTS.md](docs/CONTRACTS.md).
 - `docs/`: master docs: [WORKLOG](docs/WORKLOG.md), [CONTRACTS](docs/CONTRACTS.md), [ARCHITECTURE](docs/ARCHITECTURE.md), [REPO-KIT](docs/REPO-KIT.md), [PROMPTS](docs/PROMPTS.md).
 - `.changeset/`: versioning (Changesets).
 
@@ -18,9 +18,15 @@ Requires Node 24+ and npm 11+.
 npm install
 ```
 ```bash
+npm run build
+```
+```bash
+npm run lint
+```
+```bash
 npm test
 ```
-`npm run build` and `npm run lint` run each package's script if present (none yet: tokens are plain CSS).
+Root scripts run each workspace's script. `npm test` builds first.
 Add a changeset for any published-package change:
 ```bash
 npx changeset

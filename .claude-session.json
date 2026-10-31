@@ -8,7 +8,9 @@
       "Node 24",
       "npm workspaces",
       "Changesets",
-      "React (components)",
+      "TypeScript 6.0",
+      "React 19 (peer)",
+      "ESLint 10",
       "CSS variables (tokens)"
     ],
     "architectural_pattern": "Workspace of independently versioned packages published to GitHub Packages"
@@ -18,14 +20,10 @@
     "bugs": [],
     "done": [
       "Step 1: repo kit (CLAUDE.md, README, ARCHITECTURE, CONTRACTS, LICENSE all-rights-reserved, SECURITY, .gitignore, .env.example, PR template), npm workspace root, Changesets init; scope renamed @gokul -> @gokulsaraswat (GitHub Packages scope must equal owner).",
-      "Step 2: packages/ui with tokens.css (bestportofolio colors/radius, Tailwind 4.3.3 type/shadows, Progress motion; durations = range midpoints) + tailwind.css mapping; 4 node:test checks; root build/lint/test scripts; .github/workflows/ci.yml; graphify-out generated; changeset (ui minor). Verified: npm test 4/4, Tailwind 4.3.3 compile in scratch dir. graphify hook install NOT run (blocked; owner runs it)."
+      "Step 2: packages/ui with tokens.css (bestportofolio colors/radius, Tailwind 4.3.3 type/shadows, Progress motion; durations = range midpoints) + tailwind.css mapping; 4 node:test checks; root build/lint/test scripts; .github/workflows/ci.yml; graphify-out generated; changeset (ui minor). Verified: npm test 4/4, Tailwind 4.3.3 compile in scratch dir. graphify hook install NOT run (blocked; owner runs it).",
+      "Step 3: React Footer (siteName, tagline, basePath, columns, socials, linkComponent, year; fixed 9-link legal row) + LegalPage (marked placeholder) + footerPages/pagePath; styles.css (gk- classes, tokens only); TypeScript 6.0 build to dist, ESLint 10 + typescript-eslint; 10 node:test tests incl. SSR render. Verified: build ok, lint clean, 10/10 tests, browser check light/dark desktop/mobile (fixed invalid grid -> flex). TS pinned ~6.0 because typescript-eslint supports <6.1."
     ],
     "todo_next": [
-      {
-        "step": 3,
-        "phase": "ui v0.1",
-        "item": "React Footer (Privacy, Terms, Cookie Policy, Data Deletion Request, Accessibility Statement, Sitemap, FAQ, About, Contact) + legal/SEO page components with marked placeholder text. Add eslint + tsc (lint/build) with the first React code."
-      },
       {
         "step": 4,
         "phase": "publish",

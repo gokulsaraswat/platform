@@ -5,7 +5,7 @@ What platform exposes and what other repos expect. Update when an interface chan
 ## Packages
 | Package | Version | Status | Exposes |
 |---|---|---|---|
-| `@gokulsaraswat/ui` | 0.0.0 (unpublished; 0.1.0 pending) | tokens built; footer next | `./tokens.css`, `./tailwind.css` (see below) |
+| `@gokulsaraswat/ui` | 0.0.0 (unpublished; 0.1.0 pending) | tokens + footer built; publish next | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css` (see below) |
 | `@gokulsaraswat/mdx` | - | planned | MDX component registry |
 | `@gokulsaraswat/auth` | - | planned | Supabase client + role helpers |
 | `@gokulsaraswat/config` | - | planned | types/schema for `config.json` and roles |
@@ -25,6 +25,18 @@ Import `@gokulsaraswat/ui/tokens.css` (any framework). Tailwind v4 apps then imp
 | Motion | `--motion-ease-enter`, `--motion-ease-exit`, `--motion-duration-{micro,spatial,morph}` (150/300/400ms; 0ms under reduced motion) | Tailwind: `ease-enter`, `ease-exit` |
 
 Dark mode: class `dark` on an ancestor. Breaking change = renaming/removing any variable above.
+
+## `@gokulsaraswat/ui` components
+Peer: `react@^19`. Import `@gokulsaraswat/ui/styles.css` after `tokens.css`. Classes are `gk-` prefixed; no Tailwind needed. No hooks, so they render as React Server Components.
+| Export | Signature | Notes |
+|---|---|---|
+| `Footer` | `{ siteName: string; tagline?: string; basePath?: string; columns?: { title; links: { label; href }[] }[]; socials?: { label; href; icon?: ReactNode }[]; linkComponent?: LinkComponent; year?: number }` | Always renders © line + the 9 `footerPages` links at `basePath + /slug`. Internal links use `linkComponent` (e.g. `next/link`); `http(s):`/`mailto:` use `<a>`. |
+| `LegalPage` | `{ slug: FooterPageSlug; siteName: string; contactEmail?: string }` | Placeholder body marked `data-placeholder`; real text pending review. |
+| `footerPages` | `readonly { slug; title }[]` | `privacy` Privacy Policy, `terms` Terms of Service, `cookies` Cookie Policy, `data-deletion` Data Deletion Request, `accessibility` Accessibility Statement, `sitemap` Sitemap, `faq` FAQ, `about` About, `contact` Contact |
+| `pagePath(basePath, slug)` | `string` | `('/gspace','faq')` -> `/gspace/faq` |
+| `LinkComponent`, `LinkProps` | `ComponentType<{ href; className?; children }>` | |
+
+Apps must serve a route for each `footerPages` slug under their base path (own page or `LegalPage`).
 
 ## Cross-repo contracts
 TO BE UPDATED: Supabase tables (`content`, `app_config`, `user_roles`, `role_permissions`), `config.json` schema,

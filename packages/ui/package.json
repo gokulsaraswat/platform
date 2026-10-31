@@ -5,16 +5,25 @@
   "license": "UNLICENSED",
   "type": "module",
   "files": [
-    "src"
+    "dist",
+    "src/*.css"
   ],
   "sideEffects": [
     "*.css"
   ],
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./tokens.css": "./src/tokens.css",
-    "./tailwind.css": "./src/tailwind.css"
+    "./tailwind.css": "./src/tailwind.css",
+    "./styles.css": "./src/styles.css"
   },
   "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint src",
+    "pretest": "npm run build",
     "test": "node --test"
   },
   "repository": {
@@ -24,5 +33,15 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "~6.0.3"
   }
 }

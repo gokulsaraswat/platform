@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 const read = (f) => readFileSync(new URL(`../src/${f}`, import.meta.url), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
 const tokens = read('tokens.css');
 const tailwind = read('tailwind.css');
+const styles = read('styles.css');
 
 const block = (css, selector) => {
   const start = css.indexOf(`${selector} {`);
@@ -33,4 +34,8 @@ test('tokens.css only references declared or app-provided vars', () => {
 
 test('tailwind.css maps only declared tokens', () => {
   for (const name of referenced(tailwind)) assert.ok(root.has(name), `${name} not in tokens.css`);
+});
+
+test('styles.css uses only declared tokens', () => {
+  for (const name of referenced(styles)) assert.ok(root.has(name), `${name} not in tokens.css`);
 });
