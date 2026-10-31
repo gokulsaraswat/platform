@@ -1,6 +1,6 @@
 {
   "name": "@gokulsaraswat/ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shared design tokens (CSS variables) and UI for the gokulsaraswat platform",
   "license": "UNLICENSED",
   "type": "module",

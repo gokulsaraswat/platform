@@ -5,13 +5,18 @@ What platform exposes and what other repos expect. Update when an interface chan
 ## Packages
 | Package | Version | Status | Exposes |
 |---|---|---|---|
-| `@gokulsaraswat/ui` | 0.0.0 (unpublished; 0.1.0 pending) | tokens + footer built; publish next | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css` (see below) |
+| `@gokulsaraswat/ui` | 0.1.0 | published by Release workflow | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css` (see below) |
 | `@gokulsaraswat/mdx` | - | planned | MDX component registry |
 | `@gokulsaraswat/auth` | - | planned | Supabase client + role helpers |
 | `@gokulsaraswat/config` | - | planned | types/schema for `config.json` and roles |
 
 Registry: GitHub Packages (`https://npm.pkg.github.com`). Scope must match the GitHub owner, hence `@gokulsaraswat`.
-Installing requires a token with `read:packages` (local `.npmrc` or CI secret `NODE_AUTH_TOKEN`), even for public packages.
+Installing requires a token with `read:packages`, even for public packages. Consumer `.npmrc`:
+```
+@gokulsaraswat:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+Releases: `npx changeset` -> `npx changeset version` (bump + CHANGELOG) -> push to main -> `.github/workflows/release.yml` publishes versions not yet on the registry and pushes `<name>@<version>` tags.
 
 ## `@gokulsaraswat/ui` tokens
 Import `@gokulsaraswat/ui/tokens.css` (any framework). Tailwind v4 apps then import `@gokulsaraswat/ui/tailwind.css` after `@import "tailwindcss";`.

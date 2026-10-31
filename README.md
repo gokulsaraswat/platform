@@ -4,7 +4,7 @@ Shared packages and MASTER docs for the gokulsaraswat multi-repo platform
 (admin, gokulmobilize, bestportofolio, Progress/GSpace, later Markdown-studio and checkers-gym-management).
 
 ## Status
-`@gokulsaraswat/ui`: tokens + React Footer/LegalPage done (unpublished). Publishing v0.1 is next.
+`@gokulsaraswat/ui` 0.1.0: tokens + React Footer/LegalPage, published to GitHub Packages.
 Live status: [WORKLOG.md](WORKLOG.md). All repos: [docs/WORKLOG.md](docs/WORKLOG.md).
 
 ## Layout
@@ -31,7 +31,11 @@ Add a changeset for any published-package change:
 ```bash
 npx changeset
 ```
-Publishing arrives with the release workflow.
+Release: version locally, then push; `.github/workflows/release.yml` publishes.
+```bash
+npx changeset version
+```
+Install in another repo: see the `.npmrc` in [docs/CONTRACTS.md](docs/CONTRACTS.md).
 
 ## Env vars
 None. See [.env.example](.env.example).

@@ -87,8 +87,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 8,
-      "community_name": "Footer",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
       "file_type": "code",
       "norm_label": "linkcomponent",
       "source_file": "packages/ui/src/link.tsx",
@@ -100,24 +100,12 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 8,
-      "community_name": "Footer",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
       "file_type": "code",
       "norm_label": "linkprops",
       "source_file": "packages/ui/src/link.tsx",
       "source_location": "L3"
-    },
-    {
-      "id": "packages_ui_src_footer_isexternal",
-      "label": "isExternal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "Footer.tsx",
-      "file_type": "code",
-      "norm_label": "isexternal()",
-      "source_file": "packages/ui/src/Footer.tsx",
-      "source_location": "L31"
     },
     {
       "id": "packages_ui_src_pages_pagepath",
@@ -130,6 +118,18 @@
       "norm_label": "pagepath()",
       "source_file": "packages/ui/src/pages.ts",
       "source_location": "L17"
+    },
+    {
+      "id": "packages_ui_src_link_anchor",
+      "label": "Anchor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "code",
+      "norm_label": "anchor()",
+      "source_file": "packages/ui/src/link.tsx",
+      "source_location": "L12"
     },
     {
       "id": "packages_ui_test_components_test_hrefs",
@@ -204,6 +204,18 @@
       "source_location": "L33"
     },
     {
+      "id": "packages_ui_src_footer_isexternal",
+      "label": "isExternal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "code",
+      "norm_label": "isexternal()",
+      "source_file": "packages/ui/src/Footer.tsx",
+      "source_location": "L31"
+    },
+    {
       "id": "packages_ui_src_legalpage_legalpage",
       "label": "LegalPage()",
       "_callable": true,
@@ -214,18 +226,6 @@
       "norm_label": "legalpage()",
       "source_file": "packages/ui/src/LegalPage.tsx",
       "source_location": "L11"
-    },
-    {
-      "id": "packages_ui_src_link_anchor",
-      "label": "Anchor()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "Footer",
-      "file_type": "code",
-      "norm_label": "anchor()",
-      "source_file": "packages/ui/src/link.tsx",
-      "source_location": "L12"
     },
     {
       "id": "agents",
@@ -298,66 +298,6 @@
       "norm_label": "architecture: platform",
       "source_file": "docs/ARCHITECTURE.md",
       "source_location": "L1"
-    },
-    {
-      "id": "docs_contracts",
-      "label": "CONTRACTS.md",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "contracts.md",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_contracts_contracts_master",
-      "label": "CONTRACTS (master)",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "contracts (master)",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_contracts_cross_repo_contracts",
-      "label": "Cross-repo contracts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "cross-repo contracts",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L41"
-    },
-    {
-      "id": "docs_contracts_gokulsaraswat_ui_tokens",
-      "label": "`@gokulsaraswat/ui` tokens",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "`@gokulsaraswat/ui` tokens",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L16"
-    },
-    {
-      "id": "docs_contracts_packages",
-      "label": "Packages",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "packages",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L5"
     },
     {
       "id": "docs_repo_kit",
@@ -441,78 +381,6 @@
       "node_kind": "page",
       "norm_label": "readme.md",
       "source_file": "README.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "readme_commands",
-      "label": "Commands",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "commands",
-      "source_file": "README.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "readme_contributing",
-      "label": "Contributing",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "contributing",
-      "source_file": "README.md",
-      "source_location": "L39"
-    },
-    {
-      "id": "readme_env_vars",
-      "label": "Env vars",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "env vars",
-      "source_file": "README.md",
-      "source_location": "L36"
-    },
-    {
-      "id": "readme_platform",
-      "label": "platform",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "platform",
-      "source_file": "README.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "readme_status",
-      "label": "Status",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "status",
-      "source_file": "README.md",
-      "source_location": "L6"
-    },
-    {
-      "id": "worklog",
-      "label": "WORKLOG.md",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "worklog.md",
-      "source_file": "WORKLOG.md",
       "source_location": "L1"
     },
     {
@@ -1114,6 +982,100 @@
       "norm_label": "typescript",
       "source_file": "packages/ui/package.json",
       "source_location": "L45"
+    },
+    {
+      "id": "packages_ui_src_link",
+      "label": "link.tsx",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "code",
+      "norm_label": "link.tsx",
+      "source_file": "packages/ui/src/link.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "ref_react",
+      "label": "react",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "concept",
+      "norm_label": "react",
+      "source_file": "packages/ui/package.json",
+      "source_location": "L38"
+    },
+    {
+      "id": "docs_contracts",
+      "label": "CONTRACTS.md",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "contracts.md",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_contracts_contracts_master",
+      "label": "CONTRACTS (master)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "contracts (master)",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_contracts_cross_repo_contracts",
+      "label": "Cross-repo contracts",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cross-repo contracts",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "docs_contracts_gokulsaraswat_ui_components",
+      "label": "`@gokulsaraswat/ui` components",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "`@gokulsaraswat/ui` components",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "docs_contracts_gokulsaraswat_ui_tokens",
+      "label": "`@gokulsaraswat/ui` tokens",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "`@gokulsaraswat/ui` tokens",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "docs_contracts_packages",
+      "label": "Packages",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "CONTRACTS (master)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "packages",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L5"
     },
     {
       "id": "packages_ui_package",
@@ -2162,52 +2124,6 @@
       "source_location": "L101"
     },
     {
-      "id": "packages_ui_src_link",
-      "label": "link.tsx",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "Footer",
-      "file_type": "code",
-      "norm_label": "link.tsx",
-      "source_file": "packages/ui/src/link.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "ref_react",
-      "label": "react",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "Footer",
-      "file_type": "concept",
-      "norm_label": "react",
-      "source_file": "packages/ui/package.json",
-      "source_location": "L38"
-    },
-    {
-      "id": "changeset_ui_tokens",
-      "label": "ui-tokens.md",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "Footer",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "ui-tokens.md",
-      "source_file": ".changeset/ui-tokens.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_contracts_gokulsaraswat_ui_components",
-      "label": "`@gokulsaraswat/ui` components",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "Footer",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "`@gokulsaraswat/ui` components",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L29"
-    },
-    {
       "id": "docs_worklog_session_log",
       "label": "Session log",
       "_origin": "ast",
@@ -2218,6 +2134,90 @@
       "norm_label": "session log",
       "source_file": "docs/WORKLOG.md",
       "source_location": "L203"
+    },
+    {
+      "id": "packages_ui_changelog",
+      "label": "CHANGELOG.md",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "changelog.md",
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "packages_ui_changelog_0_1_0",
+      "label": "0.1.0",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "0.1.0",
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "packages_ui_changelog_gokulsaraswat_ui",
+      "label": "@gokulsaraswat/ui",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "@gokulsaraswat/ui",
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "packages_ui_changelog_minor_changes",
+      "label": "Minor Changes",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "minor changes",
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "readme_commands",
+      "label": "Commands",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "commands",
+      "source_file": "README.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "readme_contributing",
+      "label": "Contributing",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "contributing",
+      "source_file": "README.md",
+      "source_location": "L43"
+    },
+    {
+      "id": "readme_env_vars",
+      "label": "Env vars",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "env vars",
+      "source_file": "README.md",
+      "source_location": "L40"
     },
     {
       "id": "readme_layout",
@@ -2232,6 +2232,42 @@
       "source_location": "L10"
     },
     {
+      "id": "readme_platform",
+      "label": "platform",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "platform",
+      "source_file": "README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "readme_status",
+      "label": "Status",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "status",
+      "source_file": "README.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "worklog",
+      "label": "WORKLOG.md",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "Footer",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "worklog.md",
+      "source_file": "WORKLOG.md",
+      "source_location": "L1"
+    },
+    {
       "id": "worklog_blockers_requests_to_other_repos",
       "label": "Blockers / requests to other repos",
       "_origin": "ast",
@@ -2241,7 +2277,7 @@
       "node_kind": "heading",
       "norm_label": "blockers / requests to other repos",
       "source_file": "WORKLOG.md",
-      "source_location": "L27"
+      "source_location": "L30"
     },
     {
       "id": "worklog_current_state_2026_10_31",
@@ -2265,7 +2301,7 @@
       "node_kind": "heading",
       "norm_label": "decisions (2026-10-31)",
       "source_file": "WORKLOG.md",
-      "source_location": "L16"
+      "source_location": "L18"
     },
     {
       "id": "worklog_done",
@@ -2277,7 +2313,7 @@
       "node_kind": "heading",
       "norm_label": "done",
       "source_file": "WORKLOG.md",
-      "source_location": "L11"
+      "source_location": "L12"
     },
     {
       "id": "worklog_in_progress_next",
@@ -2289,7 +2325,7 @@
       "node_kind": "heading",
       "norm_label": "in progress / next",
       "source_file": "WORKLOG.md",
-      "source_location": "L24"
+      "source_location": "L27"
     },
     {
       "id": "worklog_reminders",
@@ -2301,7 +2337,7 @@
       "node_kind": "heading",
       "norm_label": "reminders",
       "source_file": "WORKLOG.md",
-      "source_location": "L32"
+      "source_location": "L35"
     },
     {
       "id": "worklog_worklog_platform",
@@ -2388,6 +2424,138 @@
       "source_location": "L6"
     },
     {
+      "id": "packages_ui_src_footer_js",
+      "label": "packages_ui_src_footer_js",
+      "_origin": "semantic",
+      "community": 14,
+      "community_name": "Footer.tsx",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_src_footer_js",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_ui_src_legalpage_js",
+      "label": "packages_ui_src_legalpage_js",
+      "_origin": "semantic",
+      "community": 14,
+      "community_name": "Footer.tsx",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_src_legalpage_js",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_ui_src_link_js",
+      "label": "packages_ui_src_link_js",
+      "_origin": "semantic",
+      "community": 14,
+      "community_name": "Footer.tsx",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_src_link_js",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_footer_js",
+      "label": "ref_footer_js",
+      "_origin": "semantic",
+      "community": 14,
+      "community_name": "Footer.tsx",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_footer_js",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_legalpage_js",
+      "label": "ref_legalpage_js",
+      "_origin": "semantic",
+      "community": 14,
+      "community_name": "Footer.tsx",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_legalpage_js",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_link_js",
+      "label": "ref_link_js",
+      "_origin": "semantic",
+      "community": 14,
+      "community_name": "Footer.tsx",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_link_js",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_ui_dist_index",
+      "label": "packages_ui_dist_index",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_dist_index",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_ui_dist_index_footer",
+      "label": "packages_ui_dist_index_footer",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_dist_index_footer",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_ui_dist_index_footerpages",
+      "label": "packages_ui_dist_index_footerpages",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_dist_index_footerpages",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_ui_dist_index_legalpage",
+      "label": "packages_ui_dist_index_legalpage",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_dist_index_legalpage",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_ui_dist_index_pagepath",
+      "label": "packages_ui_dist_index_pagepath",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_ui_dist_index_pagepath",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "ref_node_assert",
       "label": "ref_node_assert",
       "_origin": "semantic",
@@ -2420,127 +2588,6 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_node_test",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_src_footer_js",
-      "label": "packages_ui_src_footer_js",
-      "community": 14,
-      "community_name": "Footer.tsx",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_src_footer_js",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_src_legalpage_js",
-      "label": "packages_ui_src_legalpage_js",
-      "community": 14,
-      "community_name": "Footer.tsx",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_src_legalpage_js",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_src_link_js",
-      "label": "packages_ui_src_link_js",
-      "community": 14,
-      "community_name": "Footer.tsx",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_src_link_js",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_footer_js",
-      "label": "ref_footer_js",
-      "community": 14,
-      "community_name": "Footer.tsx",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_footer_js",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_legalpage_js",
-      "label": "ref_legalpage_js",
-      "community": 14,
-      "community_name": "Footer.tsx",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_legalpage_js",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_link_js",
-      "label": "ref_link_js",
-      "community": 14,
-      "community_name": "Footer.tsx",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_link_js",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_dist_index",
-      "label": "packages_ui_dist_index",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_dist_index",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_dist_index_footer",
-      "label": "packages_ui_dist_index_footer",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_dist_index_footer",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_dist_index_footerpages",
-      "label": "packages_ui_dist_index_footerpages",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_dist_index_footerpages",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_dist_index_legalpage",
-      "label": "packages_ui_dist_index_legalpage",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_dist_index_legalpage",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_ui_dist_index_pagepath",
-      "label": "packages_ui_dist_index_pagepath",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_ui_dist_index_pagepath",
       "source_file": "",
       "type": "external"
     }
@@ -3398,7 +3445,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/CONTRACTS.md",
-      "source_location": "L16",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -3409,7 +3456,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/CONTRACTS.md",
-      "source_location": "L29",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -3420,7 +3467,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/CONTRACTS.md",
-      "source_location": "L41",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -4092,6 +4139,39 @@
       "confidence_score": 1.0,
       "source_file": "package.json",
       "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_ui_changelog",
+      "target": "packages_ui_changelog_gokulsaraswat_ui",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_ui_changelog_0_1_0",
+      "target": "packages_ui_changelog_minor_changes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_ui_changelog_gokulsaraswat_ui",
+      "target": "packages_ui_changelog_0_1_0",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -4850,7 +4930,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L36",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -4861,7 +4941,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L39",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -4905,7 +4985,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "WORKLOG.md",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -4916,7 +4996,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "WORKLOG.md",
-      "source_location": "L16",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -4927,7 +5007,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "WORKLOG.md",
-      "source_location": "L24",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -4938,7 +5018,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "WORKLOG.md",
-      "source_location": "L27",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -4949,7 +5029,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "WORKLOG.md",
-      "source_location": "L32",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -5015,7 +5095,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L40",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -5026,7 +5106,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L40",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -5076,18 +5156,6 @@
       "weight": 1.0
     },
     {
-      "source": "changeset_ui_tokens",
-      "target": "packages_ui_src_footer_footer",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "Footer",
-      "source_file": ".changeset/ui-tokens.md",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
       "source": "docs_contracts_gokulsaraswat_ui_components",
       "target": "packages_ui_src_footer_footer",
       "relation": "references",
@@ -5096,7 +5164,7 @@
       "confidence_score": 0.95,
       "context": "Footer",
       "source_file": "docs/CONTRACTS.md",
-      "source_location": "L33",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -5108,7 +5176,19 @@
       "confidence_score": 0.95,
       "context": "Footer",
       "source_file": "docs/WORKLOG.md",
-      "source_location": "L204",
+      "source_location": "L205",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_ui_changelog_minor_changes",
+      "target": "packages_ui_src_footer_footer",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "Footer",
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -5144,19 +5224,7 @@
       "confidence_score": 0.95,
       "context": "Footer",
       "source_file": "WORKLOG.md",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
-      "source": "changeset_ui_tokens",
-      "target": "packages_ui_src_legalpage_legalpage",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "LegalPage",
-      "source_file": ".changeset/ui-tokens.md",
-      "source_location": "L5",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -5168,7 +5236,7 @@
       "confidence_score": 0.95,
       "context": "LegalPage",
       "source_file": "docs/CONTRACTS.md",
-      "source_location": "L34",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -5180,7 +5248,19 @@
       "confidence_score": 0.95,
       "context": "LegalPage",
       "source_file": "docs/WORKLOG.md",
-      "source_location": "L204",
+      "source_location": "L205",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_ui_changelog_minor_changes",
+      "target": "packages_ui_src_legalpage_legalpage",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "LegalPage",
+      "source_file": "packages/ui/CHANGELOG.md",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -5216,7 +5296,7 @@
       "confidence_score": 0.95,
       "context": "LegalPage",
       "source_file": "WORKLOG.md",
-      "source_location": "L12",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -5228,7 +5308,7 @@
       "confidence_score": 0.95,
       "context": "LinkComponent",
       "source_file": "docs/CONTRACTS.md",
-      "source_location": "L37",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -5240,10 +5320,10 @@
       "confidence_score": 0.95,
       "context": "LinkProps",
       "source_file": "docs/CONTRACTS.md",
-      "source_location": "L37",
+      "source_location": "L42",
       "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2bb97d8afac55e3636a4ed77ef98ea605c329c99"
+  "built_at_commit": "b8a320fe217d26167013816562ba76938f15f5f1"
 }

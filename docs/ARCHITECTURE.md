@@ -18,10 +18,11 @@ platform/                 npm workspace root (private, not published)
 │       └── test/              node:test: token consistency + SSR render of components
 ├── .changeset/           Changesets config + pending changesets
 ├── .github/workflows/    ci.yml: npm ci, build, lint, test on push to main + PRs
+│                         release.yml: on main, lint + test, `changeset publish` to GitHub Packages, push tags
 └── graphify-out/         code map (graphify update .)
 ```
 
 Consumer flow: app imports `tokens.css` (+ `tailwind.css` if Tailwind) + `styles.css` -> overrides color vars for its accent
 -> renders `<Footer siteName basePath linkComponent …/>` in its layout and a route per `footerPages` slug.
 Tooling: TypeScript 6.0 (tsc -> dist, NodeNext ESM), ESLint 10 + typescript-eslint (root eslint.config.mjs).
-Planned (not built): `packages/mdx`, `auth`, `config`; release workflow publishing to GitHub Packages.
+Planned (not built): `packages/mdx`, `auth`, `config`.

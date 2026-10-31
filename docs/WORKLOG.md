@@ -201,6 +201,7 @@ Goku chat; Udemy Clone etc. old projects; Claude Code SSO subscription item (Int
 - MDX in the editor: preview inside GSpace needs a compile step; browser-side or build-time?
 
 ## Session log
+- 2026-10-31: platform step 4: release workflow; `@gokulsaraswat/ui` 0.1.0 published to GitHub Packages (consumers: `.npmrc` + `read:packages` token, see platform/docs/CONTRACTS.md).
 - 2026-10-31: platform step 3 done: `@gokulsaraswat/ui` React `Footer` + `LegalPage` (placeholders) + `styles.css`. Cross-repo: each app must serve routes /privacy, /terms, /cookies, /data-deletion, /accessibility, /sitemap, /faq, /about, /contact under its base path. Next: publish 0.1.0.
 - 2026-10-31: platform step 2 done: `@gokulsaraswat/ui` tokens (CSS vars + Tailwind v4 mapping), CI, graphify. API in platform/docs/CONTRACTS.md. Next: React footer.
 - 2026-10-31: platform chat step 1 done: repo kit, npm workspace root, Changesets, scope rename. Next: `@gokulsaraswat/ui` scaffold (see platform/.claude-session.json).
