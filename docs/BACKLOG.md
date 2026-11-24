@@ -17,6 +17,7 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Improvements
 | ID | Title | Pri | Status | Needs/Blocks | Notes |
 |---|---|---|---|---|---|
+| PLT-I-001 | Multi-repo UI/motion upgrade (presentation only, zero regression) | P2 | open | | Prompt: PROMPTS.md "UI UPGRADE PROMPT". Per repo: MOB-I-001, PRT-I-001, ADM-I-001. platform itself stays read-only. Libs installed 2026-11-25. Order proposed, not confirmed. |
 
 ## Features
 | ID | Title | Pri | Status | Needs/Blocks | Notes |

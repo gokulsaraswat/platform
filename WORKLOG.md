@@ -8,9 +8,10 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - Verified: build (tsc) ok, lint clean, `npm test` 10/10; Tailwind 4.3.3 compiles the tokens; footer checked in browser (light/dark, desktop/mobile).
 - CI: `.github/workflows/ci.yml`, green on main. Release: `.github/workflows/release.yml` publishes unpublished versions on main.
 - `packages/config` + `packages/auth` 0.1.0 (published by Release workflow; CHANGELOGs).
-- `npm audit`: 0 vulnerabilities (2026-11-25: eslint 10.15.0, typescript-eslint 8.74.0 pull patched minimatch). `.nvmrc` = 24 (matches CI). `graphify-out/` generated; git hooks installed.
+- `npm audit`: 0 vulnerabilities (2026-11-25: eslint 10.15.0, typescript-eslint 8.74.0 pull patched minimatch). `.nvmrc` = 24 (matches CI). `graphify-out/` generated; git hooks not installed.
 
 ## Done
+- 2026-11-25: UI/motion upgrade prompt added to docs/PROMPTS.md (master) as TODO PLT-I-001; per-repo items ADM-I-001, MOB-I-001, PRT-I-001. No package changes.
 - 2026-10-31 Step 7: `@gokulsaraswat/config` + `@gokulsaraswat/auth` (mdx deferred: no Calculator/WebWindow spec).
 - 2026-10-31 Step 5: install smoke test workflow; 0.1.0 installs, renders and type-checks from the registry (run 41202858931).
 - 2026-10-31 Step 4: release workflow + `@gokulsaraswat/ui` 0.1.0 (CHANGELOG).
