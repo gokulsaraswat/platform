@@ -135,6 +135,7 @@ function briefBlock() {
   return md + '<!-- RAW:END -->';
 }
 
+const norm = (s) => s.replace(/\r\n/g, '\n');
 const brief = here('../../../docs/DESIGN-BRIEF.md');
 const outputs = [
   [here('../src/v2/tokens.css'), tokensCss()],
@@ -142,13 +143,12 @@ const outputs = [
   [here('../src/v2/flavors.ts'), flavorsTs()],
 ];
 if (existsSync(brief)) {
-  const cur = readFileSync(brief, 'utf8');
+  const cur = norm(readFileSync(brief, 'utf8'));
   const next = cur.replace(/<!-- RAW:START[\s\S]*?<!-- RAW:END -->/, briefBlock());
   outputs.push([brief, next]);
 }
 
 const check = process.argv.includes('--check');
-const norm = (s) => s.replace(/\r\n/g, '\n');
 let drift = 0;
 for (const [url, text] of outputs) {
   const cur = existsSync(url) ? norm(readFileSync(url, 'utf8')) : null;
