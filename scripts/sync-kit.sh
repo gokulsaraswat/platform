@@ -14,15 +14,23 @@ RULES="$PLATFORM/docs/RULES.md"
 TEMPLATE="$PLATFORM/docs/BACKLOG-TEMPLATE.md"
 INDEX="$PLATFORM/docs/BACKLOG.md"
 
-REPOS=(platform admin gokulmobilize bestportofolio Progress Markdown-studio checkers-gym-management gokul-omni-converter)
+REPOS=(platform admin gokulmobilize bestportofolio GSpace Markdown-studio checkers-gym-management gokul-omni-converter)
 prefix() {
   case "$1" in
     platform) echo PLT;; admin) echo ADM;; gokulmobilize) echo MOB;; bestportofolio) echo PRT;;
-    Progress) echo GSP;; Markdown-studio) echo MDS;; checkers-gym-management) echo GYM;; gokul-omni-converter) echo OMN;;
+    GSpace|Progress) echo GSP;; Markdown-studio) echo MDS;; checkers-gym-management) echo GYM;; gokul-omni-converter) echo OMN;;
   esac
 }
 KIT_FILES=(RULES.md AGENTS.md CLAUDE.md docs/ARCHITECTURE.md docs/BACKLOG.md)
 MODE="${1:-check}"
+
+# Private material stays at the workspace root only: never copy, stage or commit Not Repository/ or PRIVATE-*.md.
+PRIVATE_RE='(^|/)Not Repository(/|$)|(^|/)PRIVATE-[^/]*\.md$'
+for f in "${KIT_FILES[@]}"; do
+  [[ "$f" =~ $PRIVATE_RE ]] && { echo "refusing: kit file '$f' is a private path"; exit 1; }
+done
+is_repo() { [[ -d "$ROOT/$1/.git" ]]; }
+private_tracked() { git -C "$ROOT/$1" ls-files | grep -cE "$PRIVATE_RE" || true; }
 
 check_repo() {
   local r="$1" d="$ROOT/$1" miss=() flags=()
@@ -36,6 +44,8 @@ check_repo() {
   dirty=$(git -C "$d" status --porcelain | wc -l | tr -d ' ')
   ahead=$(git -C "$d" rev-list --count '@{u}..HEAD' 2>/dev/null || echo "?")
   behind=$(git -C "$d" rev-list --count 'HEAD..@{u}' 2>/dev/null || echo "?")
+  local priv; priv=$(private_tracked "$r")
+  [[ "$priv" == 0 ]] || miss+=("PRIVATE-FILES-TRACKED($priv)")
   printf '%-26s dirty=%-3s ahead=%-2s behind=%-2s missing: %s\n' "$r" "$dirty" "$ahead" "$behind" "${miss[*]:-none}"
 }
 
@@ -89,6 +99,9 @@ push_repo() {
     echo "$r: behind remote, skipped (pull --rebase first)"; return
   fi
   git -C "$d" add -- "${paths[@]}"
+  if git -C "$d" diff --cached --name-only | grep -qE "$PRIVATE_RE"; then
+    echo "$r: private path staged, aborted (unstage it; never commit Not Repository/ or PRIVATE-*.md)"; return
+  fi
   if git -C "$d" diff --cached --quiet -- "${paths[@]}"; then echo "$r: kit already committed"
   else git -C "$d" commit -q -m "docs: sync agent kit (rules, backlog, architecture)" -- "${paths[@]}" && echo "$r: committed"; fi
   git -C "$d" push -q origin HEAD && echo "$r: pushed"
@@ -114,9 +127,9 @@ HOOK
 
 case "$MODE" in
   check) for r in "${REPOS[@]}"; do check_repo "$r"; done ;;
-  --fix) for r in "${REPOS[@]}"; do fix_repo "$r"; done; build_index; for r in "${REPOS[@]}"; do check_repo "$r"; done ;;
+  --fix) for r in "${REPOS[@]}"; do is_repo "$r" && fix_repo "$r"; done; build_index; for r in "${REPOS[@]}"; do check_repo "$r"; done ;;
   --index) build_index ;;
-  --push) for r in "${REPOS[@]}"; do push_repo "$r"; done ;;
-  --install-hooks) for r in "${REPOS[@]}"; do install_hooks "$r"; done ;;
+  --push) for r in "${REPOS[@]}"; do is_repo "$r" && push_repo "$r"; done ;;
+  --install-hooks) for r in "${REPOS[@]}"; do is_repo "$r" && install_hooks "$r"; done ;;
   *) echo "usage: $0 [check|--fix|--index|--push|--install-hooks]"; exit 1 ;;
 esac

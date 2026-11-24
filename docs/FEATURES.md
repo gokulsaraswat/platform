@@ -51,6 +51,7 @@ node_modules 73 MB, dist ui 26 KB / config 18 KB / auth 6 KB.
 | `sync-kit.sh --index`: regenerate cross-repo index in `docs/BACKLOG.md` | only the INDEX block changes |
 | `sync-kit.sh --push`: commit + push only kit files per repo | `git show --stat` lists kit files only |
 | `sync-kit.sh --install-hooks`: warn-only pre-push hook | `.git/hooks/pre-push` contains `sync-kit pre-push` |
+| Private-path guard: check flags `PRIVATE-FILES-TRACKED(n)`; --push aborts if Not Repository/ or PRIVATE-*.md is staged; missing repos skipped | scratch workspace with a tracked `PRIVATE-X.md` -> check shows the flag, --fix exits 0 |
 
 ## Docs (master copies for all repos)
 | Feature | Verify |

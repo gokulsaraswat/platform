@@ -11,6 +11,7 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - `npm audit`: 0 vulnerabilities (2026-11-25: eslint 10.15.0, typescript-eslint 8.74.0 pull patched minimatch). `.nvmrc` = 24 (matches CI). `graphify-out/` generated; git hooks not installed.
 
 ## Done
+- 2026-11-25 PLT-B-001: sync-kit.sh covers GSpace, skips missing repos, guards private paths; --index regenerated (now lists admin, mobilize, portfolio, GSpace items).
 - 2026-11-25 Upgrade phase A: docs/FEATURES.md (do-not-break inventory + baseline: build 3.4 s, lint clean, tests 17/17, node_modules 73 MB).
 - 2026-11-25: employer to-dos removed from docs/project/Ideas.md in all 7 repos (one commit each; history unchanged).
 - 2026-11-25: UI/motion upgrade prompt added to docs/PROMPTS.md (master) as TODO PLT-I-001; per-repo items ADM-I-001, MOB-I-001, PRT-I-001. No package changes.

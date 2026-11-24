@@ -22,6 +22,7 @@ platform/                 npm workspace root (private, not published)
 ├── .github/workflows/    ci.yml: npm ci, build, lint, test on push to main + PRs
 │                         release.yml: on main, lint + test, `changeset publish` to GitHub Packages, push tags
 │                         install-smoke.yml: after Release, installs the published ui into a scratch consumer, renders Footer, type-checks
+├── scripts/sync-kit.sh   kit sync across sibling repos (check, --fix, --index, --push, --install-hooks); refuses Not Repository/ + PRIVATE-*.md
 └── graphify-out/         code map (graphify update .)
 ```
 

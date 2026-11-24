@@ -4,6 +4,11 @@
 ## Cross-repo index (open P0/P1 and linked items)
 | Repo | ID | Title | Pri | Status | Needs/Blocks |
 |---|---|---|---|---|---|
+| admin | ADM-I-001 | UI/motion upgrade: dense, scannable admin shell, tables, hub editor (presentation only) | P2 | open | needs: ADM-D-001; master: PLT-I-001 |
+| gokulmobilize | MOB-I-001 | UI/motion upgrade of hub (TileGrid, SavedList, Base) | P2 | open | pilot repo; master: PLT-I-001 |
+| bestportofolio | PRT-I-001 | UI/motion upgrade in 3 passes: site, chat widget (visual only, /api/chat stream untouched), own admin | P2 | open | master: PLT-I-001 |
+| bestportofolio | PRT-X-001 | Evaluate copy-in animation kits (Magic UI, React Bits, Aceternity UI) via the shadcn registry (components.json exists) | P3 | open | after PRT-I-001 pass A |
+| GSpace | GSP-D-002 | typescript pinned to ^6 because @astrojs/check 0.9.12 peer range is ^5 |  | ^6 (latest TS is 7.x) | P3 |
 <!-- INDEX:END -->
 
 Rules: `RULES.md` section 4. Architecture: `docs/ARCHITECTURE.md`. Public-safe: no secrets, no employer material.
@@ -34,3 +39,5 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Done (recent)
 | ID | Title | Commit | Date |
 |---|---|---|---|
+| PLT-B-001 | sync-kit.sh skipped GSpace (REPOS still said Progress); --fix/--push/--install-hooks aborted on a missing repo (checkers-gym-management); no guard against private paths. Fixed: GSpace in REPOS, missing repos skipped, Not Repository/ + PRIVATE-*.md refused when staged and flagged in check | this commit | 2026-11-25 |
+| PLT-B-002 | Employer to-dos tracked in docs/project/Ideas.md in all 7 repos (6 public). Lines removed per repo; history unchanged | c1ff51e (+1 per repo) | 2026-11-25 |
