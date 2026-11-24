@@ -6,6 +6,7 @@
 |---|---|---|---|---|---|
 | admin | ADM-I-001 | UI/motion upgrade: dense, scannable admin shell, tables, hub editor (presentation only) | P2 | open | needs: ADM-D-001; master: PLT-I-001 |
 | admin | ADM-F-001 | Invite-only access requests: `access_requests` table, `request_access` / `decide_access_request` RPCs, /access-requests page | P1 | blocked | needs: Gokul applies `20261125120000_access_requests.sql` + runs `supabase/tests/access_requests_test.sql`; blocks: GSpace sign-in gate |
+| admin | ADM-F-003 | App members with emails: `list_app_members(app)` RPC for app admins; remove member = delete `user_roles` row | P1 | blocked | needs: Gokul applies `20261125130000_app_members.sql` + runs `supabase/tests/app_members_test.sql`; blocks: GSpace members screen |
 | gokulmobilize | MOB-I-001 | UI/motion upgrade of hub (TileGrid, SavedList, Base) | P2 | open | pilot repo; master: PLT-I-001 |
 | bestportofolio | PRT-I-001 | UI/motion upgrade in 3 passes: site, chat widget (visual only, /api/chat stream untouched), own admin | P2 | open | master: PLT-I-001 |
 | bestportofolio | PRT-F-001 | Show GSpace feed (`public/gspace-feed.json`: public projects + learning) as a "Now / learning in public" section | P2 | open | needs: GSP-X-010 (done) |
@@ -41,6 +42,7 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Done (recent)
 | ID | Title | Commit | Date |
 |---|---|---|---|
+| PLT-F-003 | CONTRACTS: `list_app_members` RPC + remove member = delete `user_roles` row (owner admin, ADM-F-003) | docs(contracts) list_app_members | 2026-11-25 |
 | PLT-F-002 | CONTRACTS: Supabase `access_requests` + `request_access` / `decide_access_request` (owner admin, ADM-F-001) | docs(contracts) access_requests | 2026-11-25 |
 | PLT-B-001 | sync-kit.sh skipped GSpace (REPOS still said Progress); --fix/--push/--install-hooks aborted on a missing repo (checkers-gym-management); no guard against private paths. Fixed: GSpace in REPOS, missing repos skipped, Not Repository/ + PRIVATE-*.md refused when staged and flagged in check | 7d15874 | 2026-11-25 |
 | PLT-F-001 | Design system v2 (`@gokulsaraswat/ui/v2` 0.2.0, docs/DESIGN-BRIEF.md); unblocks ADM-I-001, MOB-I-001, PRT-I-001 | 55655a4 + release | 2026-11-25 |
