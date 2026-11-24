@@ -2,13 +2,13 @@
 
 Master status of all repos: platform/docs/WORKLOG.md. Update this file after every step.
 
-## Current state (2026-10-31)
+## Current state (2026-11-25)
 - Repo kit in place; npm workspace root + Changesets (`.changeset/config.json`, baseBranch main, access restricted).
 - `packages/ui` (`@gokulsaraswat/ui` 0.0.0, unpublished): `tokens.css`, `tailwind.css`, `styles.css`, React `Footer` + `LegalPage`; version 0.1.0 (published by Release workflow).
 - Verified: build (tsc) ok, lint clean, `npm test` 10/10; Tailwind 4.3.3 compiles the tokens; footer checked in browser (light/dark, desktop/mobile).
 - CI: `.github/workflows/ci.yml`, green on main. Release: `.github/workflows/release.yml` publishes unpublished versions on main.
 - `packages/config` + `packages/auth` 0.1.0 (published by Release workflow; CHANGELOGs).
-- `npm audit`: 1 moderate (minimatch ReDoS, GHSA-g3hv-75wg-m249) in the eslint dev chain only; no upstream fix; not shipped. `graphify-out/` generated; git hooks not installed.
+- `npm audit`: 0 vulnerabilities (2026-11-25: eslint 10.15.0, typescript-eslint 8.74.0 pull patched minimatch). `.nvmrc` = 24 (matches CI). `graphify-out/` generated; git hooks installed.
 
 ## Done
 - 2026-10-31 Step 7: `@gokulsaraswat/config` + `@gokulsaraswat/auth` (mdx deferred: no Calculator/WebWindow spec).
