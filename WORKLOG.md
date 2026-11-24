@@ -4,13 +4,15 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 
 ## Current state (2026-11-25)
 - Repo kit in place; npm workspace root + Changesets (`.changeset/config.json`, baseBranch main, access restricted).
-- `packages/ui` (`@gokulsaraswat/ui` 0.0.0, unpublished): `tokens.css`, `tailwind.css`, `styles.css`, React `Footer` + `LegalPage`; version 0.1.0 (published by Release workflow).
+- `packages/ui` (`@gokulsaraswat/ui` 0.1.0, published): `tokens.css`, `tailwind.css`, `styles.css`, React `Footer` + `LegalPage`; version 0.1.0 (published by Release workflow).
 - Verified: build (tsc) ok, lint clean, `npm test` 10/10; Tailwind 4.3.3 compiles the tokens; footer checked in browser (light/dark, desktop/mobile).
 - CI: `.github/workflows/ci.yml`, green on main. Release: `.github/workflows/release.yml` publishes unpublished versions on main.
 - `packages/config` + `packages/auth` 0.1.0 (published by Release workflow; CHANGELOGs).
 - `npm audit`: 0 vulnerabilities (2026-11-25: eslint 10.15.0, typescript-eslint 8.74.0 pull patched minimatch). `.nvmrc` = 24 (matches CI). `graphify-out/` generated; git hooks not installed.
 
 ## Done
+- 2026-11-25 Upgrade phase C: CI test step skips the duplicate pretest rebuild (`npm test --ignore-scripts` after `npm run build`): 10.5 s -> 4.0 s locally, 17/17. Packed sizes: ui 5.5 KB, config 1.9 KB, auth 1.3 KB (no maps). No export removed: all are public API.
+- 2026-11-25 PLT-B-003: CLAUDE.md no longer tells agents to commit PRIVATE-* files (d75a2eb).
 - 2026-11-25 PLT-B-001: sync-kit.sh covers GSpace, skips missing repos, guards private paths; --index regenerated (now lists admin, mobilize, portfolio, GSpace items).
 - 2026-11-25 Upgrade phase A: docs/FEATURES.md (do-not-break inventory + baseline: build 3.4 s, lint clean, tests 17/17, node_modules 73 MB).
 - 2026-11-25: employer to-dos removed from docs/project/Ideas.md in all 7 repos (one commit each; history unchanged).
