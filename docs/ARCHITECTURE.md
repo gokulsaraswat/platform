@@ -6,8 +6,9 @@ Only what exists. Updated: 2026-10-31.
 platform/                 npm workspace root (private, not published)
 ├── docs/                 MASTER docs for all repos (WORKLOG, CONTRACTS, REPO-KIT, PROMPTS)
 ├── packages/             build order: config -> auth -> ui (root workspaces list)
-│   ├── config/           @gokulsaraswat/config: appIds, roles, UserRole, hub config.json zod schema
-│   ├── auth/             @gokulsaraswat/auth: hasRole/isSuperAdmin, getUserRoles(client) over user_roles (peer supabase-js)
+│   ├── config/           @gokulsaraswat/config: appIds, roles, UserRole, AccessRequest, hub config.json zod schema
+│   ├── auth/             @gokulsaraswat/auth (peer supabase-js): roles.ts hasRole/isSuperAdmin, client.ts getUserRoles,
+│   │                     providers.ts OAuth sign-in/link, identities.ts list/unlink, access.ts request_access/ensureAppAccess
 │   └── ui/               @gokulsaraswat/ui
 │       ├── src/tokens.css     CSS variables (:root light, .dark), framework-neutral
 │       ├── src/tailwind.css   Tailwind v4 @theme inline mapping of tokens.css

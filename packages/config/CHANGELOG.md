@@ -1,5 +1,11 @@
 # @gokulsaraswat/config
 
+## 0.2.0
+
+### Minor Changes
+
+- auth: shared sign-in for every app. `AUTH_PROVIDERS` (Google, GitHub), `isAuthProviderId`, `signInWithProvider`, `linkProvider`, `listIdentities`, `unlinkProvider` (throws `IdentityError` `last_identity` / `identity_not_found`), `requestAppAccess` (`request_access` RPC) and `ensureAppAccess` (member/admin/pending/denied/none). config: new app id `converter` (gokul-omni-converter), `AccessRequest` row type and `accessRequestStatuses`.
+
 ## 0.1.0
 
 ### Minor Changes

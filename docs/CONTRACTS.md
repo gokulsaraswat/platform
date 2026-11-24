@@ -7,8 +7,8 @@ What platform exposes and what other repos expect. Update when an interface chan
 |---|---|---|---|
 | `@gokulsaraswat/ui` | 0.2.0 | published by Release workflow | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css`; since 0.2.0 `./v2`, `./v2/tokens.css`, `./v2/components.css`, `./v2/tailwind.css` (see below) |
 | `@gokulsaraswat/mdx` | - | planned | MDX component registry |
-| `@gokulsaraswat/auth` | 0.1.0 | published | `hasRole`, `isSuperAdmin`, `getUserRoles` |
-| `@gokulsaraswat/config` | 0.1.0 | published | app ids, roles, `UserRole`, hub `config.json` schema |
+| `@gokulsaraswat/auth` | 0.2.0 | published by Release workflow | roles (`hasRole`, `isSuperAdmin`, `getUserRoles`); since 0.2.0 sign-in, identity linking and access requests (see below) |
+| `@gokulsaraswat/config` | 0.2.0 | published by Release workflow | app ids, roles, `UserRole`, hub `config.json` schema; since 0.2.0 app id `converter`, `AccessRequest` |
 
 Registry: GitHub Packages (`https://npm.pkg.github.com`). Scope must match the GitHub owner, hence `@gokulsaraswat`.
 Installing requires a token with `read:packages`, even for public packages. Consumer `.npmrc`:
@@ -60,7 +60,8 @@ All packages are ESM-only (`import`; no `require`). Verified for TS `moduleResol
 ## `@gokulsaraswat/config`
 | Export | Value / shape |
 |---|---|
-| `appIds`, `AppId` | `hub`, `admin`, `portfolio`, `gspace`, `studio`, `gym` |
+| `appIds`, `AppId` | `hub`, `admin`, `portfolio`, `gspace`, `studio`, `gym`, `converter` (since 0.2.0). Repo -> id: gokulmobilize `hub`, admin `admin`, bestportofolio `portfolio`, GSpace `gspace`, Markdown-studio `studio`, checkers-gym-management `gym`, gokul-omni-converter `converter` |
+| `accessRequestStatuses`, `AccessRequestStatus`, `AccessRequest` (0.2.0) | `pending` \| `approved` \| `denied`; `AccessRequest` = one `access_requests` row (columns below, timestamps as ISO strings) |
 | `roles`, `Role` | `super_admin` > `admin` > `member` |
 | `ALL_APPS` | `'*'` (global grant; only with `super_admin`) |
 | `UserRole` | `{ user_id: string; app: '*'; role: 'super_admin' } \| { user_id: string; app: AppId; role: 'admin' \| 'member' }` |
@@ -73,7 +74,52 @@ Peer: `@supabase/supabase-js@^2`. Apps create their own client (`createClient` o
 | `getUserRoles` | `(client: SupabaseClient, userId: string) => Promise<UserRole[]>` | `select user_id, app, role from user_roles where user_id = $1`; throws the Supabase error |
 | `hasRole` | `(rows: readonly UserRole[], app: AppId, min: Role) => boolean` | true if global super_admin, or a row for `app` with role >= `min` |
 | `isSuperAdmin` | `(rows: readonly UserRole[]) => boolean` | row `app = '*'`, `role = 'super_admin'` |
+| `AUTH_PROVIDERS` (0.2.0) | `readonly [{ id: 'google'; label: 'Google' }, { id: 'github'; label: 'GitHub' }]` | button order; `AuthProviderId = 'google' \| 'github'` |
+| `isAuthProviderId` | `(value: unknown) => value is AuthProviderId` | validate form/query input |
+| `signInWithProvider` | `(client, provider: AuthProviderId, options: OAuthOptions) => Promise<OAuthStart>` | `auth.signInWithOAuth({ provider, options })`. `OAuthOptions = { redirectTo: string; skipBrowserRedirect?: boolean }`, `OAuthStart = { provider; url }`. In a browser supabase-js navigates to `url` itself (unless `skipBrowserRedirect`); on a server, redirect to `url`. Throws the Supabase error, or `Error` if no URL |
+| `linkProvider` | `(client, provider: AuthProviderId, options: OAuthOptions) => Promise<OAuthStart>` | `auth.linkIdentity(...)`; user must be signed in; same redirect handling as sign-in |
+| `listIdentities` | `(client) => Promise<LinkedIdentity[]>` | `auth.getUserIdentities()`, oldest first. `LinkedIdentity = { provider: string; identityId: string; email: string \| null; createdAt: string \| null; raw: UserIdentity }` (`provider` may also be `email`) |
+| `unlinkProvider` | `(client, identity: { identityId: string }) => Promise<void>` | re-reads identities, then `auth.unlinkIdentity(raw)`. Throws `IdentityError` (`code: 'last_identity' \| 'identity_not_found'`) before any request; otherwise the Supabase error |
+| `IdentityError` | `class extends Error { code: IdentityErrorCode }` | `instanceof` check in the UI |
+| `requestAppAccess` | `(client, app: AppId) => Promise<AccessRequest>` | `rpc('request_access', { p_app: app })`; idempotent; throws the Supabase error (`42501`, `22023`) |
+| `ensureAppAccess` | `(client, userId: string, app: AppId, options?: { fileRequest?: boolean }) => Promise<AppAccess>` | `AppAccess = { status: 'admin' \| 'member' \| 'pending' \| 'denied' \| 'none'; roles: UserRole[]; request: AccessRequest \| null }`. `getUserRoles` + `hasRole`: admin (incl. super admin) or member -> `request: null`, nothing filed. Otherwise files via `request_access` (default) or only reads `access_requests` (`fileRequest: false`). Status from the request: `pending`, `denied`; `approved` without a role (removed since) or no row -> `none` |
 Client-side checks only shape the UI; RLS on every table is the real enforcement.
+
+## Shared sign-in (every app; since auth 0.2.0)
+One Supabase project (the one admin uses) for every app. Same sign-in everywhere; JS apps use `@gokulsaraswat/auth`, others (Markdown-studio static, gokul-omni-converter Python) mirror this section.
+- **Providers:** Google, then GitHub (`AUTH_PROVIDERS`), via Supabase Auth OAuth. Buttons read "Continue with Google" / "Continue with GitHub". Email/password stays only where it already exists (admin).
+- **Automatic linking:** Supabase joins a new OAuth identity to an existing user when the provider's verified email matches. Nothing to code.
+- **Manual linking ("Connected accounts" screen, signed-in users):** list identities (provider, email, linked date); "Link Google" / "Link GitHub" for providers not yet linked (`linkProvider`); "Unlink" with a confirm step, disabled when only one identity is left (`unlinkProvider` refuses it too, and Supabase answers `single_identity_not_deletable`). If the provider account already belongs to another user, Supabase returns to the redirect URL with `?error=...&error_code=identity_already_exists&error_description=...`; show that message.
+- **Guests:** every app is usable without signing in (what guests see is the app's choice).
+- **Access:** a signed-in user with no `user_roles` row for the app gets an `access_requests` row (`ensureAppAccess` / `request_access(p_app)`), sees "Waiting for approval" (`pending`) or "No access" (`denied`), and keeps guest features. App admins approve members; only the super admin grants `admin` (admin app `/access-requests`). After approval, re-read roles (no new sign-in needed; roles are not in the JWT).
+- **Callback:** server apps expose `GET /auth/callback?code=<pkce code>&next=<relative path>`: `exchangeCodeForSession(code)`, then redirect to `next` (must start with `/`, not `//`). Sign-in and linking share it (linking uses `next=/account` or the app's equivalent). Browser-only apps (supabase-js `createClient`, implicit flow) redirect back to the page itself; supabase-js reads the session from the URL.
+
+REST equivalents (no supabase-js, e.g. Python), all with header `apikey: <anon key>`:
+| Step | Request |
+|---|---|
+| Sign in | open `GET {SUPABASE_URL}/auth/v1/authorize?provider=google\|github&redirect_to=<url>&code_challenge=<S256 of verifier>&code_challenge_method=s256`; the redirect brings `?code=`; then `POST /auth/v1/token?grant_type=pkce` body `{ "auth_code": "<code>", "code_verifier": "<verifier>" }` -> session |
+| List identities | `GET /auth/v1/user` (Bearer access token) -> `identities[]` (`identity_id`, `provider`, `identity_data.email`, `created_at`) |
+| Link | `GET /auth/v1/user/identities/authorize?provider=github&redirect_to=<url>&skip_http_redirect=true` (Bearer; add the PKCE params as above) -> `{ "url" }`; open it; finish with the same `grant_type=pkce` exchange |
+| Unlink | `DELETE /auth/v1/user/identities/<identity_id>` (Bearer); check there are 2+ identities first |
+| Request access | `POST {SUPABASE_URL}/rest/v1/rpc/request_access` (Bearer) body `{ "p_app": "converter" }` -> the row |
+| Read roles | `GET /rest/v1/user_roles?select=user_id,app,role&user_id=eq.<uid>` (Bearer) |
+
+Redirect URLs (Supabase Auth > URL Configuration > Redirect URLs; anything not listed falls back to the Site URL):
+| App (id) | Local | Production |
+|---|---|---|
+| admin (`admin`) | `http://localhost:3001/auth/callback` | `https://<admin domain>/auth/callback` (with basePath `/admin` later: `https://<domain>/admin/auth/callback`) |
+| bestportofolio (`portfolio`) | `http://localhost:3000/auth/callback` | `https://bestportofolio.vercel.app/auth/callback`, later `https://<domain>/auth/callback` |
+| GSpace (`gspace`) | `http://localhost:4321/**` | `https://<domain>/gspace/**` (returns to the current page) |
+| gokulmobilize (`hub`) | `http://localhost:4321/apps/**` | `https://<domain>/apps/**`; Android: `com.gokulsaraswat.gokulmobilize://auth/callback` (app deep link) |
+| Markdown-studio (`studio`) | its local static server origin + `/**` | `https://gokulsaraswat.github.io/Markdown-studio/**`, later `https://<domain>/studio/**` |
+| gokul-omni-converter (`converter`) | loopback `http://127.0.0.1:<fixed port>/auth/callback` (port chosen in that repo, recorded here) | same (desktop app) |
+
+Manual Supabase steps (Gokul, dashboard only):
+1. GitHub: github.com > Settings > Developer settings > OAuth Apps > New OAuth App. Homepage = the main site URL; Authorization callback URL = `https://<project-ref>.supabase.co/auth/v1/callback`. Copy Client ID, generate a Client secret.
+2. Supabase > Authentication > Sign In / Providers > GitHub: enable, paste Client ID + secret, save. Google: already enabled (confirm).
+3. Supabase > Authentication > Sign In / Providers (Auth settings): enable "Allow manual linking" (needed by `linkIdentity`; without it linking fails with `manual_linking_disabled`).
+4. Supabase > Authentication > URL Configuration: add every Redirect URL above that exists yet; keep Site URL = the main site.
+5. Apply admin migrations in order (`20261125120000_access_requests.sql`, `20261125130000_app_members.sql`, `20261125140000_app_converter.sql`) and run their tests in `admin/supabase/tests/`.
 
 ## Cross-repo contracts
 ### Supabase `user_roles` (owner: admin repo creates the migration + RLS)
@@ -90,7 +136,7 @@ Invite-only access for every app. A signed-in user with no `user_roles` row for 
 |---|---|---|
 | `id` | `uuid` | primary key, default `gen_random_uuid()` |
 | `user_id` | `uuid` | not null, references `auth.users(id)` on delete cascade |
-| `app` | `text` | not null, one of `hub`, `admin`, `portfolio`, `gspace`, `studio`, `gym` |
+| `app` | `text` | not null, one of `appIds` (`converter` allowed once admin `20261125140000_app_converter.sql` is applied; it also widens `user_roles.app`, `permissions.app` and `request_access`) |
 | `email` | `text` | not null, copied from `auth.users.email` |
 | `name` | `text` | null; `raw_user_meta_data->>'full_name'`, else `->>'name'` |
 | `status` | `text` | `pending` (default), `approved`, `denied` |

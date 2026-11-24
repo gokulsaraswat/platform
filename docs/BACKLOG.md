@@ -43,6 +43,7 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Done (recent)
 | ID | Title | Commit | Date |
 |---|---|---|---|
+| PLT-F-005 | Shared sign-in: auth 0.2.0 (Google + GitHub OAuth, identity link/unlink, `requestAppAccess`, `ensureAppAccess`), config 0.2.0 (app id `converter`, `AccessRequest`); CONTRACTS "Shared sign-in" (providers, linking rules, REST equivalents, redirect URLs, manual Supabase steps). Consumers: ADM-F-004, then portfolio, hub, studio, converter | feat(auth) shared sign-in | 2026-11-25 |
 | PLT-F-003 | CONTRACTS: `list_app_members` RPC + remove member = delete `user_roles` row (owner admin, ADM-F-003) | docs(contracts) list_app_members | 2026-11-25 |
 | PLT-F-002 | CONTRACTS: Supabase `access_requests` + `request_access` / `decide_access_request` (owner admin, ADM-F-001) | docs(contracts) access_requests | 2026-11-25 |
 | PLT-B-001 | sync-kit.sh skipped GSpace (REPOS still said Progress); --fix/--push/--install-hooks aborted on a missing repo (checkers-gym-management); no guard against private paths. Fixed: GSpace in REPOS, missing repos skipped, Not Repository/ + PRIVATE-*.md refused when staged and flagged in check | 7d15874 | 2026-11-25 |

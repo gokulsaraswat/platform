@@ -1,11 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseHubConfig, appIds, roles, ALL_APPS } from '../dist/index.js';
+import { parseHubConfig, appIds, roles, ALL_APPS, accessRequestStatuses } from '../dist/index.js';
 
 const tile = (over = {}) => ({ id: 'gspace', name: 'GSpace', href: '/gspace', mode: 'bundled', enabled: true, ...over });
 
 test('exports the agreed app ids and roles', () => {
-  assert.deepEqual(appIds, ['hub', 'admin', 'portfolio', 'gspace', 'studio', 'gym']);
+  assert.deepEqual(appIds, ['hub', 'admin', 'portfolio', 'gspace', 'studio', 'gym', 'converter']);
+  assert.deepEqual(accessRequestStatuses, ['pending', 'approved', 'denied']);
   assert.deepEqual(roles, ['super_admin', 'admin', 'member']);
   assert.equal(ALL_APPS, '*');
 });

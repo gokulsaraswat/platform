@@ -15,7 +15,8 @@ node_modules 73 MB, dist ui 26 KB / config 18 KB / auth 6 KB.
 ## @gokulsaraswat/config (consumers: admin, gokulmobilize)
 | Export | Verify |
 |---|---|
-| `appIds`, `AppId` (hub, admin, portfolio, gspace, studio, gym) | test `hub.test.mjs`; admin + gokulmobilize type-check |
+| `appIds`, `AppId` (hub, admin, portfolio, gspace, studio, gym, converter) | test `hub.test.mjs`; admin + gokulmobilize type-check |
+| `accessRequestStatuses`, `AccessRequest` (0.2.0) | `hub.test.mjs`; used by auth `requestAppAccess` |
 | `roles`, `Role`, `ALL_APPS`, `UserRole` | used by auth; admin `src/lib/session.ts` type-checks |
 | `tileModes`, `hubConfigSchema`, `parseHubConfig`, `HubConfig`, `HubTile` (config.json v1) | `hub.test.mjs` (valid, duplicate id, bad href) |
 
@@ -24,6 +25,8 @@ node_modules 73 MB, dist ui 26 KB / config 18 KB / auth 6 KB.
 |---|---|
 | `hasRole(rows, app, min)`, `isSuperAdmin(rows)` | `roles.test.mjs` |
 | `getUserRoles(client, userId)` over `user_roles` (RLS enforces visibility) | `roles.test.mjs` with a stub client |
+| `AUTH_PROVIDERS`, `isAuthProviderId`, `signInWithProvider`, `linkProvider`, `listIdentities`, `unlinkProvider` + `IdentityError` (0.2.0) | `oauth.test.mjs` (fake client): last identity refused, errors rethrown |
+| `requestAppAccess`, `ensureAppAccess` (0.2.0) | `access.test.mjs` (fake client): admin/member file nothing, pending/denied/none mapping, read-only mode |
 
 ## @gokulsaraswat/ui (consumers: admin tokens only, gokulmobilize, bestportofolio)
 | Export | Verify |
