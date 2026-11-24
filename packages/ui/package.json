@@ -6,7 +6,8 @@
   "type": "module",
   "files": [
     "dist",
-    "src/*.css"
+    "src/*.css",
+    "src/v2/*.css"
   ],
   "sideEffects": [
     "*.css"
@@ -18,9 +19,18 @@
     },
     "./tokens.css": "./src/tokens.css",
     "./tailwind.css": "./src/tailwind.css",
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./v2": {
+      "types": "./dist/v2/index.d.ts",
+      "default": "./dist/v2/index.js"
+    },
+    "./v2/tokens.css": "./src/v2/tokens.css",
+    "./v2/tailwind.css": "./src/v2/tailwind.css",
+    "./v2/components.css": "./src/v2/components.css"
   },
   "scripts": {
+    "gen": "node scripts/gen.mjs",
+    "contrast": "node scripts/contrast.mjs",
     "build": "tsc -p tsconfig.json",
     "lint": "eslint src",
     "pretest": "npm run build",

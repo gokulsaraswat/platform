@@ -1,0 +1,366 @@
+{
+  "$comment": "Source of truth for @gokulsaraswat/ui v2. Edit here, then run `npm run gen -w @gokulsaraswat/ui`. Generates tokens.css, tailwind.css, flavors.ts and the raw-value block in docs/DESIGN-BRIEF.md.",
+  "shared": {
+    "space": {
+      "0": "0",
+      "1": "0.25rem",
+      "2": "0.5rem",
+      "3": "0.75rem",
+      "4": "1rem",
+      "5": "1.25rem",
+      "6": "1.5rem",
+      "8": "2rem",
+      "10": "2.5rem",
+      "12": "3rem",
+      "16": "4rem",
+      "20": "5rem"
+    },
+    "motion": {
+      "ease-enter": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "ease-exit": "cubic-bezier(0.4, 0, 1, 1)",
+      "ease-move": "cubic-bezier(0.65, 0, 0.35, 1)",
+      "dur-micro": "150ms",
+      "dur-spatial": "300ms",
+      "dur-morph": "400ms"
+    },
+    "z": {
+      "sticky": "10",
+      "overlay": "40",
+      "dialog": "50",
+      "toast": "60"
+    },
+    "touch-min": "2.75rem",
+    "measure": "68ch"
+  },
+  "flavors": {
+    "instrument": {
+      "label": "Instrument",
+      "use": "admin, gokul-omni-converter",
+      "idea": "A precise control panel: cool slate, verdigris signal colour, tight type, small radii, data in tabular figures.",
+      "font": {
+        "sans": "'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif",
+        "display": "'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif",
+        "reading": "'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif",
+        "mono": "'IBM Plex Mono', 'Cascadia Mono', Consolas, ui-monospace, monospace"
+      },
+      "fontFiles": "IBM Plex Sans (variable, wght 400-600), IBM Plex Mono (400, 500). OFL.",
+      "python": {
+        "sans": "IBM Plex Sans",
+        "mono": "IBM Plex Mono",
+        "fallbackSans": "Segoe UI",
+        "fallbackMono": "Consolas"
+      },
+      "text": {
+        "xs": "0.75rem",
+        "sm": "0.8125rem",
+        "base": "0.9375rem",
+        "lg": "1.125rem",
+        "xl": "1.375rem",
+        "2xl": "1.75rem",
+        "3xl": "2.25rem"
+      },
+      "leading": {
+        "tight": "1.2",
+        "snug": "1.35",
+        "body": "1.5"
+      },
+      "weight": {
+        "regular": "400",
+        "medium": "500",
+        "strong": "600",
+        "display": "600"
+      },
+      "tracking": {
+        "display": "-0.01em",
+        "body": "0"
+      },
+      "radius": {
+        "sm": "0.1875rem",
+        "md": "0.3125rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "999px"
+      },
+      "control-h": "2.25rem",
+      "press": "translateY(1px)",
+      "light": {
+        "bg": "#F4F6F7",
+        "surface": "#FFFFFF",
+        "sunken": "#EBEEF0",
+        "border": "#D6DCE1",
+        "border-strong": "#7E8A95",
+        "text": "#132029",
+        "text-muted": "#4D5B67",
+        "text-subtle": "#5F6C78",
+        "accent": "#0B6B62",
+        "accent-hover": "#08544D",
+        "on-accent": "#FFFFFF",
+        "accent-subtle": "#DCEFEB",
+        "on-accent-subtle": "#074841",
+        "focus": "#0B6B62",
+        "danger": "#B42318",
+        "danger-subtle": "#FCE9E7",
+        "on-danger": "#FFFFFF",
+        "success": "#16713A",
+        "success-subtle": "#E1F3E7",
+        "warning": "#8A5300",
+        "warning-subtle": "#FDF1D8",
+        "info": "#1D5BA6",
+        "info-subtle": "#E3EDF9",
+        "highlight": "#F2C94C",
+        "on-highlight": "#132029",
+        "overlay": "rgba(19, 32, 41, 0.45)",
+        "shadow-color": "19 32 41"
+      },
+      "dark": {
+        "bg": "#0F151A",
+        "surface": "#161E25",
+        "sunken": "#0B1014",
+        "border": "#27323C",
+        "border-strong": "#6A7784",
+        "text": "#E5EBEF",
+        "text-muted": "#A3AFBA",
+        "text-subtle": "#8D99A5",
+        "accent": "#3CC0AE",
+        "accent-hover": "#62D2C3",
+        "on-accent": "#04231F",
+        "accent-subtle": "#123430",
+        "on-accent-subtle": "#9BE6DA",
+        "focus": "#3CC0AE",
+        "danger": "#F38479",
+        "danger-subtle": "#3A1A17",
+        "on-danger": "#2A0805",
+        "success": "#5FCB8C",
+        "success-subtle": "#143022",
+        "warning": "#E9B44E",
+        "warning-subtle": "#352713",
+        "info": "#7EAEEF",
+        "info-subtle": "#16263C",
+        "highlight": "#E9B44E",
+        "on-highlight": "#1F1603",
+        "overlay": "rgba(0, 0, 0, 0.6)",
+        "shadow-color": "0 0 0"
+      }
+    },
+    "atelier": {
+      "label": "Atelier",
+      "use": "gokulmobilize (hub web + Android)",
+      "idea": "A pocket launcher you want to touch: big soft shapes, ultramarine with a marigold spark, expressive grotesque type, springy feedback.",
+      "font": {
+        "sans": "'Bricolage Grotesque', 'Segoe UI', system-ui, -apple-system, sans-serif",
+        "display": "'Bricolage Grotesque', 'Segoe UI', system-ui, -apple-system, sans-serif",
+        "reading": "'Bricolage Grotesque', 'Segoe UI', system-ui, -apple-system, sans-serif",
+        "mono": "'JetBrains Mono', 'Cascadia Mono', Consolas, ui-monospace, monospace"
+      },
+      "fontFiles": "Bricolage Grotesque (variable, opsz 12-96, wght 400-800), JetBrains Mono (400). OFL.",
+      "python": {
+        "sans": "Bricolage Grotesque",
+        "mono": "JetBrains Mono",
+        "fallbackSans": "Segoe UI",
+        "fallbackMono": "Consolas"
+      },
+      "text": {
+        "xs": "0.8125rem",
+        "sm": "0.875rem",
+        "base": "1rem",
+        "lg": "1.25rem",
+        "xl": "1.5625rem",
+        "2xl": "1.9375rem",
+        "3xl": "2.75rem"
+      },
+      "leading": {
+        "tight": "1.05",
+        "snug": "1.3",
+        "body": "1.55"
+      },
+      "weight": {
+        "regular": "400",
+        "medium": "500",
+        "strong": "650",
+        "display": "750"
+      },
+      "tracking": {
+        "display": "-0.025em",
+        "body": "0"
+      },
+      "radius": {
+        "sm": "0.625rem",
+        "md": "0.875rem",
+        "lg": "1.25rem",
+        "xl": "1.75rem",
+        "full": "999px"
+      },
+      "control-h": "2.75rem",
+      "press": "scale(0.96)",
+      "light": {
+        "bg": "#F1F2F7",
+        "surface": "#FFFFFF",
+        "sunken": "#E6E8F0",
+        "border": "#D3D7E3",
+        "border-strong": "#7C8299",
+        "text": "#161A2E",
+        "text-muted": "#4D536B",
+        "text-subtle": "#5F6580",
+        "accent": "#2F38D8",
+        "accent-hover": "#232AB0",
+        "on-accent": "#FFFFFF",
+        "accent-subtle": "#E3E5FF",
+        "on-accent-subtle": "#20279C",
+        "focus": "#2F38D8",
+        "danger": "#BE2A2A",
+        "danger-subtle": "#FDE8E8",
+        "on-danger": "#FFFFFF",
+        "success": "#18723F",
+        "success-subtle": "#E0F4E8",
+        "warning": "#8A5200",
+        "warning-subtle": "#FFF0D1",
+        "info": "#2F38D8",
+        "info-subtle": "#E3E5FF",
+        "highlight": "#FFB627",
+        "on-highlight": "#161A2E",
+        "overlay": "rgba(22, 26, 46, 0.5)",
+        "shadow-color": "35 42 120"
+      },
+      "dark": {
+        "bg": "#10121C",
+        "surface": "#181B2A",
+        "sunken": "#0B0D15",
+        "border": "#2A2F46",
+        "border-strong": "#6E7594",
+        "text": "#ECEEF8",
+        "text-muted": "#A7ADC6",
+        "text-subtle": "#9097B2",
+        "accent": "#9198FF",
+        "accent-hover": "#ADB2FF",
+        "on-accent": "#10133F",
+        "accent-subtle": "#23274D",
+        "on-accent-subtle": "#C7CAFF",
+        "focus": "#9198FF",
+        "danger": "#FF8A80",
+        "danger-subtle": "#3B1A1A",
+        "on-danger": "#2B0707",
+        "success": "#63D18F",
+        "success-subtle": "#13301F",
+        "warning": "#FFC24D",
+        "warning-subtle": "#382A10",
+        "info": "#9198FF",
+        "info-subtle": "#23274D",
+        "highlight": "#FFC24D",
+        "on-highlight": "#221600",
+        "overlay": "rgba(0, 0, 0, 0.6)",
+        "shadow-color": "0 0 0"
+      }
+    },
+    "margin": {
+      "label": "Margin",
+      "use": "Markdown-studio, GSpace",
+      "idea": "A writing desk: near-white paper, ink text set in a reading serif, oxblood editing marks, quiet chrome that gets out of the way of the page.",
+      "font": {
+        "sans": "'Instrument Sans', 'Segoe UI', system-ui, -apple-system, sans-serif",
+        "display": "'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif",
+        "reading": "'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif",
+        "mono": "'JetBrains Mono', 'Cascadia Mono', Consolas, ui-monospace, monospace"
+      },
+      "fontFiles": "Newsreader (variable, opsz 6-72, wght 400-700, + italic), Instrument Sans (variable, wght 400-600), JetBrains Mono (400). OFL.",
+      "python": {
+        "sans": "Instrument Sans",
+        "mono": "JetBrains Mono",
+        "fallbackSans": "Segoe UI",
+        "fallbackMono": "Consolas",
+        "reading": "Newsreader",
+        "fallbackReading": "Georgia"
+      },
+      "text": {
+        "xs": "0.75rem",
+        "sm": "0.875rem",
+        "base": "1rem",
+        "lg": "1.1875rem",
+        "xl": "1.5rem",
+        "2xl": "1.875rem",
+        "3xl": "2.5rem"
+      },
+      "leading": {
+        "tight": "1.15",
+        "snug": "1.35",
+        "body": "1.6"
+      },
+      "weight": {
+        "regular": "400",
+        "medium": "500",
+        "strong": "600",
+        "display": "500"
+      },
+      "tracking": {
+        "display": "-0.015em",
+        "body": "0"
+      },
+      "radius": {
+        "sm": "0.1875rem",
+        "md": "0.25rem",
+        "lg": "0.375rem",
+        "xl": "0.5rem",
+        "full": "999px"
+      },
+      "control-h": "2.5rem",
+      "press": "none",
+      "light": {
+        "bg": "#FAFAF9",
+        "surface": "#FFFFFF",
+        "sunken": "#F0F0EE",
+        "border": "#E0DFDC",
+        "border-strong": "#858079",
+        "text": "#1E1C1A",
+        "text-muted": "#55514C",
+        "text-subtle": "#68635D",
+        "accent": "#8E1E41",
+        "accent-hover": "#701733",
+        "on-accent": "#FFFFFF",
+        "accent-subtle": "#F7E7EC",
+        "on-accent-subtle": "#6A1530",
+        "focus": "#8E1E41",
+        "danger": "#B42318",
+        "danger-subtle": "#FCE9E7",
+        "on-danger": "#FFFFFF",
+        "success": "#2E6B3A",
+        "success-subtle": "#E5F1E6",
+        "warning": "#855100",
+        "warning-subtle": "#FBF0DA",
+        "info": "#2A5A8F",
+        "info-subtle": "#E6EEF7",
+        "highlight": "#F6E27A",
+        "on-highlight": "#1E1C1A",
+        "overlay": "rgba(30, 28, 26, 0.45)",
+        "shadow-color": "30 28 26"
+      },
+      "dark": {
+        "bg": "#151413",
+        "surface": "#1C1B19",
+        "sunken": "#0F0E0D",
+        "border": "#2F2D2A",
+        "border-strong": "#7A746C",
+        "text": "#ECE8E2",
+        "text-muted": "#B0A99F",
+        "text-subtle": "#999288",
+        "accent": "#E58DA7",
+        "accent-hover": "#F0A9BE",
+        "on-accent": "#2B0913",
+        "accent-subtle": "#3A1C25",
+        "on-accent-subtle": "#F5C4D3",
+        "focus": "#E58DA7",
+        "danger": "#F38479",
+        "danger-subtle": "#3A1A17",
+        "on-danger": "#2A0805",
+        "success": "#7CC88A",
+        "success-subtle": "#1A2E1D",
+        "warning": "#E2B45A",
+        "warning-subtle": "#33281A",
+        "info": "#8DB6E6",
+        "info-subtle": "#1A2633",
+        "highlight": "#6B5E1E",
+        "on-highlight": "#F5F1EA",
+        "overlay": "rgba(0, 0, 0, 0.6)",
+        "shadow-color": "0 0 0"
+      }
+    }
+  }
+}
