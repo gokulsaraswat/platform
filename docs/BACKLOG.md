@@ -30,6 +30,7 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Features
 | ID | Title | Pri | Status | Needs/Blocks | Notes |
 |---|---|---|---|---|---|
+| PLT-F-004 | CONTRACTS: portfolio data contract for the NEW Supabase project (tables, RLS intent, RPCs, buckets, old->new mapping, default rows) | P1 | doing | needs: Gokul review of draft v1; blocks: admin portfolio migrations + migration script, bestportofolio Astro rebuild, `@gokulsaraswat/config` portfolio zod schemas | Draft v1 2026-11-25 in CONTRACTS.md "Portfolio data". SQL owned by admin (`admin/supabase/migrations`), nothing applied. Done when the admin SQL lands and matches. Future input: PRT-F-001 (GSpace feed). |
 
 ## Ideas (unscoped, not committed to)
 | ID | Idea | Pri | Status | Needs/Blocks | Notes |

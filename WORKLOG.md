@@ -11,6 +11,7 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - `npm audit`: 0 vulnerabilities (2026-11-25: eslint 10.15.0, typescript-eslint 8.74.0 pull patched minimatch). `.nvmrc` = 24 (matches CI). `graphify-out/` generated; git hooks not installed.
 
 ## Done
+- 2026-11-25 Step 1a (PLT-F-004, draft v1): CONTRACTS.md "Portfolio data (NEW Supabase project)": 17 `portfolio_*` tables + shared `todos`, `todo_history`, `audit_log`, `documents` (vector 768); RLS intent per table on the existing `has_permission('portfolio', '<area>.edit')` catalog (= portfolio admins + super admin unless a key is granted); comments (one-level replies, pending/approved/rejected, is_author, like_count) + reactions (one like per visitor hash) written only through Astro endpoints -> service_role RPCs; `match_documents` (+ `filter_app`, same call body); buckets `portfolio-media`, `portfolio-audio`; anon-key + RLS reads for the Astro site; old->new mapping of all 13 Prisma models + `siteSettings` keys (dropped ones with reasons); default rows (4 stats, 6 hero lines, 5 skill categories, 1 track, footer links, settings). Docs only; no package change. SQL is the admin repo's job; nothing applied.
 - 2026-11-25: CONTRACTS: `list_app_members(p_app)` RPC (app admins: members + super admins with email/name) and "remove member = delete the `user_roles` row" rule, in the access_requests section (owner admin, ADM-F-003; migration `20261125130000_app_members.sql` NOT applied yet). Admin login also gained Google sign-in (ADM-F-002, admin-only). No package change.
 - 2026-11-25: CONTRACTS: `access_requests` table + RPCs `request_access`, `decide_access_request` (owner admin, ADM-F-001, admin commit bda9e14; migration NOT applied yet). Consumer: GSpace sign-in gate. No package change.
 - 2026-11-25 RELEASED: `@gokulsaraswat/ui` 0.2.0 (design system v2, additive; merged 55655a4). Consumers adopt by bumping to ^0.2.0 when their redesign starts; nothing breaks for v1 users.
@@ -41,7 +42,18 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - Scope `@gokulsaraswat/*` (GitHub Packages requires scope = owner), replacing `@gokul/*` in all docs.
 - Repo public, all rights reserved. Legal pages ship with placeholder text in v0.1. GSpace gets tokens only in v0.1.
 
+## Assumptions (Step 1a, 2026-11-25; least-risky choices, Gokul may overrule)
+- Backlog ID PLT-F-004 (the run asked for PLT-F-002, already used for access_requests; IDs are never reused).
+- All portfolio-only tables prefixed `portfolio_` (one shared DB; avoids future clashes with GSpace posts/courses). `todos` is shared with an `app` column (admin answer 5: one platform board).
+- Writes use `has_permission('portfolio', '<area>.edit')` from the existing catalog instead of a bare admin check: identical to "portfolio admins or super_admin" until an admin grants a key (delegated admin, admin answer 1).
+- Comments default to `pending` (plan decision 18 supersedes admin answer 2 "live immediately"); old comments migrate `approved` because they are live today; setting `comments.moderation = "auto"` restores auto-approve.
+- Blog ideas stay a separate table linked by `post_id` (one pipeline in the admin UI) rather than merged into posts.
+- Phone kept as a private setting (not public, decision 17), never dropped; unused profile fields kept in `profile.extra`.
+- Chat starters seeded disabled (new feature; nothing changes on the live site until Gokul enables them). `hero.open_to_work` defaults false.
+- `documents` stays named `documents` (+ `app` column) and `match_documents` keeps its call body; executable by service_role only.
+
 ## In progress / next
+- Next (Step 1b): portfolio zod schemas/types in `@gokulsaraswat/config` from the CONTRACTS "Portfolio data" section (no release without Gokul's OK); then `@gokulsaraswat/mdx` v0. Admin step turns the contract into SQL + tests.
 - Next: mdx when Calculator/WebWindow specs exist; owner: GitHub settings (step 6). graphify hook now installed. Full list: `.claude-session.json` sprint.todo_next.
 
 ## Blockers / requests to other repos
