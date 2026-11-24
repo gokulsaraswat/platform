@@ -21,5 +21,6 @@
   "19": "config/src/index.ts",
   "20": "compilerOptions",
   "21": "auth/tsconfig.json",
-  "22": "config/tsconfig.json"
+  "22": "config/tsconfig.json",
+  "23": "CONTEXT: read this first in every new session"
 }
