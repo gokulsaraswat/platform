@@ -5,8 +5,10 @@
 | Repo | ID | Title | Pri | Status | Needs/Blocks |
 |---|---|---|---|---|---|
 | admin | ADM-I-001 | UI/motion upgrade: dense, scannable admin shell, tables, hub editor (presentation only) | P2 | open | needs: ADM-D-001; master: PLT-I-001 |
+| admin | ADM-F-001 | Invite-only access requests: `access_requests` table, `request_access` / `decide_access_request` RPCs, /access-requests page | P1 | blocked | needs: Gokul applies `20261125120000_access_requests.sql` + runs `supabase/tests/access_requests_test.sql`; blocks: GSpace sign-in gate |
 | gokulmobilize | MOB-I-001 | UI/motion upgrade of hub (TileGrid, SavedList, Base) | P2 | open | pilot repo; master: PLT-I-001 |
 | bestportofolio | PRT-I-001 | UI/motion upgrade in 3 passes: site, chat widget (visual only, /api/chat stream untouched), own admin | P2 | open | master: PLT-I-001 |
+| bestportofolio | PRT-F-001 | Show GSpace feed (`public/gspace-feed.json`: public projects + learning) as a "Now / learning in public" section | P2 | open | needs: GSP-X-010 (done) |
 | bestportofolio | PRT-X-001 | Evaluate copy-in animation kits (Magic UI, React Bits, Aceternity UI) via the shadcn registry (components.json exists) | P3 | open | after PRT-I-001 pass A |
 | GSpace | GSP-D-002 | typescript pinned to ^6 because @astrojs/check 0.9.12 peer range is ^5 |  | ^6 (latest TS is 7.x) | P3 |
 <!-- INDEX:END -->
@@ -39,6 +41,7 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Done (recent)
 | ID | Title | Commit | Date |
 |---|---|---|---|
+| PLT-F-002 | CONTRACTS: Supabase `access_requests` + `request_access` / `decide_access_request` (owner admin, ADM-F-001) | docs(contracts) access_requests | 2026-11-25 |
 | PLT-B-001 | sync-kit.sh skipped GSpace (REPOS still said Progress); --fix/--push/--install-hooks aborted on a missing repo (checkers-gym-management); no guard against private paths. Fixed: GSpace in REPOS, missing repos skipped, Not Repository/ + PRIVATE-*.md refused when staged and flagged in check | 7d15874 | 2026-11-25 |
 | PLT-F-001 | Design system v2 (`@gokulsaraswat/ui/v2` 0.2.0, docs/DESIGN-BRIEF.md); unblocks ADM-I-001, MOB-I-001, PRT-I-001 | 55655a4 + release | 2026-11-25 |
 | PLT-B-003 | CLAUDE.md told agents to commit PRIVATE-STATUS/TODO into every repo (contradicts RULES s7). Reworded in platform; other repos get the same fix in their upgrade turn | d75a2eb | 2026-11-25 |

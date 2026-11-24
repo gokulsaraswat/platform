@@ -1,6 +1,6 @@
 # CONTRACTS (master)
 
-What platform exposes and what other repos expect. Update when an interface changes. Updated: 2026-10-31.
+What platform exposes and what other repos expect. Update when an interface changes. Updated: 2026-11-25.
 
 ## Packages
 | Package | Version | Status | Exposes |
@@ -83,6 +83,30 @@ Client-side checks only shape the UI; RLS on every table is the real enforcement
 | `app` | `text` | one of `appIds` or `'*'` |
 | `role` | `text` | one of `roles`; `super_admin` iff `app = '*'` |
 Primary key `(user_id, app)`. Finer permissions (`role_permissions`) only when needed (Ideas.md).
+
+### Supabase `access_requests` (owner: admin repo, `supabase/migrations/20261125120000_access_requests.sql`; NOT APPLIED yet)
+Invite-only access for every app. A signed-in user with no `user_roles` row for an app calls `request_access(app)` (e.g. GSpace from the browser with the anon key) and waits; that app's admins approve or deny. Only a super admin can grant `admin` (e.g. make someone admin of gspace, done in the admin app at `/access-requests`).
+| Column | Type | Rule |
+|---|---|---|
+| `id` | `uuid` | primary key, default `gen_random_uuid()` |
+| `user_id` | `uuid` | not null, references `auth.users(id)` on delete cascade |
+| `app` | `text` | not null, one of `hub`, `admin`, `portfolio`, `gspace`, `studio`, `gym` |
+| `email` | `text` | not null, copied from `auth.users.email` |
+| `name` | `text` | null; `raw_user_meta_data->>'full_name'`, else `->>'name'` |
+| `status` | `text` | `pending` (default), `approved`, `denied` |
+| `requested_role` | `text` | `member` (default) or `admin`; `request_access` always writes `member` |
+| `created_at` | `timestamptz` | not null, default `now()` |
+| `decided_at` | `timestamptz` | null until decided |
+| `decided_by` | `uuid` | null; references `auth.users(id)` on delete set null |
+Unique `(user_id, app)`: one request per user per app.
+RLS: SELECT own rows (`user_id = auth.uid()`) or `has_app_role(app, 'admin')` (super admin sees all). No INSERT/UPDATE/DELETE for clients; only `select` is granted to `authenticated`, nothing to `anon`. All writes go through the two RPCs.
+
+RPCs (both `security definer`, `search_path = ''`, execute granted to `authenticated` only):
+| Signature | Behaviour | Errors (Postgres code) |
+|---|---|---|
+| `request_access(p_app text) returns access_requests` | Inserts a `pending` `member` request for `auth.uid()` with email/name from `auth.users`. If a row for (user, app) exists it is returned unchanged (a `denied` or `approved` status is never reset). | `42501` not signed in; `22023` unknown app |
+| `decide_access_request(p_id uuid, p_approve boolean, p_role text default 'member') returns access_requests` | Caller must be admin of the request's app (`has_app_role(app, 'admin')`); `p_role = 'admin'` also needs `is_super_admin()`. Approve: upserts `user_roles(user_id, app, role)` (on conflict update role) and sets `approved`. Deny: sets `denied` (rejected once approved; remove the role instead). Sets `decided_at = now()`, `decided_by = auth.uid()`. App admins cannot change a user who is already admin. | `P0002` request not found or not your app; `42501` not signed in / admin grant without super admin / changing an admin; `22023` bad role, null approve, or deny after approve |
+Client call (supabase-js): `supabase.rpc('request_access', { p_app: 'gspace' })` -> the row; check `status` (`pending` = show "waiting for approval"). Read own state without writing: `from('access_requests').select('status').eq('app', 'gspace').maybeSingle()`. After approval the user has a `user_roles` row; refresh the session/roles. Test: admin `supabase/tests/access_requests_test.sql` (rolls back).
 
 ### Hub `config.json`
 Admin publishes it to a Supabase Storage public bucket; the hub validates with `parseHubConfig`. Bucket/path: TO BE UPDATED (admin + gokulmobilize chats).
