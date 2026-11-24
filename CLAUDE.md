@@ -110,3 +110,6 @@ Condition: If the mode is not declared in the first message, assume [Organizatio
 - After structural changes (new/moved/deleted packages, exports, dependencies), run `graphify update .` before finishing. Do not wait for a commit.
 - If hooks are missing in a fresh clone: `graphify hook install`.
 - Commit `docs/ARCHITECTURE.md`, `docs/CONTRACTS.md` and `CLAUDE.md` so the GitHub copy matches the working tree.
+
+## Context
+Read `docs/CONTEXT.md` first in every session (vision, repo map, cross-repo contracts, work modes).
