@@ -5,7 +5,7 @@ What platform exposes and what other repos expect. Update when an interface chan
 ## Packages
 | Package | Version | Status | Exposes |
 |---|---|---|---|
-| `@gokulsaraswat/ui` | 0.1.0 | published by Release workflow | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css` (see below) |
+| `@gokulsaraswat/ui` | 0.2.0 | published by Release workflow | `.` (React), `./tokens.css`, `./tailwind.css`, `./styles.css`; since 0.2.0 `./v2`, `./v2/tokens.css`, `./v2/components.css`, `./v2/tailwind.css` (see below) |
 | `@gokulsaraswat/mdx` | - | planned | MDX component registry |
 | `@gokulsaraswat/auth` | 0.1.0 | published | `hasRole`, `isSuperAdmin`, `getUserRoles` |
 | `@gokulsaraswat/config` | 0.1.0 | published | app ids, roles, `UserRole`, hub `config.json` schema |
@@ -44,7 +44,8 @@ Peer: `react@^19`. Import `@gokulsaraswat/ui/styles.css` after `tokens.css`. Cla
 
 Apps must serve a route for each `footerPages` slug under their base path (own page or `LegalPage`).
 
-## `@gokulsaraswat/ui/v2` (design system v2; additive, UNRELEASED: on branch `redesign/platform`, ships as ui 0.2.0 after approval)
+## `@gokulsaraswat/ui/v2` (design system v2; additive, since ui 0.2.0)
+Adopt: bump to `@gokulsaraswat/ui@^0.2.0` only when a repo starts its v2 redesign; v1 users need no change.
 Full brief with every value: `docs/DESIGN-BRIEF.md`. Source: `packages/ui/src/v2/flavors.json` (generated outputs, never edit them).
 | Export | Shape | Notes |
 |---|---|---|

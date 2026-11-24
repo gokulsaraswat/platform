@@ -36,7 +36,7 @@ node_modules 73 MB, dist ui 26 KB / config 18 KB / auth 6 KB.
 | `footerPages`, `FooterPageSlug`, `pagePath` | `components.test.mjs` |
 | `LinkComponent`, `LinkProps` types | gokulmobilize type-checks |
 
-## @gokulsaraswat/ui/v2 (branch redesign/platform until merged; release after approval)
+## @gokulsaraswat/ui/v2 (since 0.2.0)
 | Feature | Verify |
 |---|---|
 | `flavors.json` -> generated `v2/tokens.css`, `v2/tailwind.css`, `v2/flavors.ts`, DESIGN-BRIEF raw block | `npm run gen -w @gokulsaraswat/ui`; `node packages/ui/scripts/gen.mjs --check` exits 0 |
