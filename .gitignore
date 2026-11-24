@@ -9,3 +9,7 @@ coverage/
 .DS_Store
 .vscode/*
 graphify-out/
+
+# private notes and employer material: never commit (see RULES.md section 7)
+Not Repository/
+PRIVATE-*.md
