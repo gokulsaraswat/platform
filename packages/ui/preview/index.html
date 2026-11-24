@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en" data-gk-flavor="instrument" data-gk-theme="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>gk ui v2 preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400..600&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<link rel="stylesheet" href="../src/v2/tokens.css">
+<link rel="stylesheet" href="../src/v2/components.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; min-block-size: 100dvh; }
+  h1, h2, h3, p { margin: 0; }
+  [hidden] { display: none !important; }
+
+  /* Preview switcher (not part of the design system) */
+  .pv-bar { position: sticky; inset-block-start: 0; z-index: 70; display: flex; flex-wrap: wrap; align-items: center; gap: var(--gk-space-3) var(--gk-space-6); padding: var(--gk-space-3) var(--gk-space-4); background: var(--gk-color-surface); border-block-end: 1px solid var(--gk-color-border); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.875rem; }
+  .pv-bar fieldset { display: flex; flex-wrap: wrap; gap: var(--gk-space-1); margin: 0; padding: 0; border: 0; align-items: center; }
+  .pv-bar legend { float: left; margin-inline-end: var(--gk-space-2); color: var(--gk-color-text-muted); }
+  .pv-bar label { display: inline-flex; align-items: center; min-block-size: 2.25rem; padding-inline: var(--gk-space-3); border: 1px solid var(--gk-color-border); border-radius: 999px; cursor: pointer; }
+  .pv-bar input { position: absolute; opacity: 0; pointer-events: none; }
+  .pv-bar label:has(input:checked) { background: var(--gk-color-text); color: var(--gk-color-bg); border-color: var(--gk-color-text); }
+  .pv-bar label:has(input:focus-visible) { outline: 2px solid var(--gk-color-focus); outline-offset: 2px; }
+  .pv-note { color: var(--gk-color-text-muted); margin-inline-start: auto; }
+
+  .pv-screen { min-block-size: calc(100dvh - 3.75rem); }
+  .pv-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: var(--gk-space-2); padding: var(--gk-space-6) var(--gk-space-4) var(--gk-space-12); max-inline-size: 80rem; margin-inline: auto; }
+  .pv-swatches h2 { grid-column: 1 / -1; font-size: var(--gk-text-lg); margin-block-end: var(--gk-space-2); }
+  .pv-swatch { display: grid; grid-template-rows: 3rem auto; border: 1px solid var(--gk-color-border); border-radius: var(--gk-radius-md); overflow: hidden; font-size: var(--gk-text-xs); background: var(--gk-color-surface); }
+  .pv-swatch span:last-child { padding: var(--gk-space-2); display: grid; }
+  .pv-swatch code { color: var(--gk-color-text-muted); }
+
+  /* ---------- Instrument: admin roles screen ---------- */
+  .ins { display: grid; grid-template-columns: 15rem 1fr; min-block-size: inherit; }
+  .ins-side { border-inline-end: 1px solid var(--gk-color-border); background: var(--gk-color-surface); }
+  .ins-brand { display: flex; align-items: center; gap: var(--gk-space-2); min-block-size: 3.5rem; padding-inline: var(--gk-space-6); border-block-end: 1px solid var(--gk-color-border); font-weight: var(--gk-weight-strong); }
+  .ins-brand svg { color: var(--gk-color-accent); }
+  .ins-main { min-inline-size: 0; }
+  .ins-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--gk-space-4); padding: var(--gk-space-6) var(--gk-space-8) var(--gk-space-4); }
+  .ins-head h1 { font-size: var(--gk-text-2xl); }
+  .ins-head p { color: var(--gk-color-text-muted); margin-block-start: var(--gk-space-1); }
+  .ins-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin: 0 var(--gk-space-8) var(--gk-space-6); border: 1px solid var(--gk-color-border); border-radius: var(--gk-radius-lg); overflow: hidden; background: var(--gk-color-border); }
+  .ins-stat { padding: var(--gk-space-3) var(--gk-space-4); background: var(--gk-color-surface); }
+  .ins-stat dt { color: var(--gk-color-text-muted); font-size: var(--gk-text-sm); }
+  .ins-stat dd { margin: var(--gk-space-1) 0 0; font-size: var(--gk-text-xl); font-weight: var(--gk-weight-strong); font-variant-numeric: tabular-nums; }
+  .ins-stat dd small { font-size: var(--gk-text-sm); font-weight: var(--gk-weight-regular); color: var(--gk-color-text-muted); margin-inline-start: var(--gk-space-1); }
+  .ins-body { padding: 0 var(--gk-space-8) var(--gk-space-12); display: grid; gap: var(--gk-space-4); }
+  .ins-filters { display: flex; flex-wrap: wrap; gap: var(--gk-space-2); align-items: end; }
+  .ins-filters .gk-field { flex: 1 1 10rem; }
+  .ins-filters .grow { flex: 1 1 16rem; }
+  .ins-user { display: grid; white-space: nowrap; }
+  .ins-user small { color: var(--gk-color-text-muted); font-family: var(--gk-font-mono); font-size: var(--gk-text-xs); }
+  .ins-dot { display: inline-block; inline-size: 0.5rem; block-size: 0.5rem; border-radius: 50%; background: var(--gk-color-success); margin-inline-end: var(--gk-space-2); }
+  .ins-menu { display: none; }
+  @media (max-width: 56rem) {
+    .ins { grid-template-columns: 1fr; }
+    .ins-side { display: none; }
+    .ins-menu { display: inline-flex; }
+    .ins-head, .ins-body { padding-inline: var(--gk-space-4); }
+    .ins-stats { margin-inline: var(--gk-space-4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ins-table td:nth-child(4), .ins-table th:nth-child(4) { display: none; }
+  }
+
+  /* ---------- Atelier: hub launcher ---------- */
+  .atl { display: grid; place-items: start center; padding: var(--gk-space-8) var(--gk-space-4) var(--gk-space-16); background:
+    radial-gradient(60rem 30rem at 85% -10%, var(--gk-color-accent-subtle), transparent 70%), var(--gk-color-bg); }
+  .atl-phone { position: relative; inline-size: min(25rem, 100%); border-radius: 2.75rem; padding: 0.625rem; background: var(--gk-color-text); box-shadow: var(--gk-shadow-3); }
+  .atl-screen { position: relative; overflow: hidden; border-radius: 2.25rem; background: var(--gk-color-bg); min-block-size: 46rem; display: grid; grid-template-rows: auto 1fr auto; }
+  .atl-status { display: flex; justify-content: space-between; padding: var(--gk-space-3) var(--gk-space-6) 0; font-size: var(--gk-text-xs); font-weight: var(--gk-weight-medium); font-variant-numeric: tabular-nums; }
+  .atl-content { padding: var(--gk-space-6) var(--gk-space-5) var(--gk-space-4); display: grid; gap: var(--gk-space-5); align-content: start; }
+  .atl-greet { font-family: var(--gk-font-display); font-size: var(--gk-text-3xl); font-weight: var(--gk-weight-display); letter-spacing: var(--gk-tracking-display); line-height: var(--gk-leading-tight); font-variation-settings: 'opsz' 96; }
+  .atl-greet span { display: block; color: var(--gk-color-text-muted); font-size: var(--gk-text-lg); font-weight: var(--gk-weight-medium); letter-spacing: 0; font-variation-settings: 'opsz' 14; margin-block-start: var(--gk-space-2); }
+  .atl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gk-space-3); margin: 0; padding: 0; list-style: none; }
+  .atl-grid > li:first-child { grid-column: 1 / -1; }
+  .atl-grid > li > a { block-size: 100%; }
+  .atl-tile { position: relative; display: grid; align-content: space-between; min-block-size: 9.5rem; padding: var(--gk-space-4); border-radius: var(--gk-radius-xl); background: var(--gk-color-surface); color: var(--gk-color-text); text-decoration: none; overflow: hidden; box-shadow: var(--gk-shadow-1); border: 1px solid var(--gk-color-border); transition: transform var(--gk-dur-micro) var(--gk-ease-enter), box-shadow var(--gk-dur-micro) var(--gk-ease-enter); }
+  .atl-tile:hover { box-shadow: var(--gk-shadow-2); }
+  .atl-tile:active { transform: var(--gk-press); }
+  .atl-tile:focus-visible { outline: 3px solid var(--gk-color-focus); outline-offset: 3px; }
+  .atl-tile b { position: absolute; inset-block-start: -1.4rem; inset-inline-end: -0.4rem; font-family: var(--gk-font-display); font-size: 7.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.06em; font-variation-settings: 'opsz' 96; color: var(--gk-color-accent-subtle); pointer-events: none; }
+  .atl-tile strong { position: relative; font-size: var(--gk-text-lg); font-weight: var(--gk-weight-strong); }
+  .atl-tile small { position: relative; color: var(--gk-color-text-muted); font-size: var(--gk-text-sm); }
+  .atl-tile--hero { min-block-size: 8rem; background: var(--gk-color-accent); color: var(--gk-color-on-accent); border-color: var(--gk-color-accent); }
+  .atl-tile--hero b { color: color-mix(in srgb, var(--gk-color-on-accent) 14%, transparent); }
+  .atl-tile--hero small { color: inherit; opacity: 0.85; }
+  .atl-spark { display: inline-block; inline-size: 0.625rem; block-size: 0.625rem; margin-inline-end: var(--gk-space-2); border-radius: 50%; background: var(--gk-color-highlight); vertical-align: 0.05em; }
+  .atl-tile--off { border-style: dashed; box-shadow: none; background: transparent; }
+  .atl-tile--off b { color: var(--gk-color-sunken); }
+  .atl-row { display: flex; align-items: center; justify-content: space-between; }
+  .atl-row h2 { font-size: var(--gk-text-lg); font-weight: var(--gk-weight-strong); }
+  .atl-saved { display: grid; gap: var(--gk-space-2); margin: 0; padding: 0; list-style: none; }
+  .atl-saved a { display: flex; align-items: center; gap: var(--gk-space-3); min-block-size: var(--gk-touch-min); padding: var(--gk-space-2) var(--gk-space-3); border-radius: var(--gk-radius-md); background: var(--gk-color-surface); color: inherit; text-decoration: none; border: 1px solid var(--gk-color-border); }
+  .atl-saved a:focus-visible { outline: 3px solid var(--gk-color-focus); outline-offset: 2px; }
+  .atl-saved i { display: grid; place-items: center; inline-size: 2rem; block-size: 2rem; border-radius: var(--gk-radius-sm); background: var(--gk-color-accent-subtle); color: var(--gk-color-on-accent-subtle); font-style: normal; font-weight: 700; }
+  .atl-saved span { display: grid; }
+  .atl-saved small { color: var(--gk-color-text-muted); }
+  .atl-nav { display: grid; grid-template-columns: repeat(3, 1fr); padding: var(--gk-space-2) var(--gk-space-4) calc(var(--gk-space-3) + env(safe-area-inset-bottom, 0)); border-block-start: 1px solid var(--gk-color-border); background: var(--gk-color-surface); }
+  .atl-nav a { display: grid; justify-items: center; gap: 2px; min-block-size: var(--gk-touch-min); padding-block: var(--gk-space-1); color: var(--gk-color-text-muted); font-size: var(--gk-text-xs); text-decoration: none; border-radius: var(--gk-radius-md); }
+  .atl-nav a[aria-current='page'] { color: var(--gk-color-accent); font-weight: var(--gk-weight-strong); }
+  .atl-nav a:focus-visible { outline: 3px solid var(--gk-color-focus); }
+  .atl-enter > * { animation: atl-in var(--gk-dur-morph) var(--gk-ease-enter) both; }
+  .atl-enter > *:nth-child(2) { animation-delay: 60ms; }
+  .atl-enter > *:nth-child(3) { animation-delay: 120ms; }
+  .atl-enter > *:nth-child(4) { animation-delay: 180ms; }
+  @keyframes atl-in { from { opacity: 0; transform: translateY(0.75rem) scale(0.97); } }
+  @media (prefers-reduced-motion: reduce) { .atl-enter > * { animation: none; } }
+  @media (max-width: 30rem) { .atl { padding: 0; } .atl-phone { padding: 0; border-radius: 0; background: none; box-shadow: none; } .atl-screen { border-radius: 0; min-block-size: calc(100dvh - 3.75rem); } }
+
+  /* ---------- Margin: markdown studio ---------- */
+  .mrg { display: grid; grid-template-rows: auto 1fr auto; min-block-size: inherit; }
+  .mrg-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gk-space-3); padding: var(--gk-space-2) var(--gk-space-4); border-block-end: 1px solid var(--gk-color-border); background: var(--gk-color-surface); }
+  .mrg-file { display: grid; margin-inline-end: auto; }
+  .mrg-file strong { font-weight: var(--gk-weight-medium); }
+  .mrg-file small { color: var(--gk-color-text-muted); font-size: var(--gk-text-xs); }
+  .mrg-bar .gk-tabs { border: 0; }
+  .mrg-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); min-block-size: 0; }
+  .mrg-src { border-inline-end: 1px solid var(--gk-color-border); background: var(--gk-color-sunken); }
+  .mrg-src textarea { display: block; inline-size: 100%; block-size: 100%; min-block-size: 36rem; padding: var(--gk-space-6); border: 0; background: transparent; color: var(--gk-color-text); font: 0.875rem/1.7 var(--gk-font-mono); resize: none; }
+  .mrg-src textarea:focus-visible { outline: 2px solid var(--gk-color-focus); outline-offset: -2px; }
+  .mrg-page { container-type: inline-size; position: relative; padding: var(--gk-space-12) var(--gk-space-6) var(--gk-space-16); overflow: auto; }
+  .mrg-doc { position: relative; margin-inline: auto; max-inline-size: 36rem; }
+  .mrg-doc h1 { font-family: var(--gk-font-display); font-size: var(--gk-text-3xl); font-weight: var(--gk-weight-display); letter-spacing: var(--gk-tracking-display); line-height: var(--gk-leading-tight); font-variation-settings: 'opsz' 72; margin-block-end: var(--gk-space-2); }
+  .mrg-doc .lede { font-family: var(--gk-font-reading); font-style: italic; font-size: var(--gk-text-xl); color: var(--gk-color-text-muted); line-height: var(--gk-leading-snug); margin-block-end: var(--gk-space-8); }
+  .mrg-doc h2 { font-family: var(--gk-font-display); font-size: var(--gk-text-xl); font-weight: 600; margin-block: var(--gk-space-8) var(--gk-space-3); }
+  .mrg-doc p, .mrg-doc li { font-family: var(--gk-font-reading); font-size: var(--gk-text-lg); line-height: var(--gk-leading-body); }
+  .mrg-doc p + p { margin-block-start: var(--gk-space-4); }
+  .mrg-doc blockquote { margin: var(--gk-space-6) 0; padding-inline-start: var(--gk-space-5); border-inline-start: 2px solid var(--gk-color-accent); font-family: var(--gk-font-reading); font-size: var(--gk-text-xl); font-style: italic; line-height: var(--gk-leading-snug); }
+  .mrg-doc pre { margin: var(--gk-space-5) 0; padding: var(--gk-space-4); border-radius: var(--gk-radius-md); background: var(--gk-color-sunken); font: 0.8125rem/1.6 var(--gk-font-mono); overflow-x: auto; }
+  .mrg-doc a { color: var(--gk-color-accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  .mrg-note { position: static; display: block; margin-block: var(--gk-space-3); font-size: var(--gk-text-sm); color: var(--gk-color-accent); border-inline-start: 1px solid var(--gk-color-accent); padding-inline-start: var(--gk-space-3); font-family: var(--gk-font-sans); }
+  @container (min-width: 64rem) { .mrg-note { position: absolute; margin: 0; inset-inline-start: calc(100% + var(--gk-space-8)); inline-size: 11rem; padding-inline-start: var(--gk-space-3); border-inline-start: 1px solid var(--gk-color-accent); color: var(--gk-color-accent); font-family: var(--gk-font-sans); font-size: var(--gk-text-sm); font-style: normal; line-height: var(--gk-leading-snug); } }
+  .mrg-split[data-view='edit'], .mrg-split[data-view='preview'] { grid-template-columns: 1fr; }
+  .mrg-split[data-view='edit'] .mrg-page, .mrg-split[data-view='preview'] .mrg-src { display: none; }
+  .mrg-status { display: flex; flex-wrap: wrap; gap: var(--gk-space-2) var(--gk-space-6); align-items: center; padding: var(--gk-space-2) var(--gk-space-4); border-block-start: 1px solid var(--gk-color-border); background: var(--gk-color-surface); color: var(--gk-color-text-muted); font-size: var(--gk-text-sm); }
+  .mrg-status .end { margin-inline-start: auto; display: flex; gap: var(--gk-space-4); }
+  @media (max-width: 52rem) { .mrg-split { grid-template-columns: 1fr; } .mrg-src textarea { min-block-size: 16rem; } .mrg-src { border-inline-end: 0; border-block-end: 1px solid var(--gk-color-border); } }
+</style>
+</head>
+<body class="gk-app">
+
+<form class="pv-bar" aria-label="Preview controls">
+  <fieldset>
+    <legend>Flavor</legend>
+    <label><input type="radio" name="flavor" value="instrument" checked> Instrument (admin, omni)</label>
+    <label><input type="radio" name="flavor" value="atelier"> Atelier (hub)</label>
+    <label><input type="radio" name="flavor" value="margin"> Margin (studio, GSpace)</label>
+  </fieldset>
+  <fieldset>
+    <legend>Theme</legend>
+    <label><input type="radio" name="theme" value="system" checked> System</label>
+    <label><input type="radio" name="theme" value="light"> Light</label>
+    <label><input type="radio" name="theme" value="dark"> Dark</label>
+  </fieldset>
+  <p class="pv-note">Sample content. v1 tokens are untouched.</p>
+</form>
+
+<!-- ===================== INSTRUMENT ===================== -->
+<main class="pv-screen" data-screen="instrument">
+  <div class="ins">
+    <aside class="ins-side">
+      <div class="ins-brand">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor" opacity=".45"/><rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor" opacity=".45"/><rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor"/></svg>
+        Admin
+      </div>
+      <nav class="gk-sidenav" aria-label="Admin">
+        <a class="gk-navlink" href="#">Overview</a>
+        <p class="gk-sidenav__group">Apps</p>
+        <a class="gk-navlink" href="#">Hub</a>
+        <a class="gk-navlink" href="#">Portfolio</a>
+        <a class="gk-navlink" href="#">GSpace</a>
+        <a class="gk-navlink" href="#">Studio</a>
+        <a class="gk-navlink" href="#">Gym</a>
+        <p class="gk-sidenav__group">Access</p>
+        <a class="gk-navlink" href="#" aria-current="page">Roles</a>
+        <a class="gk-navlink" href="#">Hub config</a>
+        <a class="gk-navlink" href="#">Audit log</a>
+      </nav>
+    </aside>
+    <div class="ins-main">
+      <header class="gk-topbar">
+        <button class="gk-btn gk-btn--ghost gk-btn--icon ins-menu" type="button" aria-label="Open navigation">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <span class="gk-muted">Access</span>
+        <span aria-hidden="true" class="gk-muted">/</span>
+        <strong>Roles</strong>
+        <span style="margin-inline-start:auto" class="gk-badge gk-badge--success"><span class="ins-dot" style="margin:0"></span>RLS enforced</span>
+      </header>
+
+      <div class="ins-head">
+        <div>
+          <h1 class="gk-display">Roles</h1>
+          <p>Who can do what in each app. Changes apply on the user's next request.</p>
+        </div>
+        <button class="gk-btn gk-btn--primary" type="button" id="ins-grant">Grant role</button>
+      </div>
+
+      <dl class="ins-stats">
+        <div class="ins-stat"><dt>Users with access</dt><dd>14</dd></div>
+        <div class="ins-stat"><dt>Super admins</dt><dd>1</dd></div>
+        <div class="ins-stat"><dt>App admins</dt><dd>4<small>in 3 apps</small></dd></div>
+        <div class="ins-stat"><dt>Members</dt><dd>11</dd></div>
+      </dl>
+
+      <div class="ins-body">
+        <div class="gk-tabs" role="tablist" aria-label="Role status" data-tabs>
+          <button class="gk-tab" role="tab" aria-selected="true" aria-controls="ins-p-active" id="ins-t-active" tabindex="0">Active</button>
+          <button class="gk-tab" role="tab" aria-selected="false" aria-controls="ins-p-loading" id="ins-t-loading" tabindex="-1">Loading state</button>
+          <button class="gk-tab" role="tab" aria-selected="false" aria-controls="ins-p-revoked" id="ins-t-revoked" tabindex="-1">Revoked</button>
+          <button class="gk-tab" role="tab" aria-selected="false" aria-controls="ins-p-error" id="ins-t-error" tabindex="-1">Error state</button>
+        </div>
+
+        <section id="ins-p-active" role="tabpanel" aria-labelledby="ins-t-active" tabindex="0" style="display:grid;gap:var(--gk-space-4)">
+          <form class="ins-filters" role="search" onsubmit="return false">
+            <div class="gk-field grow"><label class="gk-label" for="ins-q">Search users</label><input class="gk-input" id="ins-q" type="search" placeholder="Name or email"></div>
+            <div class="gk-field"><label class="gk-label" for="ins-app">App</label>
+              <select class="gk-select" id="ins-app"><option>All apps</option><option>hub</option><option>admin</option><option>portfolio</option><option>gspace</option><option>studio</option><option>gym</option></select></div>
+            <div class="gk-field"><label class="gk-label" for="ins-role">Role</label>
+              <select class="gk-select" id="ins-role"><option>Any role</option><option>super_admin</option><option>admin</option><option>member</option></select></div>
+          </form>
+          <div class="gk-table-wrap">
+            <table class="gk-table ins-table">
+              <caption class="gk-sr-only">Active role grants</caption>
+              <thead><tr><th scope="col" aria-sort="ascending">User</th><th scope="col">App</th><th scope="col">Role</th><th scope="col" data-align="end">Granted</th><th scope="col" data-align="end"><span class="gk-sr-only">Actions</span></th></tr></thead>
+              <tbody>
+                <tr><td><span class="ins-user">Gokul Saraswat<small>9f2c…a41e</small></span></td><td>All apps</td><td><span class="gk-badge gk-badge--accent">super_admin</span></td><td class="gk-num">31 Oct 2026</td><td data-align="end"><button class="gk-btn gk-btn--ghost gk-btn--sm" type="button" disabled title="The last super admin cannot be removed">Revoke</button></td></tr>
+                <tr><td><span class="ins-user">Asha Verma<small>1b07…c9d2</small></span></td><td>gym</td><td><span class="gk-badge gk-badge--info">admin</span></td><td class="gk-num">12 Nov 2026</td><td data-align="end"><button class="gk-btn gk-btn--ghost gk-btn--sm" type="button">Revoke</button></td></tr>
+                <tr aria-selected="true"><td><span class="ins-user">Rohan Iyer<small>44ad…07fb</small></span></td><td>gspace</td><td><span class="gk-badge gk-badge--info">admin</span></td><td class="gk-num">18 Nov 2026</td><td data-align="end"><button class="gk-btn gk-btn--ghost gk-btn--sm" type="button">Revoke</button></td></tr>
+                <tr><td><span class="ins-user">Meera Nair<small>c310…5be8</small></span></td><td>studio</td><td><span class="gk-badge">member</span></td><td class="gk-num">20 Nov 2026</td><td data-align="end"><button class="gk-btn gk-btn--ghost gk-btn--sm" type="button">Revoke</button></td></tr>
+                <tr><td><span class="ins-user">Dev Malhotra<small>7e9b…2a10</small></span></td><td>portfolio</td><td><span class="gk-badge">member</span></td><td class="gk-num">24 Nov 2026</td><td data-align="end"><button class="gk-btn gk-btn--ghost gk-btn--sm" type="button">Revoke</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="gk-alert gk-alert--warning" role="status"><p class="gk-alert__title">Hidden buttons are not security</p><p>Every grant here is checked again by row-level security in Supabase.</p></div>
+        </section>
+
+        <section id="ins-p-loading" role="tabpanel" aria-labelledby="ins-t-loading" tabindex="0" hidden>
+          <div class="gk-table-wrap" aria-busy="true">
+            <table class="gk-table"><caption class="gk-sr-only">Loading role grants</caption>
+              <thead><tr><th scope="col">User</th><th scope="col">App</th><th scope="col">Role</th><th scope="col">Granted</th></tr></thead>
+              <tbody>
+                <tr><td><span class="gk-skeleton" style="inline-size:9rem"></span></td><td><span class="gk-skeleton" style="inline-size:4rem"></span></td><td><span class="gk-skeleton" style="inline-size:5rem"></span></td><td><span class="gk-skeleton" style="inline-size:6rem"></span></td></tr>
+                <tr><td><span class="gk-skeleton" style="inline-size:7rem"></span></td><td><span class="gk-skeleton" style="inline-size:3rem"></span></td><td><span class="gk-skeleton" style="inline-size:4rem"></span></td><td><span class="gk-skeleton" style="inline-size:6rem"></span></td></tr>
+                <tr><td><span class="gk-skeleton" style="inline-size:10rem"></span></td><td><span class="gk-skeleton" style="inline-size:5rem"></span></td><td><span class="gk-skeleton" style="inline-size:4rem"></span></td><td><span class="gk-skeleton" style="inline-size:6rem"></span></td></tr>
+              </tbody></table>
+          </div>
+        </section>
+
+        <section id="ins-p-revoked" role="tabpanel" aria-labelledby="ins-t-revoked" tabindex="0" hidden>
+          <div class="gk-card"><div class="gk-state">
+            <div class="gk-state__icon" aria-hidden="true">∅</div>
+            <h2 class="gk-state__title">No revoked roles</h2>
+            <p class="gk-state__body">When you revoke a role it stays here for 30 days, so you can see who had access and restore it.</p>
+          </div></div>
+        </section>
+
+        <section id="ins-p-error" role="tabpanel" aria-labelledby="ins-t-error" tabindex="0" hidden>
+          <div class="gk-card"><div class="gk-state gk-state--error" role="alert">
+            <div class="gk-state__icon" aria-hidden="true">!</div>
+            <h2 class="gk-state__title">Roles could not be loaded</h2>
+            <p class="gk-state__body">Supabase returned 401: your session expired. Sign in again to see role grants.</p>
+            <div class="gk-state__actions"><button class="gk-btn gk-btn--primary" type="button">Sign in again</button><button class="gk-btn" type="button">Retry</button></div>
+          </div></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <dialog class="gk-dialog" id="ins-dialog" aria-labelledby="ins-dialog-title">
+    <form method="dialog">
+      <div class="gk-dialog__header"><h2 class="gk-dialog__title" id="ins-dialog-title">Grant role</h2></div>
+      <div class="gk-dialog__body" style="display:grid;gap:var(--gk-space-4)">
+        <div class="gk-field"><label class="gk-label" for="ins-d-email">User email</label><input class="gk-input" id="ins-d-email" type="email" aria-describedby="ins-d-email-hint" placeholder="name@example.com"><p class="gk-hint" id="ins-d-email-hint">They must have signed in once.</p></div>
+        <div class="gk-field"><label class="gk-label" for="ins-d-app">App</label><select class="gk-select" id="ins-d-app"><option>gym</option><option>gspace</option><option>studio</option><option>portfolio</option><option>hub</option></select></div>
+        <fieldset style="border:0;margin:0;padding:0;display:grid;gap:var(--gk-space-2)"><legend class="gk-label" style="margin-block-end:var(--gk-space-2)">Role</legend>
+          <label class="gk-check"><input type="radio" name="ins-d-role" checked> <span>member: can use the app</span></label>
+          <label class="gk-check"><input type="radio" name="ins-d-role"> <span>admin: can manage the app's content and members</span></label>
+        </fieldset>
+      </div>
+      <div class="gk-dialog__footer"><button class="gk-btn" value="cancel">Cancel</button><button class="gk-btn gk-btn--primary" value="ok" id="ins-d-ok">Grant role</button></div>
+    </form>
+  </dialog>
+  <div class="gk-toast-region" aria-live="polite" role="region" aria-label="Notifications" id="ins-toasts"></div>
+
+  <section class="pv-swatches" aria-label="Instrument tokens" data-swatches></section>
+</main>
+
+<!-- ===================== ATELIER ===================== -->
+<main class="pv-screen" data-screen="atelier" hidden>
+  <div class="atl">
+    <div class="atl-phone">
+      <div class="atl-screen">
+        <div class="atl-status" aria-hidden="true"><span>21:08</span><span>5G  82%</span></div>
+        <div class="atl-content">
+          <h1 class="atl-greet">Evening, Gokul<span>Six apps, one tap away.</span></h1>
+          <ul class="atl-grid atl-enter">
+            <li><a class="atl-tile atl-tile--hero" href="#"><b aria-hidden="true">P</b><small><span class="atl-spark" aria-hidden="true"></span>Opened 2 h ago</small><strong>Portfolio</strong></a></li>
+            <li><a class="atl-tile" href="#"><b aria-hidden="true">G</b><small>3 new notes</small><strong>GSpace</strong></a></li>
+            <li><a class="atl-tile" href="#"><b aria-hidden="true">S</b><small>Works offline</small><strong>Studio</strong></a></li>
+            <li><a class="atl-tile" href="#"><b aria-hidden="true">Y</b><small>Next class 7:00</small><strong>Gym</strong></a></li>
+            <li><a class="atl-tile atl-tile--off" href="#" aria-describedby="atl-omni-note"><b aria-hidden="true">O</b><small id="atl-omni-note">Desktop app</small><strong>Omni</strong></a></li>
+          </ul>
+          <div class="gk-alert" role="status"><p class="gk-alert__title">You're offline</p><p>Studio and saved pages still open. Others load when you reconnect.</p></div>
+          <div class="atl-row"><h2>Saved</h2><button class="gk-btn gk-btn--ghost gk-btn--sm" type="button">Edit</button></div>
+          <ul class="atl-saved">
+            <li><a href="#"><i aria-hidden="true">G</i><span>Notes on system design<small>GSpace</small></span></a></li>
+            <li><a href="#"><i aria-hidden="true">S</i><span>Release checklist.md<small>Studio, edited yesterday</small></span></a></li>
+          </ul>
+        </div>
+        <nav class="atl-nav" aria-label="Hub">
+          <a href="#" aria-current="page"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="2" y="2" width="8" height="8" rx="3" fill="currentColor"/><rect x="12" y="2" width="8" height="8" rx="3" fill="currentColor"/><rect x="2" y="12" width="8" height="8" rx="3" fill="currentColor"/><rect x="12" y="12" width="8" height="8" rx="3" fill="currentColor"/></svg>Apps</a>
+          <a href="#"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M6 3h10v16l-5-3.5L6 19z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Saved</a>
+          <a href="#"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 19c1.4-3.2 4.2-5 7.5-5s6.1 1.8 7.5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Account</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <section class="pv-swatches" aria-label="Atelier tokens" data-swatches></section>
+</main>
+
+<!-- ===================== MARGIN ===================== -->
+<main class="pv-screen" data-screen="margin" hidden>
+  <div class="mrg">
+    <header class="mrg-bar">
+      <div class="mrg-file"><strong>release-notes.md</strong><small>Saved on this device</small></div>
+      <div class="gk-tabs" role="tablist" aria-label="View" data-tabs>
+        <button class="gk-tab" role="tab" aria-selected="false" aria-controls="mrg-p" id="mrg-t-edit" tabindex="-1">Edit</button>
+        <button class="gk-tab" role="tab" aria-selected="true" aria-controls="mrg-p" id="mrg-t-split" tabindex="0">Split</button>
+        <button class="gk-tab" role="tab" aria-selected="false" aria-controls="mrg-p" id="mrg-t-preview" tabindex="-1">Preview</button>
+      </div>
+      <button class="gk-btn gk-btn--sm" type="button">Back up</button>
+      <button class="gk-btn gk-btn--primary gk-btn--sm" type="button">Export</button>
+    </header>
+    <div class="mrg-split" id="mrg-p" role="tabpanel" aria-labelledby="mrg-t-split" data-view="split">
+      <div class="mrg-src">
+        <label class="gk-sr-only" for="mrg-text">Markdown source</label>
+        <textarea id="mrg-text" spellcheck="false"># Shipping the shared look
+
+Every app now draws from one set of tokens, but each keeps its own voice.
+
+## What changed
+
+- One source file generates the CSS, the Tailwind map and the Python theme.
+- Contrast is tested, not eyeballed: 162 pairs pass AA.
+
+> Make the default the accessible choice, and nobody has to remember.
+
+```css
+:root { --gk-color-accent: #8E1E41; }
+```
+
+Read the [design brief](#) before touching a screen.</textarea>
+      </div>
+      <div class="mrg-page">
+        <article class="mrg-doc">
+          <h1>Shipping the shared look</h1>
+          <p class="lede">Every app now draws from one set of tokens, but each keeps its own voice.</p>
+          <h2>What changed</h2>
+          <ul>
+            <li>One source file generates the CSS, the Tailwind map and the Python theme.</li>
+            <li>Contrast is tested, not eyeballed: <mark class="gk-mark">162 pairs pass AA</mark>.<span class="mrg-note">Count from the test run on 25 Nov; re-check before publishing.</span></li>
+          </ul>
+          <blockquote>Make the default the accessible choice, and nobody has to remember.</blockquote>
+          <pre><code>:root { --gk-color-accent: #8E1E41; }</code></pre>
+          <p>Read the <a href="#">design brief</a> before touching a screen.</p>
+        </article>
+      </div>
+    </div>
+    <footer class="mrg-status">
+      <span class="gk-num">74 words</span><span class="gk-num">Ln 7, Col 12</span>
+      <span class="end"><span><kbd class="gk-kbd">Ctrl</kbd> <kbd class="gk-kbd">S</kbd> save</span><span><kbd class="gk-kbd">Ctrl</kbd> <kbd class="gk-kbd">P</kbd> preview</span></span>
+    </footer>
+  </div>
+  <section class="pv-swatches" aria-label="Margin tokens" data-swatches></section>
+</main>
+
+<script>
+  const root = document.documentElement;
+  const keys = ['bg','surface','sunken','border','border-strong','text','text-muted','text-subtle','accent','accent-hover','on-accent','accent-subtle','focus','danger','success','warning','info','highlight'];
+  function paintSwatches(screen) {
+    const box = screen.querySelector('[data-swatches]');
+    const cs = getComputedStyle(root);
+    box.innerHTML = '<h2 class="gk-display">Color tokens, current theme</h2>' + keys.map((k) => {
+      const v = cs.getPropertyValue('--gk-color-' + k).trim();
+      return `<div class="pv-swatch"><span style="background:${v}"></span><span>${k}<code>${v}</code></span></div>`;
+    }).join('');
+  }
+  function apply() {
+    const f = document.querySelector('[name=flavor]:checked').value;
+    const t = document.querySelector('[name=theme]:checked').value;
+    root.dataset.gkFlavor = f;
+    root.dataset.gkTheme = t;
+    document.querySelectorAll('[data-screen]').forEach((s) => { s.hidden = s.dataset.screen !== f; });
+    requestAnimationFrame(() => paintSwatches(document.querySelector(`[data-screen="${f}"]`)));
+  }
+  document.querySelector('.pv-bar').addEventListener('change', apply);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', apply);
+  const q = new URLSearchParams(location.search);
+  for (const name of ['flavor', 'theme']) {
+    const input = q.get(name) && document.querySelector(`[name=${name}][value="${q.get(name)}"]`);
+    if (input) input.checked = true;
+  }
+  apply();
+
+  document.querySelectorAll('[data-tabs]').forEach((list) => {
+    const tabs = [...list.querySelectorAll('[role=tab]')];
+    const select = (tab) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel && tabs.filter((x) => x.getAttribute('aria-controls') === panel.id).length === 1) panel.hidden = !on;
+      });
+      list.dispatchEvent(new CustomEvent('tabchange', { detail: tab.id }));
+    };
+    list.addEventListener('click', (e) => { const t = e.target.closest('[role=tab]'); if (t) select(t); });
+    list.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(document.activeElement);
+      const n = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i - 1 + tabs.length) % tabs.length, Home: 0, End: tabs.length - 1 }[e.key];
+      if (n === undefined || i < 0) return;
+      e.preventDefault(); tabs[n].focus(); select(tabs[n]);
+    });
+  });
+
+  document.querySelector('.mrg-bar [data-tabs]').addEventListener('tabchange', (e) => {
+    document.getElementById('mrg-p').dataset.view = e.detail.replace('mrg-t-', '');
+    document.getElementById('mrg-p').setAttribute('aria-labelledby', e.detail);
+  });
+
+  const dialog = document.getElementById('ins-dialog');
+  document.getElementById('ins-grant').addEventListener('click', () => dialog.showModal());
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener('close', () => {
+    if (dialog.returnValue !== 'ok') return;
+    const region = document.getElementById('ins-toasts');
+    const toast = document.createElement('div');
+    toast.className = 'gk-toast gk-toast--success';
+    toast.setAttribute('role', 'status');
+    toast.innerHTML = '<div><strong>Role granted.</strong> It applies on their next request.</div>';
+    region.append(toast);
+    setTimeout(() => toast.remove(), 4000);
+  });
+</script>
+</body>
+</html>
