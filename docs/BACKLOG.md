@@ -39,5 +39,6 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Done (recent)
 | ID | Title | Commit | Date |
 |---|---|---|---|
-| PLT-B-001 | sync-kit.sh skipped GSpace (REPOS still said Progress); --fix/--push/--install-hooks aborted on a missing repo (checkers-gym-management); no guard against private paths. Fixed: GSpace in REPOS, missing repos skipped, Not Repository/ + PRIVATE-*.md refused when staged and flagged in check | this commit | 2026-11-25 |
+| PLT-B-001 | sync-kit.sh skipped GSpace (REPOS still said Progress); --fix/--push/--install-hooks aborted on a missing repo (checkers-gym-management); no guard against private paths. Fixed: GSpace in REPOS, missing repos skipped, Not Repository/ + PRIVATE-*.md refused when staged and flagged in check | 7d15874 | 2026-11-25 |
+| PLT-B-003 | CLAUDE.md told agents to commit PRIVATE-STATUS/TODO into every repo (contradicts RULES s7). Reworded in platform; other repos get the same fix in their upgrade turn | this commit | 2026-11-25 |
 | PLT-B-002 | Employer to-dos tracked in docs/project/Ideas.md in all 7 repos (6 public). Lines removed per repo; history unchanged | c1ff51e (+1 per repo) | 2026-11-25 |
