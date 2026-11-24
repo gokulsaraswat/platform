@@ -44,6 +44,16 @@ Peer: `react@^19`. Import `@gokulsaraswat/ui/styles.css` after `tokens.css`. Cla
 
 Apps must serve a route for each `footerPages` slug under their base path (own page or `LegalPage`).
 
+## `@gokulsaraswat/ui/v2` (design system v2; additive, UNRELEASED: on branch `redesign/platform`, ships as ui 0.2.0 after approval)
+Full brief with every value: `docs/DESIGN-BRIEF.md`. Source: `packages/ui/src/v2/flavors.json` (generated outputs, never edit them).
+| Export | Shape | Notes |
+|---|---|---|
+| `./v2/tokens.css` | `--gk-*` variables; `data-gk-flavor="instrument\|atelier\|margin"`; dark via `.dark` or `data-gk-theme="dark"`; `data-gk-theme="system"` | v1 variable names untouched; no `--gk-*` existed before |
+| `./v2/components.css` | `gk-` classes: app, btn, field/input/select/textarea, check, switch, card, badge, alert, table, tabs, topbar/sidenav/navlink, dialog, toast, skeleton, spinner, state, kbd, mark | v1 `gk-footer*` / `gk-legal*` untouched |
+| `./v2/tailwind.css` | Tailwind v4 `@theme inline`: `--color-gk-*`, `--font-gk-*`, `--text-gk-*`, `--radius-gk-*`, `--shadow-gk-{1,2,3}`, `--ease-gk-*` | namespaced, no clash with v1 utilities |
+| `./v2` (React, peer react@^19) | `Button`, `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Card`, `Badge`, `Alert`, `Skeleton`, `Spinner`, `Kbd`, `Dialog`, `ToastRegion`, `Tabs`, `tabPanelProps`, `EmptyState`, `ErrorState`, `cx`, `flavors`, `flavorNames`, types | `Dialog`, `ToastRegion`, `Tabs` ship with `'use client'`; everything else (incl. `Field`, `tabPanelProps`, states) works in server components |
+Breaking change = renaming/removing a `--gk-*` variable, a `gk-` class or a v2 export. Adding is minor.
+
 All packages are ESM-only (`import`; no `require`). Verified for TS `moduleResolution` `nodenext` and `bundler` (Next/Vite).
 
 ## `@gokulsaraswat/config`
