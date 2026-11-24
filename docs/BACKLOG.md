@@ -27,6 +27,7 @@ Status: open, doing, blocked, done, dropped. Cross-repo: `needs:` waits on, `blo
 ## Features
 | ID | Title | Pri | Status | Needs/Blocks | Notes |
 |---|---|---|---|---|---|
+| PLT-F-001 | Design system v2 (`@gokulsaraswat/ui/v2`, DESIGN-BRIEF) | P1 | doing | blocks: ADM-I-001, MOB-I-001, PRT-I-001 | branch redesign/platform; release as ui 0.2.0 after Gokul's OK |
 
 ## Ideas (unscoped, not committed to)
 | ID | Idea | Pri | Status | Needs/Blocks | Notes |

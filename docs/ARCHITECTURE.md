@@ -17,7 +17,17 @@ platform/                 npm workspace root (private, not published)
 │       ├── src/Footer.tsx     Footer (brand, columns, socials, fixed legal row)
 │       ├── src/LegalPage.tsx  placeholder page for a footerPages slug
 │       ├── src/index.ts       public exports -> dist/ (tsc)
-│       └── test/              node:test: token consistency + SSR render of components
+│       ├── src/v2/            design system v2 (additive, `@gokulsaraswat/ui/v2`)
+│       │   ├── flavors.json        SOURCE: shared scales + 3 flavors (instrument, atelier, margin) x light/dark
+│       │   ├── tokens.css          generated --gk-* variables, flavor/theme selectors
+│       │   ├── tailwind.css        generated Tailwind v4 mapping (gk-namespaced)
+│       │   ├── flavors.ts          generated raw values for JS
+│       │   ├── components.css      gk- component classes (hand-written, tokens only)
+│       │   └── *.tsx, index.ts     thin React wrappers (Button, Field, Dialog, Tabs, ...)
+│       ├── scripts/gen.mjs    flavors.json -> v2/tokens.css, v2/tailwind.css, v2/flavors.ts, docs/DESIGN-BRIEF.md raw block (--check for drift)
+│       ├── scripts/contrast.mjs  WCAG contrast audit of every token pair (used by tests)
+│       ├── preview/index.html one sample screen per flavor + theme switcher (not published)
+│       └── test/              node:test: token consistency, SSR render, v2 drift + contrast + additivity
 ├── .changeset/           Changesets config + pending changesets
 ├── .github/workflows/    ci.yml: npm ci, build, lint, test on push to main + PRs
 │                         release.yml: on main, lint + test, `changeset publish` to GitHub Packages, push tags

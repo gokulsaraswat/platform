@@ -36,6 +36,15 @@ node_modules 73 MB, dist ui 26 KB / config 18 KB / auth 6 KB.
 | `footerPages`, `FooterPageSlug`, `pagePath` | `components.test.mjs` |
 | `LinkComponent`, `LinkProps` types | gokulmobilize type-checks |
 
+## @gokulsaraswat/ui/v2 (branch redesign/platform until merged; release after approval)
+| Feature | Verify |
+|---|---|
+| `flavors.json` -> generated `v2/tokens.css`, `v2/tailwind.css`, `v2/flavors.ts`, DESIGN-BRIEF raw block | `npm run gen -w @gokulsaraswat/ui`; `node packages/ui/scripts/gen.mjs --check` exits 0 |
+| WCAG AA for 162 token pairs (3 flavors x light/dark) | `npm run contrast -w @gokulsaraswat/ui`; test `v2.test.mjs` |
+| `v2/components.css` classes + React wrappers (`@gokulsaraswat/ui/v2`) | `v2.test.mjs` SSR tests (Button, Field, Switch, Alert, Badge, states, Tabs, Dialog) |
+| v1 untouched (exports, variables, classes) | `v2.test.mjs` "v2 is additive"; existing tokens/components tests |
+| Preview page | open `packages/ui/preview/index.html?flavor=atelier&theme=dark`; switch flavor/theme; Grant role opens dialog, toast on confirm |
+
 ## CI / release
 | Feature | Verify |
 |---|---|

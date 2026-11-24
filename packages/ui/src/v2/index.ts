@@ -17,4 +17,6 @@ export {
   type SpinnerProps,
 } from './display.js';
 export { Dialog, ToastRegion, type DialogProps, type ToastItem, type ToastTone, type ToastRegionProps } from './overlay.js';
-export { Tabs, tabPanelProps, EmptyState, ErrorState, type TabItem, type TabsProps, type StateProps } from './navigation.js';
+export { Tabs, type TabItem, type TabsProps } from './navigation.js';
+export { tabPanelProps } from './aria.js';
+export { EmptyState, ErrorState, type StateProps } from './states.js';

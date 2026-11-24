@@ -11,6 +11,7 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - `npm audit`: 0 vulnerabilities (2026-11-25: eslint 10.15.0, typescript-eslint 8.74.0 pull patched minimatch). `.nvmrc` = 24 (matches CI). `graphify-out/` generated; git hooks not installed.
 
 ## Done
+- 2026-11-25 Phase D (branch redesign/platform, awaiting "merge"): design system v2 in packages/ui (flavors.json source, generator, tokens/components/tailwind CSS, React wrappers, 12 new tests, contrast 162/162 AA), preview page, docs/DESIGN-BRIEF.md. Flavors: instrument (admin, omni), atelier (hub), margin (Markdown-studio, GSpace). Release (ui 0.2.0 changeset) waits for Gokul's OK.
 - 2026-11-25 Gate 2 (approved): removed byte-identical nested copies docs/project/agent/Agent/ and docs/project/prompts/prompts/ (8 files, no references). Decision: other repos' docs/master, docs/project, WORKLOG-PROJECT.md become one pointer file, done in each repo's upgrade turn.
 - 2026-11-25 Upgrade phase C: CI test step skips the duplicate pretest rebuild (`npm test --ignore-scripts` after `npm run build`): 10.5 s -> 4.0 s locally, 17/17. Packed sizes: ui 5.5 KB, config 1.9 KB, auth 1.3 KB (no maps). No export removed: all are public API.
 - 2026-11-25 PLT-B-003: CLAUDE.md no longer tells agents to commit PRIVATE-* files (d75a2eb).
