@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ui-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4173", "--bind", "127.0.0.1", "--directory", "/private/var/folders/31/hbrv7xq97_5fdb43717hnd4mc61g3c/T/tmp.2t9tA8Ea0Z"],
+      "port": 4173
+    }
+  ]
+}
