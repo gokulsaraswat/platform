@@ -82,19 +82,6 @@
       "source_location": "L14"
     },
     {
-      "id": "packages_config_src_roles_userrole",
-      "label": "UserRole",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "file_type": "code",
-      "norm_label": "userrole",
-      "source_file": "packages/config/src/roles.ts",
-      "source_location": "L12"
-    },
-    {
       "id": "packages_config_src_apps_appid",
       "label": "AppId",
       "_callable": true,
@@ -145,6 +132,19 @@
       "norm_label": "role",
       "source_file": "packages/config/src/roles.ts",
       "source_location": "L6"
+    },
+    {
+      "id": "packages_config_src_roles_userrole",
+      "label": "UserRole",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "config/src/index.ts",
+      "file_type": "code",
+      "norm_label": "userrole",
+      "source_file": "packages/config/src/roles.ts",
+      "source_location": "L12"
     },
     {
       "id": "packages_ui_src_link_linkcomponent",
@@ -1484,18 +1484,6 @@
       "source_location": "L35"
     },
     {
-      "id": "changeset_config_auth_initial",
-      "label": "config-auth-initial.md",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "config-auth-initial.md",
-      "source_file": ".changeset/config-auth-initial.md",
-      "source_location": "L1"
-    },
-    {
       "id": "docs_contracts",
       "label": "CONTRACTS.md",
       "_origin": "ast",
@@ -1518,6 +1506,18 @@
       "norm_label": "contracts (master)",
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L1"
+    },
+    {
+      "id": "docs_contracts_cross_repo_contracts",
+      "label": "Cross-repo contracts",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cross-repo contracts",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L67"
     },
     {
       "id": "docs_contracts_gokulsaraswat_auth",
@@ -1544,6 +1544,18 @@
       "source_location": "L22"
     },
     {
+      "id": "docs_contracts_hub_config_json",
+      "label": "Hub `config.json`",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "hub `config.json`",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L76"
+    },
+    {
       "id": "docs_contracts_packages",
       "label": "Packages",
       "_origin": "ast",
@@ -1554,6 +1566,18 @@
       "norm_label": "packages",
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L5"
+    },
+    {
+      "id": "docs_contracts_supabase_user_roles_owner_admin_repo_creates_the_migration_rls",
+      "label": "Supabase `user_roles` (owner: admin repo creates the migration + RLS)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "supabase `user_roles` (owner: admin repo creates the migration + rls)",
+      "source_file": "docs/CONTRACTS.md",
+      "source_location": "L68"
     },
     {
       "id": "packages_config_package",
@@ -1952,18 +1976,6 @@
       "source_location": "L4"
     },
     {
-      "id": "docs_contracts_cross_repo_contracts",
-      "label": "Cross-repo contracts",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "config/src/index.ts",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "cross-repo contracts",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L67"
-    },
-    {
       "id": "docs_contracts_gokulsaraswat_config",
       "label": "`@gokulsaraswat/config`",
       "_origin": "ast",
@@ -1974,30 +1986,6 @@
       "norm_label": "`@gokulsaraswat/config`",
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L49"
-    },
-    {
-      "id": "docs_contracts_hub_config_json",
-      "label": "Hub `config.json`",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "config/src/index.ts",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "hub `config.json`",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L76"
-    },
-    {
-      "id": "docs_contracts_supabase_user_roles_owner_admin_repo_creates_the_migration_rls",
-      "label": "Supabase `user_roles` (owner: admin repo creates the migration + RLS)",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "config/src/index.ts",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "supabase `user_roles` (owner: admin repo creates the migration + rls)",
-      "source_file": "docs/CONTRACTS.md",
-      "source_location": "L68"
     },
     {
       "id": "packages_ui_package",
@@ -3777,6 +3765,150 @@
       "type": "external"
     },
     {
+      "id": "packages_config_dist_index",
+      "label": "packages_config_dist_index",
+      "_origin": "semantic",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_config_dist_index_all_apps",
+      "label": "packages_config_dist_index_all_apps",
+      "_origin": "semantic",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index_all_apps",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_config_dist_index_appid",
+      "label": "packages_config_dist_index_appid",
+      "_origin": "semantic",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index_appid",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_config_dist_index_role",
+      "label": "packages_config_dist_index_role",
+      "_origin": "semantic",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index_role",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_config_dist_index_roles",
+      "label": "packages_config_dist_index_roles",
+      "_origin": "semantic",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index_roles",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_config_dist_index_userrole",
+      "label": "packages_config_dist_index_userrole",
+      "_origin": "semantic",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index_userrole",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_auth_dist_index",
+      "label": "packages_auth_dist_index",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_auth_dist_index",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_auth_dist_index_getuserroles",
+      "label": "packages_auth_dist_index_getuserroles",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_auth_dist_index_getuserroles",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_auth_dist_index_hasrole",
+      "label": "packages_auth_dist_index_hasrole",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_auth_dist_index_hasrole",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_auth_dist_index_issuperadmin",
+      "label": "packages_auth_dist_index_issuperadmin",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_auth_dist_index_issuperadmin",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_config_dist_index_appids",
+      "label": "packages_config_dist_index_appids",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index_appids",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "packages_config_dist_index_parsehubconfig",
+      "label": "packages_config_dist_index_parsehubconfig",
+      "_origin": "semantic",
+      "community": 5,
+      "community_name": "tokens.test.mjs",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "packages_config_dist_index_parsehubconfig",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "ref_node_assert",
       "label": "ref_node_assert",
       "_origin": "semantic",
@@ -3869,138 +4001,6 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "packages_ui_dist_index_pagepath",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index",
-      "label": "packages_config_dist_index",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index_all_apps",
-      "label": "packages_config_dist_index_all_apps",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index_all_apps",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index_appid",
-      "label": "packages_config_dist_index_appid",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index_appid",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index_role",
-      "label": "packages_config_dist_index_role",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index_role",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index_roles",
-      "label": "packages_config_dist_index_roles",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index_roles",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index_userrole",
-      "label": "packages_config_dist_index_userrole",
-      "community": 17,
-      "community_name": "auth/src/roles.ts",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index_userrole",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_auth_dist_index",
-      "label": "packages_auth_dist_index",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_auth_dist_index",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_auth_dist_index_getuserroles",
-      "label": "packages_auth_dist_index_getuserroles",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_auth_dist_index_getuserroles",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_auth_dist_index_hasrole",
-      "label": "packages_auth_dist_index_hasrole",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_auth_dist_index_hasrole",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_auth_dist_index_issuperadmin",
-      "label": "packages_auth_dist_index_issuperadmin",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_auth_dist_index_issuperadmin",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index_appids",
-      "label": "packages_config_dist_index_appids",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index_appids",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "packages_config_dist_index_parsehubconfig",
-      "label": "packages_config_dist_index_parsehubconfig",
-      "community": 5,
-      "community_name": "tokens.test.mjs",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "packages_config_dist_index_parsehubconfig",
       "source_file": "",
       "type": "external"
     }
@@ -8439,18 +8439,6 @@
       "weight": 1.0
     },
     {
-      "source": "changeset_config_auth_initial",
-      "target": "packages_config_src_roles_userrole",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "UserRole",
-      "source_file": ".changeset/config-auth-initial.md",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
       "source": "docs_contracts_gokulsaraswat_config",
       "target": "packages_config_src_roles_userrole",
       "relation": "references",
@@ -8472,18 +8460,6 @@
       "context": "UserRole",
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L11",
-      "weight": 1.0
-    },
-    {
-      "source": "changeset_config_auth_initial",
-      "target": "packages_auth_src_client_getuserroles",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "getUserRoles",
-      "source_file": ".changeset/config-auth-initial.md",
-      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -8511,18 +8487,6 @@
       "weight": 1.0
     },
     {
-      "source": "changeset_config_auth_initial",
-      "target": "packages_auth_src_roles_hasrole",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "hasRole",
-      "source_file": ".changeset/config-auth-initial.md",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
       "source": "docs_contracts_gokulsaraswat_auth",
       "target": "packages_auth_src_roles_hasrole",
       "relation": "references",
@@ -8544,18 +8508,6 @@
       "context": "hasRole",
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "changeset_config_auth_initial",
-      "target": "packages_auth_src_roles_issuperadmin",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "isSuperAdmin",
-      "source_file": ".changeset/config-auth-initial.md",
-      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -8583,18 +8535,6 @@
       "weight": 1.0
     },
     {
-      "source": "changeset_config_auth_initial",
-      "target": "packages_config_src_hub_parsehubconfig",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "parseHubConfig",
-      "source_file": ".changeset/config-auth-initial.md",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
       "source": "docs_contracts_gokulsaraswat_config",
       "target": "packages_config_src_hub_parsehubconfig",
       "relation": "references",
@@ -8617,8 +8557,20 @@
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L77",
       "weight": 1.0
+    },
+    {
+      "source": "docs_worklog_session_log",
+      "target": "packages_config_src_hub_parsehubconfig",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "parseHubConfig",
+      "source_file": "docs/WORKLOG.md",
+      "source_location": "L227",
+      "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "864d258a13e2b2f8fca54c1084d3011b811b01cf"
+  "built_at_commit": "0ec2407da2f33b1491d18fad3af9c5f53b971c48"
 }

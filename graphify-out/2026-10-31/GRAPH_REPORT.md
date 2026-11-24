@@ -1,17 +1,17 @@
 # Graph Report - platform  (2026-10-31)
 
 ## Corpus Check
-- 45 files · ~13,989 words
+- 46 files · ~14,089 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 4, .css 2, .example 1)
 
 ## Summary
-- 349 nodes · 406 edges · 23 communities (19 shown, 4 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.94)
+- 348 nodes · 402 edges · 23 communities (19 shown, 4 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 29 edges (avg confidence: 0.94)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `864d258a`
+- Built from commit: `0ec2407d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,27 +42,27 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `WORKLOG` - 19 edges
-2. `Footer()` - 9 edges
-3. `compilerOptions` - 9 edges
-4. `🤖 System Architecture & Co-Worker Protocol` - 9 edges
-5. `REPO SECTIONS` - 9 edges
-6. `scripts` - 7 edges
-7. `hasRole()` - 7 edges
-8. `LegalPage()` - 7 edges
-9. `WORKLOG: platform` - 7 edges
-10. `CONTRACTS (master)` - 7 edges
+2. `REPO SECTIONS` - 9 edges
+3. `Footer()` - 9 edges
+4. `compilerOptions` - 9 edges
+5. `🤖 System Architecture & Co-Worker Protocol` - 9 edges
+6. `LegalPage()` - 7 edges
+7. `CONTRACTS (master)` - 7 edges
+8. ``@gokulsaraswat/config`` - 7 edges
+9. `scripts` - 7 edges
+10. `WORKLOG: platform` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Session log` --references--> `parseHubConfig()`  [INFERRED]
+  docs/WORKLOG.md → packages/config/src/hub.ts
 - `Hub `config.json`` --references--> `parseHubConfig()`  [INFERRED]
   docs/CONTRACTS.md → packages/config/src/hub.ts
-- ``@gokulsaraswat/config`` --references--> `UserRole`  [INFERRED]
+- `Packages` --references--> `UserRole`  [INFERRED]
   docs/CONTRACTS.md → packages/config/src/roles.ts
-- ``@gokulsaraswat/ui` components` --references--> `LinkProps`  [INFERRED]
-  docs/CONTRACTS.md → packages/ui/src/link.tsx
 - ``@gokulsaraswat/ui` components` --references--> `LinkComponent`  [INFERRED]
   docs/CONTRACTS.md → packages/ui/src/link.tsx
-- ``@gokulsaraswat/auth`` --references--> `getUserRoles()`  [INFERRED]
-  docs/CONTRACTS.md → packages/auth/src/client.ts
+- ``@gokulsaraswat/ui` components` --references--> `LinkProps`  [INFERRED]
+  docs/CONTRACTS.md → packages/ui/src/link.tsx
 
 ## Import Cycles
 - None detected.
@@ -122,16 +122,16 @@ Cohesion: 0.07
 Nodes (28): dependencies, @gokulsaraswat/config, description, devDependencies, @supabase/supabase-js, typescript, exports, files (+20 more)
 
 ### Community 17 - "auth/src/roles.ts"
-Cohesion: 0.17
-Nodes (16): CONTRACTS (master), `@gokulsaraswat/auth`, `@gokulsaraswat/ui` tokens, Packages, getUserRoles(), hasRole(), isSuperAdmin(), rank() (+8 more)
+Cohesion: 0.14
+Nodes (18): CONTRACTS (master), Cross-repo contracts, `@gokulsaraswat/auth`, `@gokulsaraswat/ui` tokens, Hub `config.json`, Packages, Supabase `user_roles` (owner: admin repo creates the migration + RLS), getUserRoles() (+10 more)
 
 ### Community 18 - "config/package.json"
 Cohesion: 0.08
 Nodes (25): dependencies, zod, description, devDependencies, typescript, exports, files, typescript (+17 more)
 
 ### Community 19 - "config/src/index.ts"
-Cohesion: 0.21
-Nodes (15): Cross-repo contracts, `@gokulsaraswat/config`, Hub `config.json`, Supabase `user_roles` (owner: admin repo creates the migration + RLS), AppId, appIds, HubConfig, hubConfigSchema (+7 more)
+Cohesion: 0.26
+Nodes (13): `@gokulsaraswat/config`, AppId, appIds, HubConfig, hubConfigSchema, HubTile, parseHubConfig(), tileModes (+5 more)
 
 ### Community 20 - "compilerOptions"
 Cohesion: 0.20
@@ -146,23 +146,23 @@ Cohesion: 0.29
 Nodes (6): compilerOptions, outDir, rootDir, extends, include, ../../tsconfig.base.json
 
 ## Knowledge Gaps
-- **194 isolated node(s):** `$schema`, `baseBranch`, `access`, `format`, `changelog` (+189 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 228 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **193 isolated node(s):** `SHARED BLOCK`, `COLLABORATOR ADD-ON`, `1. platform (first)`, `Planning Chat: resume prompt`, `SHARED BLOCK` (+188 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 227 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `CONTRACTS (master)` connect `auth/src/roles.ts` to `components.test.mjs`, `config/src/index.ts`?**
-  _High betweenness centrality (0.193) - this node is a cross-community bridge._
+  _High betweenness centrality (0.174) - this node is a cross-community bridge._
 - **Why does `Footer()` connect `components.test.mjs` to `Footer.tsx`?**
-  _High betweenness centrality (0.127) - this node is a cross-community bridge._
+  _High betweenness centrality (0.130) - this node is a cross-community bridge._
 - **Why does `@supabase/supabase-js` connect `auth/src/roles.ts` to `auth/package.json`?**
-  _High betweenness centrality (0.110) - this node is a cross-community bridge._
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `Footer()` (e.g. with ``@gokulsaraswat/ui` components` and `Minor Changes`) actually correct?**
   _`Footer()` has 6 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `$schema`, `baseBranch`, `access` to the rest of the system?**
-  _194 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `SHARED BLOCK`, `COLLABORATOR ADD-ON`, `1. platform (first)` to the rest of the system?**
+  _193 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `README.md` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
 - **Should `WORKLOG` be split into smaller, more focused modules?**

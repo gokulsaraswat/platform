@@ -82,6 +82,19 @@
       "source_location": "L14"
     },
     {
+      "id": "packages_config_src_roles_userrole",
+      "label": "UserRole",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "code",
+      "norm_label": "userrole",
+      "source_file": "packages/config/src/roles.ts",
+      "source_location": "L12"
+    },
+    {
       "id": "packages_config_src_apps_appid",
       "label": "AppId",
       "_callable": true,
@@ -132,19 +145,6 @@
       "norm_label": "role",
       "source_file": "packages/config/src/roles.ts",
       "source_location": "L6"
-    },
-    {
-      "id": "packages_config_src_roles_userrole",
-      "label": "UserRole",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "config/src/index.ts",
-      "file_type": "code",
-      "norm_label": "userrole",
-      "source_file": "packages/config/src/roles.ts",
-      "source_location": "L12"
     },
     {
       "id": "packages_ui_src_link_linkcomponent",
@@ -249,8 +249,8 @@
       "label": "parseHubConfig()",
       "_callable": true,
       "_origin": "ast",
-      "community": 19,
-      "community_name": "config/src/index.ts",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
       "file_type": "code",
       "norm_label": "parsehubconfig()",
       "source_file": "packages/config/src/hub.ts",
@@ -1580,6 +1580,114 @@
       "source_location": "L68"
     },
     {
+      "id": "packages_auth_changelog",
+      "label": "auth/CHANGELOG.md",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "auth/changelog.md",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "packages_auth_changelog_0_1_0",
+      "label": "0.1.0",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "0.1.0",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "packages_auth_changelog_gokulsaraswat_auth",
+      "label": "@gokulsaraswat/auth",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "@gokulsaraswat/auth",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "packages_auth_changelog_minor_changes",
+      "label": "Minor Changes",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "minor changes",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "packages_auth_changelog_patch_changes",
+      "label": "Patch Changes",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "patch changes",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "packages_config_changelog",
+      "label": "config/CHANGELOG.md",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "config/changelog.md",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "packages_config_changelog_0_1_0",
+      "label": "0.1.0",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "0.1.0",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "packages_config_changelog_gokulsaraswat_config",
+      "label": "@gokulsaraswat/config",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "@gokulsaraswat/config",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "packages_config_changelog_minor_changes",
+      "label": "Minor Changes",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "auth/src/roles.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "minor changes",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L5"
+    },
+    {
       "id": "packages_config_package",
       "label": "config/package.json",
       "_origin": "ast",
@@ -1855,17 +1963,6 @@
       "source_location": "L32"
     },
     {
-      "id": "ref_zod",
-      "label": "zod",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "config/package.json",
-      "file_type": "concept",
-      "norm_label": "zod",
-      "source_file": "packages/config/package.json",
-      "source_location": "L35"
-    },
-    {
       "id": "packages_config_src_apps",
       "label": "apps.ts",
       "_origin": "ast",
@@ -1974,6 +2071,17 @@
       "norm_label": "roles",
       "source_file": "packages/config/src/roles.ts",
       "source_location": "L4"
+    },
+    {
+      "id": "ref_zod",
+      "label": "zod",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "config/src/index.ts",
+      "file_type": "concept",
+      "norm_label": "zod",
+      "source_file": "packages/config/package.json",
+      "source_location": "L35"
     },
     {
       "id": "docs_contracts_gokulsaraswat_config",
@@ -3466,13 +3574,13 @@
     },
     {
       "id": "packages_ui_changelog",
-      "label": "CHANGELOG.md",
+      "label": "ui/CHANGELOG.md",
       "_origin": "ast",
       "community": 8,
       "community_name": "components.test.mjs",
       "file_type": "document",
       "node_kind": "page",
-      "norm_label": "changelog.md",
+      "norm_label": "ui/changelog.md",
       "source_file": "packages/ui/CHANGELOG.md",
       "source_location": "L1"
     },
@@ -6353,6 +6461,50 @@
       "weight": 1.0
     },
     {
+      "source": "packages_auth_changelog",
+      "target": "packages_auth_changelog_gokulsaraswat_auth",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_auth_changelog_0_1_0",
+      "target": "packages_auth_changelog_minor_changes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_auth_changelog_0_1_0",
+      "target": "packages_auth_changelog_patch_changes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_auth_changelog_gokulsaraswat_auth",
+      "target": "packages_auth_changelog_0_1_0",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "packages_auth_package",
       "target": "packages_auth_package_sideeffects",
       "relation": "contains",
@@ -6767,6 +6919,39 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/auth/tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog",
+      "target": "packages_config_changelog_gokulsaraswat_config",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog_0_1_0",
+      "target": "packages_config_changelog_minor_changes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog_gokulsaraswat_config",
+      "target": "packages_config_changelog_0_1_0",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "packages/config/CHANGELOG.md",
       "source_location": "L3",
       "weight": 1.0
     },
@@ -8463,6 +8648,30 @@
       "weight": 1.0
     },
     {
+      "source": "packages_auth_changelog_minor_changes",
+      "target": "packages_config_src_roles_userrole",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "UserRole",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog_minor_changes",
+      "target": "packages_config_src_roles_userrole",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "UserRole",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
       "source": "docs_contracts_gokulsaraswat_auth",
       "target": "packages_auth_src_client_getuserroles",
       "relation": "references",
@@ -8484,6 +8693,30 @@
       "context": "getUserRoles",
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_auth_changelog_minor_changes",
+      "target": "packages_auth_src_client_getuserroles",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "getUserRoles",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog_minor_changes",
+      "target": "packages_auth_src_client_getuserroles",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "getUserRoles",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -8511,6 +8744,30 @@
       "weight": 1.0
     },
     {
+      "source": "packages_auth_changelog_minor_changes",
+      "target": "packages_auth_src_roles_hasrole",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "hasRole",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog_minor_changes",
+      "target": "packages_auth_src_roles_hasrole",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "hasRole",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
       "source": "docs_contracts_gokulsaraswat_auth",
       "target": "packages_auth_src_roles_issuperadmin",
       "relation": "references",
@@ -8532,6 +8789,30 @@
       "context": "isSuperAdmin",
       "source_file": "docs/CONTRACTS.md",
       "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_auth_changelog_minor_changes",
+      "target": "packages_auth_src_roles_issuperadmin",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "isSuperAdmin",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog_minor_changes",
+      "target": "packages_auth_src_roles_issuperadmin",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "isSuperAdmin",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -8569,8 +8850,32 @@
       "source_file": "docs/WORKLOG.md",
       "source_location": "L227",
       "weight": 1.0
+    },
+    {
+      "source": "packages_auth_changelog_minor_changes",
+      "target": "packages_config_src_hub_parsehubconfig",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "parseHubConfig",
+      "source_file": "packages/auth/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "packages_config_changelog_minor_changes",
+      "target": "packages_config_src_hub_parsehubconfig",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "parseHubConfig",
+      "source_file": "packages/config/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0ec2407da2f33b1491d18fad3af9c5f53b971c48"
+  "built_at_commit": "076184e7f8955c199f7d98fdfbef1a0f7314e864"
 }
