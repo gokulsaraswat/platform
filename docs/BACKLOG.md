@@ -6,12 +6,23 @@
 |---|---|---|---|---|---|
 | admin | ADM-I-001 | UI/motion upgrade: dense, scannable admin shell, tables, hub editor (presentation only) | P2 | open | needs: ADM-D-001; master: PLT-I-001 |
 | admin | ADM-F-001 | Invite-only access requests: `access_requests` table, `request_access` / `decide_access_request` RPCs, /access-requests page | P1 | blocked | needs: Gokul applies `20261125120000_access_requests.sql` + runs `supabase/tests/access_requests_test.sql`; blocks: GSpace sign-in gate |
+| admin | ADM-F-004 | Shared sign-in: GitHub on /login (generalized `signInWithOAuth`), Connected accounts page `/account` (link/unlink), auth/config 0.2.0, app id `converter` (+ migration `20261125140000_app_converter.sql`) | P1 | blocked | needs: Gokul: GitHub OAuth app + enable GitHub provider + Allow manual linking + redirect URLs, apply `20261125140000_app_converter.sql` + run `supabase/tests/app_converter_test.sql`; master: PLT-F-005 |
 | admin | ADM-F-003 | App members with emails: `list_app_members(app)` RPC for app admins; remove member = delete `user_roles` row | P1 | blocked | needs: Gokul applies `20261125130000_app_members.sql` + runs `supabase/tests/app_members_test.sql`; blocks: GSpace members screen |
+| gokulmobilize | MOB-B-001 | `build:native` / `android:sync` fail on Windows | P1 | open |  |
 | gokulmobilize | MOB-I-001 | UI/motion upgrade of hub (TileGrid, SavedList, Base) | P2 | open | pilot repo; master: PLT-I-001 |
+| gokulmobilize | MOB-I-003 | Footer links are 24 px tall on touch (44 px preferred) | P2 | open | needs: platform `Footer` (ui) or a local override |
 | bestportofolio | PRT-I-001 | UI/motion upgrade in 3 passes: site, chat widget (visual only, /api/chat stream untouched), own admin | P2 | open | master: PLT-I-001 |
 | bestportofolio | PRT-F-001 | Show GSpace feed (`public/gspace-feed.json`: public projects + learning) as a "Now / learning in public" section | P2 | open | needs: GSP-X-010 (done) |
 | bestportofolio | PRT-X-001 | Evaluate copy-in animation kits (Magic UI, React Bits, Aceternity UI) via the shadcn registry (components.json exists) | P3 | open | after PRT-I-001 pass A |
+| GSpace | GSP-F-004 | Palette: list every saved command (copy with variables), every utility and every project directly, not only fixed actions | P1 | open |  |
+| GSpace | GSP-F-005 | Focus timer on a todo; when it ends it writes a work-log entry with minutes, heatmap can show focus time | P1 | open |  |
+| GSpace | GSP-F-008 | Repo pulse board: all linked repos in one view with branch, ahead/behind, dirty files, last CI run, open PRs | P1 | open |  |
+| GSpace | GSP-F-013 | Optional end-to-end encrypted cloud sync through Supabase so one account works on several machines | P2 | open | needs: ADM migration for an encrypted blob table |
+| GSpace | GSP-F-014 | Audit log for admins: who approved, denied, removed or changed a role, and when | P2 | open | needs: ADM audit table/trigger |
+| GSpace | GSP-F-015 | Invite links that pre-approve one email address | P2 | open | needs: ADM invites table + RPC |
+| GSpace | GSP-X-027 | Open a workspace Markdown file in Markdown-studio | P3 | open | needs: MDS deep-link format |
 | GSpace | GSP-D-002 | typescript pinned to ^6 because @astrojs/check 0.9.12 peer range is ^5 |  | ^6 (latest TS is 7.x) | P3 |
+| Markdown-studio | MDS-B-001 | Preview renders raw HTML unsanitized: inline handlers run (XSS from opened/imported files) | P1 | open |  |
 <!-- INDEX:END -->
 
 Rules: `RULES.md` section 4. Architecture: `docs/ARCHITECTURE.md`. Public-safe: no secrets, no employer material.
