@@ -66,3 +66,4 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 - TO BE UPDATED: scope of this repo is not final; see docs/KICKOFF-PROMPT.md "Questions to ask me first".
 
 - 2026-11-26 Upgrade program: status of all 7 repos and how to resume is in platform/docs/UPGRADE-PROGRAM.md (read it first).
+- 2026-11-26 Portfolio logic step 1 (PLT-F-004): `@gokulsaraswat/config` gets zod schemas for the portfolio contract (`packages/config/src/portfolio.ts`, exported from the index; additive, no auth code touched). Build ok, eslint clean, tests 9/9 (6 new). NOT released and no changeset yet: add the minor changeset when Gokul OKs the release.
