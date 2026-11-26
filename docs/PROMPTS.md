@@ -1,5 +1,16 @@
 # Kickoff Prompts
 
+## CONTINUE THE UPGRADE PROGRAM (current, 2026-11-27)
+
+Paste this as the first message of a new chat (Opus 5.5 high; xhigh for mdx and SQL) with `platform`, `admin`, `GSpace`, `bestportofolio`, `gokulmobilize` cloned side by side:
+
+```
+Read admin/docs/upgrade-program/NEXT-SESSION.md (section 0 first) and GSpace/docs/upgrade-program/REPO-UPGRADE-PROGRESS.md, then continue the upgrade program.
+Logic first (mdx package, admin portfolio SQL drafts, admin portfolio section), design and migration later; never apply SQL, release or merge without my OK; commit and push each unit.
+```
+
+---
+
 How to use: open a NEW chat in the repo's folder, paste **SHARED BLOCK** + that repo's **REPO SECTION**.
 Collaborators: paste **COLLABORATOR ADD-ON** after them (it overrides the "wait for OK" rule).
 Planning/coordination chat (the one with the master WORKLOG) stays separate; come back to it to confirm and plan the next repo.
