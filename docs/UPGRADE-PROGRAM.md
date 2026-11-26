@@ -34,6 +34,7 @@ PORTFOLIO-ADMIN-ASTRO-PLAN.md, REPO-UPGRADE-AGENT-RULES.md. If you have them, re
 - Deletions only with grep evidence; redesigns stay on branches; SQL never applied by an agent; npm releases only with Gokul's OK.
 
 ## Resume
+0. Newest handoff (2026-11-27): `admin/docs/upgrade-program/NEXT-SESSION.md` section 0 (pending order, where each task runs, tooling gotchas). Decision: logic first (mdx package, admin portfolio SQL drafts, admin portfolio section), design and migration later.
 1. Read this file, then the repo's WORKLOG.md and docs/BACKLOG.md.
 2. Continue the "Next" column above for the repo in priority order.
 3. Update this table and the repo's WORKLOG.md in the same commit as the work.
