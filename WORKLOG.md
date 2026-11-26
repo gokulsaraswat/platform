@@ -64,3 +64,5 @@ Master status of all repos: platform/docs/WORKLOG.md. Update this file after eve
 
 ## Reminders
 - TO BE UPDATED: scope of this repo is not final; see docs/KICKOFF-PROMPT.md "Questions to ask me first".
+
+- 2026-11-26 Upgrade program: status of all 7 repos and how to resume is in platform/docs/UPGRADE-PROGRAM.md (read it first).
